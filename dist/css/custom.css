@@ -1,0 +1,70 @@
+.table {
+  margin-bottom: 0px !important;
+}
+
+.table .pretty{
+  margin-right: 0 !important;
+}
+
+.form .pretty{
+  margin-top: 10px;
+}
+
+.pagination-sm .page-link {
+  padding: .125rem .5rem;
+}
+
+.pagination-info{
+  font-size: .9em !important;
+  padding: 3px 4px 3px 2px;
+}
+
+.td-status{
+  padding: .1em !important;
+  padding-top: 5px !important;
+}
+
+.icon-status{
+  font-size: 1.3em;
+}
+
+.text-middle{
+  vertical-align: middle !important;
+}
+
+::-webkit-input-placeholder {
+  font-style: italic;
+}
+:-moz-placeholder {
+  font-style: italic;  
+}
+::-moz-placeholder {
+  font-style: italic;  
+}
+:-ms-input-placeholder {  
+  font-style: italic; 
+}
+
+.swal-wide{
+  width:300px !important;
+}
+
+.form-group {
+  margin-bottom: .25rem;
+}
+
+.check{
+  margin-top:0px;
+}
+
+@media all and (max-width:576px) {
+  .btn-block-xs{ width: 100%; display:block; }
+} 
+
+.nav-sidebar .nav-header:not(:first-of-type) {
+    padding: 10px 16px 8px !important;
+}
+
+.dropdown-menu{
+  z-index: 10000;
+}
