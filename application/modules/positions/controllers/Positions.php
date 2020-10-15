@@ -67,10 +67,10 @@ class Positions extends MY_Controller
     if (!isset($data['is_active'])) {
       $data['is_active'] = 0;
     }
-    $cek = $this->m_positions->by_field('position_id', $data['position_id']);
+    $cek = $this->m_positions->by_field('position_name', $data['position_name']);
     if ($id == null) {
       if ($cek != null) {
-        $this->session->set_flashdata('flash_error', 'Kode sudah ada di sistem.');
+        $this->session->set_flashdata('flash_error', 'Posisi sudah ada di sistem.');
         redirect(site_url() . '/' .  $this->menu['controller']  . '/form/');
       }
       $data['position_id'] = $this->uuid->v4();
@@ -79,8 +79,8 @@ class Positions extends MY_Controller
       create_log(2, $this->menu['menu_name']);
       $this->session->set_flashdata('flash_success', 'Data berhasil ditambahkan.');
     } else {
-      if ($data['old'] != $data['position_id'] && $cek != null) {
-        $this->session->set_flashdata('flash_error', 'Kode sudah ada di sistem.');
+      if ($data['old'] != $data['position_name'] && $cek != null) {
+        $this->session->set_flashdata('flash_error', 'Posisi sudah ada di sistem.');
         redirect(site_url() . '/' . $this->menu['controller'] . '/form/' . $id);
       }
       unset($data['old']);

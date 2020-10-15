@@ -31,7 +31,7 @@
                 <div class="flash-error" data-flasherror="<?= $this->session->flashdata('flash_error') ?>"></div>
                 <input type="hidden" class="form-control form-control-sm" name="position_id" id="position_id" value="<?= @$main['position_id'] ?>" required>
                 <?php if ($id != null) : ?>
-                  <input type="hidden" class="form-control form-control-sm" name="old" id="old" value="<?= @$main['position_id'] ?>" required>
+                  <input type="hidden" class="form-control form-control-sm" name="old" id="old" value="<?= @$main['position_name'] ?>" required>
                 <?php endif; ?>
                 <div class="form-group row">
                   <label for="menu" class="col-sm-2 col-form-label text-right">Nama Devisi <span class="text-danger">*</span></label>
