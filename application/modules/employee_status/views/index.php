@@ -82,7 +82,7 @@
                             </div>
                           </th>
                           <th class="text-center" width="50">Aksi</th>
-                          <th class="text-center" width="200"><?= table_sort($menu['menu_id'], 'Nama Departemen', 'departement_name', $cookie['order']) ?></th>
+                          <th class="text-center" width="200"><?= table_sort($menu['menu_id'], 'Nama Status Karyawan', 'employee_status_name', $cookie['order']) ?></th>
                           <th class="text-center">Deskripsi</th>
                           <th class="text-center" width="70"><?= table_sort($menu['menu_id'], 'Status', 'is_active', $cookie['order']) ?></th>
                         </tr>
@@ -102,7 +102,7 @@
                                 <td class="text-center"><?= $cookie['cur_page'] + ($i++) ?></td>
                                 <td class="text-center">
                                   <div class="pretty p-icon">
-                                    <input class="checkitem" type="checkbox" value="<?= $r['departement_id'] ?>" name="checkitem[]" onclick="checkItem();" />
+                                    <input class="checkitem" type="checkbox" value="<?= $r['employee_status_id'] ?>" name="checkitem[]" onclick="checkItem();" />
                                     <div class="state">
                                       <i class="icon fas fa-check"></i><label></label>
                                     </div>
@@ -110,22 +110,22 @@
                                 </td>
                                 <td class="text-center">
                                   <?php if ($menu['_update'] == 1) : ?>
-                                    <a class="text-warning mr-1" href="<?= site_url() . '/' . $menu['controller'] . '/form/' . $r['departement_id'] ?>"><i class="fas fa-pencil-alt"></i></a>
+                                    <a class="text-warning mr-1" href="<?= site_url() . '/' . $menu['controller'] . '/form/' . $r['employee_status_id'] ?>"><i class="fas fa-pencil-alt"></i></a>
                                   <?php endif; ?>
                                   <?php if ($menu['_delete'] == 1) : ?>
-                                    <a class="text-danger btn-delete" href="<?= site_url() . '/' . $menu['controller'] . '/delete/' . $r['departement_id'] ?>"><i class="fas fa-trash-alt"></i></a>
+                                    <a class="text-danger btn-delete" href="<?= site_url() . '/' . $menu['controller'] . '/delete/' . $r['employee_status_id'] ?>"><i class="fas fa-trash-alt"></i></a>
                                   <?php endif; ?>
                                 </td>
-                                <td><?= $r['departement_name'] ?></td>
+                                <td><?= $r['employee_status_name'] ?></td>
                                 <td><?= $r['description'] ?></td>
                                 <td class="text-center td-status">
                                   <?php if ($menu['_update'] == 1) : ?>
                                     <?php if ($r['is_active'] == 1) : ?>
-                                      <a href="<?= site_url() . '/' . $menu['controller'] . '/status/disable/' . $r['departement_id'] ?>">
+                                      <a href="<?= site_url() . '/' . $menu['controller'] . '/status/disable/' . $r['employee_status_id'] ?>">
                                         <i class="icon-status fas fa-toggle-on text-success"></i>
                                       </a>
                                     <?php else : ?>
-                                      <a href="<?= site_url() . '/' . $menu['controller'] . '/status/enable/' . $r['departement_id'] ?>">
+                                      <a href="<?= site_url() . '/' . $menu['controller'] . '/status/enable/' . $r['employee_status_id'] ?>">
                                         <i class="icon-status fas fa-toggle-off text-gray"></i>
                                       </a>
                                     <?php endif; ?>

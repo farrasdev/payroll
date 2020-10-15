@@ -29,14 +29,14 @@
             <form id="form" action="<?= site_url() . '/' . $menu['controller'] . '/save/' . $id ?>" method="post" autocomplete="off" enctype="multipart/form-data">
               <div class="card-body">
                 <div class="flash-error" data-flasherror="<?= $this->session->flashdata('flash_error') ?>"></div>
-                <input type="hidden" class="form-control form-control-sm" name="position_id" id="position_id" value="<?= @$main['position_id'] ?>" required>
+                <input type="hidden" class="form-control form-control-sm" name="employee_status_id" id="employee_status_id" value="<?= @$main['employee_status_id'] ?>" required>
                 <?php if ($id != null) : ?>
-                  <input type="hidden" class="form-control form-control-sm" name="old" id="old" value="<?= @$main['position_name'] ?>" required>
+                  <input type="hidden" class="form-control form-control-sm" name="old" id="old" value="<?= @$main['employee_status_name'] ?>" required>
                 <?php endif; ?>
                 <div class="form-group row">
-                  <label for="menu" class="col-sm-2 col-form-label text-right">Nama Posisi <span class="text-danger">*</span></label>
+                  <label for="menu" class="col-sm-2 col-form-label text-right">Nama Status Karyawan <span class="text-danger">*</span></label>
                   <div class="col-sm-4">
-                    <input type="text" class="form-control form-control-sm" name="position_name" id="position_name" value="<?= @$main['position_name'] ?>" required>
+                    <input type="text" class="form-control form-control-sm" name="employee_status_name" id="employee_status_name" value="<?= @$main['employee_status_name'] ?>" required>
                   </div>
                 </div>
                 <div id="icon-container" class="form-group row">
