@@ -31,7 +31,7 @@
                 <div class="flash-error" data-flasherror="<?= $this->session->flashdata('flash_error') ?>"></div>
                 <input type="hidden" class="form-control form-control-sm" name="departement_id" id="departement_id" value="<?= @$main['departement_id'] ?>" required>
                 <?php if ($id != null) : ?>
-                  <input type="hidden" class="form-control form-control-sm" name="old" id="old" value="<?= @$main['departement_id'] ?>" required>
+                  <input type="hidden" class="form-control form-control-sm" name="old" id="old" value="<?= @$main['departement_name'] ?>" required>
                 <?php endif; ?>
                 <div class="form-group row">
                   <label for="menu" class="col-sm-2 col-form-label text-right">Nama Departemen <span class="text-danger">*</span></label>
