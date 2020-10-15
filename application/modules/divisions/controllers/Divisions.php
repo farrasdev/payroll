@@ -67,10 +67,10 @@ class Divisions extends MY_Controller
     if (!isset($data['is_active'])) {
       $data['is_active'] = 0;
     }
-    $cek = $this->m_divisions->by_field('division_id', $data['division_id']);
+    $cek = $this->m_divisions->by_field('division_name', $data['division_name']);
     if ($id == null) {
       if ($cek != null) {
-        $this->session->set_flashdata('flash_error', 'Kode sudah ada di sistem.');
+        $this->session->set_flashdata('flash_error', 'Divisi sudah ada di sistem.');
         redirect(site_url() . '/' .  $this->menu['controller']  . '/form/');
       }
       $data['division_id'] = $this->uuid->v4();
@@ -79,8 +79,8 @@ class Divisions extends MY_Controller
       create_log(2, $this->menu['menu_name']);
       $this->session->set_flashdata('flash_success', 'Data berhasil ditambahkan.');
     } else {
-      if ($data['old'] != $data['division_id'] && $cek != null) {
-        $this->session->set_flashdata('flash_error', 'Kode sudah ada di sistem.');
+      if ($data['old'] != $data['division_name'] && $cek != null) {
+        $this->session->set_flashdata('flash_error', 'Divisi sudah ada di sistem.');
         redirect(site_url() . '/' . $this->menu['controller'] . '/form/' . $id);
       }
       unset($data['old']);
