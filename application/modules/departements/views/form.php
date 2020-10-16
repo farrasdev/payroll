@@ -54,7 +54,7 @@
                   <label for="url" class="col-sm-2 col-form-label text-right">Aktif</label>
                   <div class="col-sm-3">
                     <div class="pretty p-icon">
-                      <input class="icheckbox" type="checkbox" name="is_active" id="is_active" value="1" <?= (@$main['is_active'] == 1) ? 'checked' : '' ?>>
+                      <input class="icheckbox" type="checkbox" name="is_active" id="is_active" value="1" <?php if(@$main){echo (@$main['is_active'] == 1) ? 'checked' : '';}else{echo 'checked';}  ?>>
                       <div class="state">
                         <i class="icon fas fa-check"></i><label></label>
                       </div>
