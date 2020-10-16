@@ -29,10 +29,15 @@
             <form id="form" action="<?= site_url() . '/' . $menu['controller'] . '/save/' . $id ?>" method="post" autocomplete="off" enctype="multipart/form-data">
               <div class="card-body">
                 <div class="flash-error" data-flasherror="<?= $this->session->flashdata('flash_error') ?>"></div>
-                <input type="hidden" class="form-control form-control-sm" name="departement_id" id="departement_id" value="<?= @$main['departement_id'] ?>" required>
                 <?php if ($id != null) : ?>
-                  <input type="hidden" class="form-control form-control-sm" name="old" id="old" value="<?= @$main['departement_name'] ?>" required>
+                  <input type="hidden" class="form-control form-control-sm" name="old" id="old" value="<?= @$main['departement_id'] ?>" required>
                 <?php endif; ?>
+                <div class="form-group row">
+                  <label for="menu" class="col-sm-2 col-form-label text-right">Kode <span class="text-danger">*</span></label>
+                  <div class="col-sm-2">
+                    <input type="text" class="form-control form-control-sm" name="departement_id" id="departement_id" value="<?= @$main['departement_id'] ?>" required>
+                  </div>
+                </div>
                 <div class="form-group row">
                   <label for="menu" class="col-sm-2 col-form-label text-right">Nama Departemen <span class="text-danger">*</span></label>
                   <div class="col-sm-4">
@@ -77,10 +82,23 @@
   $(document).ready(function() {
     $("#form").validate({
       rules: {
-
+        departement_id: {
+          remote: {
+            type: 'post',
+            url: "<?= site_url() . '/' . $menu['controller'] . '/ajax/check_id' ?>",
+            data: {
+              'departement_id': function() {
+                return $('#departement_id').val();
+              }
+            },
+            dataType: 'json'
+          }
+        }
       },
       messages: {
-
+        departement_id: {
+          remote: "Kode sudah digunakan"
+        }
       },
       errorElement: "em",
       errorPlacement: function(error, element) {
