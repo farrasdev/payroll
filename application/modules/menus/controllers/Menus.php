@@ -23,7 +23,7 @@ class Menus extends MY_Controller
     $this->cookie = get_cookie_menu($this->menu_id);
     if ($this->cookie['search'] == null) $this->cookie['search'] = array('term' => '');
     if ($this->cookie['order'] == null) $this->cookie['order'] = array('field' => 'menu_id', 'type' => 'asc');
-    if ($this->cookie['per_page'] == null) $this->cookie['per_page'] = 10;
+    if ($this->cookie['per_page'] == null) $this->cookie['per_page'] = 100;
     if ($this->cookie['cur_page'] == null) 0;
   }
 
