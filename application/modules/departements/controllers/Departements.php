@@ -153,7 +153,7 @@ class Departements extends MY_Controller
       if ($id == null) {
         echo ($cek != null) ? 'false' : 'true';
       } else {
-        echo ($id != $data['departement_id'] && $cek != null) ? 'false' : 'true';
+        echo($id != $data['departement_id'] && $cek != null) ? 'false' : 'true';
       }
     }
   }

@@ -85,7 +85,7 @@
         departement_id: {
           remote: {
             type: 'post',
-            url: "<?= site_url() . '/' . $menu['controller'] . '/ajax/check_id' ?>",
+            url: "<?= site_url() . '/' . $menu['controller'] . '/ajax/check_id/' . $id ?>",
             data: {
               'departement_id': function() {
                 return $('#departement_id').val();

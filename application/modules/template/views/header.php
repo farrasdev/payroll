@@ -26,6 +26,8 @@
   <link rel="stylesheet" href="<?= base_url() ?>plugins/sweetalert2-theme-bootstrap-4/bootstrap-4.css">
   <!-- Toastr -->
   <link rel="stylesheet" href="<?= base_url() ?>plugins/toastr/toastr.min.css">
+  <!-- overlayScrollbars -->
+  <link rel="stylesheet" href="<?= base_url() ?>plugins/overlayScrollbars/css/OverlayScrollbars.min.css">
   <!-- Theme style -->
   <link rel="stylesheet" href="<?= base_url() ?>dist/css/adminlte.min.css">
   <!-- Custom style -->
@@ -54,6 +56,8 @@
   <script src="<?= base_url() ?>plugins/sweetalert2/sweetalert2.js"></script>
   <!-- Toastr -->
   <script src="<?= base_url() ?>plugins/toastr/toastr.min.js"></script>
+  <!-- overlayScrollbars -->
+  <script src="<?= base_url() ?>plugins/overlayScrollbars/js/jquery.overlayScrollbars.min.js"></script>
   <!-- AdminLTE App -->
   <script src="<?= base_url() ?>dist/js/adminlte.min.js"></script>
   <!-- Custom Script -->
