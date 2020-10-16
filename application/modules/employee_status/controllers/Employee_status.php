@@ -22,7 +22,7 @@ class Employee_status extends MY_Controller
     //cookie 
     $this->cookie = get_cookie_menu($this->menu_id);
     if ($this->cookie['search'] == null) $this->cookie['search'] = array('term' => '');
-    if ($this->cookie['order'] == null) $this->cookie['order'] = array('field' => 'employee_status_name', 'type' => 'asc');
+    if ($this->cookie['order'] == null) $this->cookie['order'] = array('field' => 'employee_status_id', 'type' => 'asc');
     if ($this->cookie['per_page'] == null) $this->cookie['per_page'] = 10;
     if ($this->cookie['cur_page'] == null) 0;
   }
@@ -67,20 +67,19 @@ class Employee_status extends MY_Controller
     if (!isset($data['is_active'])) {
       $data['is_active'] = 0;
     }
-    $cek = $this->m_employee_status->by_field('employee_status_name', $data['employee_status_name']);
+    $cek = $this->m_employee_status->by_field('employee_status_id', $data['employee_status_id']);
     if ($id == null) {
       if ($cek != null) {
-        $this->session->set_flashdata('flash_error', 'Status karyawan sudah ada di sistem.');
+        $this->session->set_flashdata('flash_error', 'Kode sudah ada di sistem.');
         redirect(site_url() . '/' .  $this->menu['controller']  . '/form/');
       }
-      $data['employee_status_id'] = $this->uuid->v4();
       unset($data['old']);
       $this->m_employee_status->save($data, $id);
       create_log(2, $this->menu['menu_name']);
-      $this->session->set_flashdata('flash_success', 'Data berhasil ditambahkan.');
+      $this->session->set_flashdata('flash_success', 'Kode berhasil ditambahkan.');
     } else {
-      if ($data['old'] != $data['employee_status_name'] && $cek != null) {
-        $this->session->set_flashdata('flash_error', 'Status karyawan sudah ada di sistem.');
+      if ($data['old'] != $data['employee_status_id'] && $cek != null) {
+        $this->session->set_flashdata('flash_error', 'Kode sudah ada di sistem.');
         redirect(site_url() . '/' . $this->menu['controller'] . '/form/' . $id);
       }
       unset($data['old']);
@@ -144,5 +143,18 @@ class Employee_status extends MY_Controller
     create_log($t, $this->menu['menu_name']);
     $this->session->set_flashdata('flash_success', $flash);
     redirect(site_url() . '/' . $this->menu['controller'] . '/' . $this->menu['url'] . '/' . $this->cookie['cur_page']);
+  }
+
+  public function ajax($type = null, $id = null)
+  {
+    if ($type == 'check_id') {
+      $data = $this->input->post();
+      $cek = $this->m_employee_status->by_field('employee_status_id', $data['employee_status_id']);
+      if ($id == null) {
+        echo ($cek != null) ? 'false' : 'true';
+      } else {
+        echo ($id != $data['employee_status_id'] && $cek != null) ? 'false' : 'true';
+      }
+    }
   }
 }

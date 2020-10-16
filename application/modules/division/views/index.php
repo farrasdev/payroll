@@ -83,7 +83,7 @@
                           </th>
                           <th class="text-center" width="50">Aksi</th>
                           <th class="text-center" width="100"><?= table_sort($menu['menu_id'], 'Kode', 'division_id', $cookie['order']) ?></th>
-                          <th class="text-center" width="200"><?= table_sort($menu['menu_id'], 'Nama Departemen', 'division_name', $cookie['order']) ?></th>
+                          <th class="text-center" width="200"><?= table_sort($menu['menu_id'], 'Nama Divisi', 'division_name', $cookie['order']) ?></th>
                           <th class="text-center">Deskripsi</th>
                           <th class="text-center" width="70"><?= table_sort($menu['menu_id'], 'Status', 'is_active', $cookie['order']) ?></th>
                         </tr>

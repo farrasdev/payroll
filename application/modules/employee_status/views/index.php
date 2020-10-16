@@ -82,7 +82,8 @@
                             </div>
                           </th>
                           <th class="text-center" width="50">Aksi</th>
-                          <th class="text-center" width="200"><?= table_sort($menu['menu_id'], 'Nama Status Karyawan', 'employee_status_name', $cookie['order']) ?></th>
+                          <th class="text-center" width="100"><?= table_sort($menu['menu_id'], 'Kode', 'employee_status_id', $cookie['order']) ?></th>
+                          <th class="text-center" width="200"><?= table_sort($menu['menu_id'], 'Nama Status Pegawai', 'employee_status_name', $cookie['order']) ?></th>
                           <th class="text-center">Deskripsi</th>
                           <th class="text-center" width="70"><?= table_sort($menu['menu_id'], 'Status', 'is_active', $cookie['order']) ?></th>
                         </tr>
@@ -116,6 +117,7 @@
                                     <a class="text-danger btn-delete" href="<?= site_url() . '/' . $menu['controller'] . '/delete/' . $r['employee_status_id'] ?>"><i class="fas fa-trash-alt"></i></a>
                                   <?php endif; ?>
                                 </td>
+                                <td class="text-center"><?= $r['employee_status_id'] ?></td>
                                 <td><?= $r['employee_status_name'] ?></td>
                                 <td><?= $r['description'] ?></td>
                                 <td class="text-center td-status">
