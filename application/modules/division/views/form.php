@@ -30,18 +30,18 @@
               <div class="card-body">
                 <div class="flash-error" data-flasherror="<?= $this->session->flashdata('flash_error') ?>"></div>
                 <?php if ($id != null) : ?>
-                  <input type="hidden" class="form-control form-control-sm" name="old" id="old" value="<?= @$main['departement_id'] ?>" required>
+                  <input type="hidden" class="form-control form-control-sm" name="old" id="old" value="<?= @$main['division_id'] ?>" required>
                 <?php endif; ?>
                 <div class="form-group row">
                   <label for="menu" class="col-sm-2 col-form-label text-right">Kode <span class="text-danger">*</span></label>
                   <div class="col-sm-2">
-                    <input type="text" class="form-control form-control-sm" name="departement_id" id="departement_id" value="<?= @$main['departement_id'] ?>" required>
+                    <input type="text" class="form-control form-control-sm" name="division_id" id="division_id" value="<?= @$main['division_id'] ?>" required>
                   </div>
                 </div>
                 <div class="form-group row">
                   <label for="menu" class="col-sm-2 col-form-label text-right">Nama Departemen <span class="text-danger">*</span></label>
                   <div class="col-sm-4">
-                    <input type="text" class="form-control form-control-sm" name="departement_name" id="departement_name" value="<?= @$main['departement_name'] ?>" required>
+                    <input type="text" class="form-control form-control-sm" name="division_name" id="division_name" value="<?= @$main['division_name'] ?>" required>
                   </div>
                 </div>
                 <div id="icon-container" class="form-group row">
@@ -82,13 +82,13 @@
   $(document).ready(function() {
     $("#form").validate({
       rules: {
-        departement_id: {
+        division_id: {
           remote: {
             type: 'post',
             url: "<?= site_url() . '/' . $menu['controller'] . '/ajax/check_id/' . $id ?>",
             data: {
-              'departement_id': function() {
-                return $('#departement_id').val();
+              'division_id': function() {
+                return $('#division_id').val();
               }
             },
             dataType: 'json'
@@ -96,7 +96,7 @@
         }
       },
       messages: {
-        departement_id: {
+        division_id: {
           remote: "Kode sudah digunakan"
         }
       },
