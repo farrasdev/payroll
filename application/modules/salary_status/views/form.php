@@ -39,7 +39,7 @@
                   </div>
                 </div>
                 <div class="form-group row">
-                  <label for="menu" class="col-sm-2 col-form-label text-right">Nama Status Pegawai <span class="text-danger">*</span></label>
+                  <label for="menu" class="col-sm-2 col-form-label text-right">Nama Status Upah <span class="text-danger">*</span></label>
                   <div class="col-sm-4">
                     <input type="text" class="form-control form-control-sm" name="salary_status_name" id="salary_status_name" value="<?= @$main['salary_status_name'] ?>" required>
                   </div>
