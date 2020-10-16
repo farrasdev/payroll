@@ -15,7 +15,7 @@ class Position extends MY_Controller
       'm_position'
     ));
 
-    $this->menu_id = '98.01';
+    $this->menu_id = '98.03';
     $this->menu = $this->m_config->get_menu($this->menu_id);
     if ($this->menu == null) redirect(site_url() . '/error/error_403');
 
