@@ -15,7 +15,7 @@ class Salary_status extends MY_Controller
       'm_salary_status'
     ));
 
-    $this->menu_id = '98.04';
+    $this->menu_id = '98.06';
     $this->menu = $this->m_config->get_menu($this->menu_id);
     if ($this->menu == null) redirect(site_url() . '/error/error_403');
 
