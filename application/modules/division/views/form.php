@@ -29,14 +29,19 @@
             <form id="form" action="<?= site_url() . '/' . $menu['controller'] . '/save/' . $id ?>" method="post" autocomplete="off" enctype="multipart/form-data">
               <div class="card-body">
                 <div class="flash-error" data-flasherror="<?= $this->session->flashdata('flash_error') ?>"></div>
-                <input type="hidden" class="form-control form-control-sm" name="division_id" id="division_id" value="<?= @$main['division_id'] ?>" required>
                 <?php if ($id != null) : ?>
-                  <input type="hidden" class="form-control form-control-sm" name="old" id="old" value="<?= @$main['division_name'] ?>" required>
+                  <input type="hidden" class="form-control form-control-sm" name="old" id="old" value="<?= @$main['departement_id'] ?>" required>
                 <?php endif; ?>
                 <div class="form-group row">
-                  <label for="menu" class="col-sm-2 col-form-label text-right">Nama Devisi <span class="text-danger">*</span></label>
+                  <label for="menu" class="col-sm-2 col-form-label text-right">Kode <span class="text-danger">*</span></label>
+                  <div class="col-sm-2">
+                    <input type="text" class="form-control form-control-sm" name="departement_id" id="departement_id" value="<?= @$main['departement_id'] ?>" required>
+                  </div>
+                </div>
+                <div class="form-group row">
+                  <label for="menu" class="col-sm-2 col-form-label text-right">Nama Departemen <span class="text-danger">*</span></label>
                   <div class="col-sm-4">
-                    <input type="text" class="form-control form-control-sm" name="division_name" id="division_name" value="<?= @$main['division_name'] ?>" required>
+                    <input type="text" class="form-control form-control-sm" name="departement_name" id="departement_name" value="<?= @$main['departement_name'] ?>" required>
                   </div>
                 </div>
                 <div id="icon-container" class="form-group row">
@@ -49,7 +54,7 @@
                   <label for="url" class="col-sm-2 col-form-label text-right">Aktif</label>
                   <div class="col-sm-3">
                     <div class="pretty p-icon">
-                      <input class="icheckbox" type="checkbox" name="is_active" id="is_active" value="1" <?= (@$main['is_active'] == 1) ? 'checked' : '' ?>>
+                      <input class="icheckbox" type="checkbox" name="is_active" id="is_active" value="1" <?php if(@$main){echo (@$main['is_active'] == 1) ? 'checked' : '';}else{echo 'checked';}  ?>>
                       <div class="state">
                         <i class="icon fas fa-check"></i><label></label>
                       </div>
@@ -77,10 +82,23 @@
   $(document).ready(function() {
     $("#form").validate({
       rules: {
-
+        departement_id: {
+          remote: {
+            type: 'post',
+            url: "<?= site_url() . '/' . $menu['controller'] . '/ajax/check_id/' . $id ?>",
+            data: {
+              'departement_id': function() {
+                return $('#departement_id').val();
+              }
+            },
+            dataType: 'json'
+          }
+        }
       },
       messages: {
-
+        departement_id: {
+          remote: "Kode sudah digunakan"
+        }
       },
       errorElement: "em",
       errorPlacement: function(error, element) {

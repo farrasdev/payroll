@@ -1,7 +1,7 @@
 <?php
 defined('BASEPATH') or exit('No direct script access allowed');
 
-class Divisions extends MY_Controller
+class Division extends MY_Controller
 {
 
   var $menu_id, $menu, $cookie;
@@ -12,17 +12,17 @@ class Divisions extends MY_Controller
 
     $this->load->model(array(
       'config/m_config',
-      'm_divisions'
+      'm_division'
     ));
 
-    $this->menu_id = '98.02';
+    $this->menu_id = '98.01';
     $this->menu = $this->m_config->get_menu($this->menu_id);
     if ($this->menu == null) redirect(site_url() . '/error/error_403');
 
     //cookie 
     $this->cookie = get_cookie_menu($this->menu_id);
     if ($this->cookie['search'] == null) $this->cookie['search'] = array('term' => '');
-    if ($this->cookie['order'] == null) $this->cookie['order'] = array('field' => 'division_name', 'type' => 'asc');
+    if ($this->cookie['order'] == null) $this->cookie['order'] = array('field' => 'division_id', 'type' => 'asc');
     if ($this->cookie['per_page'] == null) $this->cookie['per_page'] = 10;
     if ($this->cookie['cur_page'] == null) 0;
   }
@@ -32,12 +32,12 @@ class Divisions extends MY_Controller
     authorize($this->menu, '_read');
     //cookie
     $this->cookie['cur_page'] = $this->uri->segment(3, 0);
-    $this->cookie['total_rows'] = $this->m_divisions->all_rows($this->cookie);
+    $this->cookie['total_rows'] = $this->m_division->all_rows($this->cookie);
     set_cookie_menu($this->menu_id, $this->cookie);
     //main data
     $data['menu'] = $this->menu;
     $data['cookie'] = $this->cookie;
-    $data['main'] = $this->m_divisions->list_data($this->cookie);
+    $data['main'] = $this->m_division->list_data($this->cookie);
     $data['pagination_info'] = pagination_info(count($data['main']), $this->cookie);
     //set pagination
     set_pagination($this->menu, $this->cookie);
@@ -53,7 +53,7 @@ class Divisions extends MY_Controller
       $data['main'] = null;
     } else {
       create_log(3, $this->menu['menu_name']);
-      $data['main'] = $this->m_divisions->by_field('division_id', $id);
+      $data['main'] = $this->m_division->by_field('division_id', $id);
     }
     $data['id'] = $id;
     $data['menu'] = $this->menu;
@@ -67,24 +67,23 @@ class Divisions extends MY_Controller
     if (!isset($data['is_active'])) {
       $data['is_active'] = 0;
     }
-    $cek = $this->m_divisions->by_field('division_name', $data['division_name']);
+    $cek = $this->m_division->by_field('division_id', $data['division_id']);
     if ($id == null) {
       if ($cek != null) {
-        $this->session->set_flashdata('flash_error', 'Divisi sudah ada di sistem.');
+        $this->session->set_flashdata('flash_error', 'Kode sudah ada di sistem.');
         redirect(site_url() . '/' .  $this->menu['controller']  . '/form/');
       }
-      $data['division_id'] = $this->uuid->v4();
       unset($data['old']);
-      $this->m_divisions->save($data, $id);
+      $this->m_division->save($data, $id);
       create_log(2, $this->menu['menu_name']);
-      $this->session->set_flashdata('flash_success', 'Data berhasil ditambahkan.');
+      $this->session->set_flashdata('flash_success', 'Kode berhasil ditambahkan.');
     } else {
-      if ($data['old'] != $data['division_name'] && $cek != null) {
-        $this->session->set_flashdata('flash_error', 'Divisi sudah ada di sistem.');
+      if ($data['old'] != $data['division_id'] && $cek != null) {
+        $this->session->set_flashdata('flash_error', 'Kode sudah ada di sistem.');
         redirect(site_url() . '/' . $this->menu['controller'] . '/form/' . $id);
       }
       unset($data['old']);
-      $this->m_divisions->save($data, $id);
+      $this->m_division->save($data, $id);
       create_log(3, $this->menu['menu_name']);
       $this->session->set_flashdata('flash_success', 'Data berhasil diubah.');
     }
@@ -94,7 +93,7 @@ class Divisions extends MY_Controller
   public function delete($id = null)
   {
     ($id == null) ? authorize($this->menu, '_create') : authorize($this->menu, '_update');
-    $this->m_divisions->delete($id);
+    $this->m_division->delete($id);
     create_log(4, $this->menu['menu_name']);
     $this->session->set_flashdata('flash_success', 'Data berhasil dihapus.');
     redirect(site_url() . '/' . $this->menu['controller'] . '/' . $this->menu['url'] . '/' . $this->cookie['cur_page']);
@@ -104,9 +103,9 @@ class Divisions extends MY_Controller
   {
     authorize($this->menu, '_update');
     if ($type == 'enable') {
-      $this->m_divisions->update($id, array('is_active' => 1));
+      $this->m_division->update($id, array('is_active' => 1));
     } else {
-      $this->m_divisions->update($id, array('is_active' => 0));
+      $this->m_division->update($id, array('is_active' => 0));
     }
     create_log(3, $this->this->menu['menu_name']);
     redirect(site_url() . '/' . $this->menu['controller'] . '/' . $this->menu['url'] . '/' . $this->cookie['cur_page']);
@@ -120,21 +119,21 @@ class Divisions extends MY_Controller
         switch ($type) {
           case 'delete':
             authorize($this->menu, '_delete');
-            $this->m_divisions->delete($key);
+            $this->m_division->delete($key);
             $flash = 'Data berhasil dihapus.';
             $t = 4;
             break;
 
           case 'enable':
             authorize($this->menu, '_update');
-            $this->m_divisions->update($key, array('is_active' => 1));
+            $this->m_division->update($key, array('is_active' => 1));
             $flash = 'Data berhasil diaktifkan.';
             $t = 3;
             break;
 
           case 'disable':
             authorize($this->menu, '_update');
-            $this->m_divisions->update($key, array('is_active' => 0));
+            $this->m_division->update($key, array('is_active' => 0));
             $flash = 'Data berhasil dinonaktifkan.';
             $t = 3;
             break;
@@ -144,5 +143,18 @@ class Divisions extends MY_Controller
     create_log($t, $this->menu['menu_name']);
     $this->session->set_flashdata('flash_success', $flash);
     redirect(site_url() . '/' . $this->menu['controller'] . '/' . $this->menu['url'] . '/' . $this->cookie['cur_page']);
+  }
+
+  public function ajax($type = null, $id = null)
+  {
+    if ($type == 'check_id') {
+      $data = $this->input->post();
+      $cek = $this->m_division->by_field('division_id', $data['division_id']);
+      if ($id == null) {
+        echo ($cek != null) ? 'false' : 'true';
+      } else {
+        echo($id != $data['division_id'] && $cek != null) ? 'false' : 'true';
+      }
+    }
   }
 }

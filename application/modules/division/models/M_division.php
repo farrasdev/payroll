@@ -1,7 +1,7 @@
 <?php
 defined('BASEPATH') or exit('No direct script access allowed');
 
-class M_divisions extends CI_Model
+class M_division extends CI_Model
 {
 
   public function where($cookie)
@@ -16,7 +16,7 @@ class M_divisions extends CI_Model
   public function list_data($cookie)
   {
     $where = $this->where($cookie);
-    $sql = "SELECT * FROM divisions a 
+    $sql = "SELECT * FROM division a 
       $where
       ORDER BY "
       . $cookie['order']['field'] . " " . $cookie['order']['type'] .
@@ -29,7 +29,7 @@ class M_divisions extends CI_Model
   {
     $where = "WHERE a.is_deleted = 0 ";
 
-    $sql = "SELECT * FROM divisions a $where ORDER BY created_at";
+    $sql = "SELECT * FROM division a $where ORDER BY created_at";
     $query = $this->db->query($sql);
     return $query->result_array();
   }
@@ -38,14 +38,14 @@ class M_divisions extends CI_Model
   {
     $where = $this->where($cookie);
 
-    $sql = "SELECT COUNT(1) as total FROM divisions a $where";
+    $sql = "SELECT COUNT(1) as total FROM division a $where";
     $query = $this->db->query($sql);
     return $query->row_array()['total'];
   }
 
   function by_field($field, $val)
   {
-    $sql = "SELECT * FROM divisions WHERE $field = ?";
+    $sql = "SELECT * FROM division WHERE $field = ?";
     $query = $this->db->query($sql, array($val));
     $row = $query->row_array();
     return $row;
@@ -56,11 +56,11 @@ class M_divisions extends CI_Model
     if ($id == null) {
       $data['created_at'] = date('Y-m-d H:i:s');
       $data['created_by'] = $this->session->userdata('user_fullname');
-      $this->db->insert('divisions', $data);
+      $this->db->insert('division', $data);
     } else {
       $data['updated_at'] = date('Y-m-d H:i:s');
       $data['updated_by'] = $this->session->userdata('user_fullname');
-      $this->db->where('division_id', $id)->update('divisions', $data);
+      $this->db->where('division_id', $id)->update('division', $data);
     }
   }
 
@@ -68,18 +68,18 @@ class M_divisions extends CI_Model
   {
     $data['updated_at'] = date('Y-m-d H:i:s');
     $data['updated_by'] = $this->session->userdata('fullname');
-    $this->db->where('division_id', $id)->update('divisions', $data);
+    $this->db->where('division_id', $id)->update('division', $data);
   }
 
   public function delete($id, $permanent = true)
   {
     if ($permanent) {
-      $this->db->where('division_id', $id)->delete('divisions');
+      $this->db->where('division_id', $id)->delete('division');
     } else {
       $data['is_deleted'] = 1;
       $data['updated_at'] = date('Y-m-d H:i:s');
       $data['updated_by'] = $this->session->userdata('user_fullname');
-      $this->db->where('division_id', $id)->update('divisions', $data);
+      $this->db->where('division_id', $id)->update('division', $data);
     }
   }
 }
