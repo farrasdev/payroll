@@ -31,7 +31,7 @@ class Roles extends MY_Controller
   {
     authorize($this->menu, '_read');
     //cookie
-    $this->cookie['cur_page'] = $this->uri->segment(4, 0);
+    $this->cookie['cur_page'] = $this->uri->segment(3, 0);
     $this->cookie['total_rows'] = $this->m_roles->all_rows($this->cookie);
     set_cookie_menu($this->menu_id, $this->cookie);
     //main data

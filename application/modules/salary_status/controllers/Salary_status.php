@@ -1,7 +1,7 @@
 <?php
 defined('BASEPATH') or exit('No direct script access allowed');
 
-class Family_status extends MY_Controller
+class Salary_status extends MY_Controller
 {
 
   var $menu_id, $menu, $cookie;
@@ -12,17 +12,17 @@ class Family_status extends MY_Controller
 
     $this->load->model(array(
       'config/m_config',
-      'm_family_status'
+      'm_salary_status'
     ));
 
-    $this->menu_id = '98.05';
+    $this->menu_id = '98.06';
     $this->menu = $this->m_config->get_menu($this->menu_id);
     if ($this->menu == null) redirect(site_url() . '/error/error_403');
 
     //cookie 
     $this->cookie = get_cookie_menu($this->menu_id);
     if ($this->cookie['search'] == null) $this->cookie['search'] = array('term' => '');
-    if ($this->cookie['order'] == null) $this->cookie['order'] = array('field' => 'family_status_name', 'type' => 'asc');
+    if ($this->cookie['order'] == null) $this->cookie['order'] = array('field' => 'salary_status_name', 'type' => 'asc');
     if ($this->cookie['per_page'] == null) $this->cookie['per_page'] = 10;
     if ($this->cookie['cur_page'] == null) 0;
   }
@@ -32,12 +32,12 @@ class Family_status extends MY_Controller
     authorize($this->menu, '_read');
     //cookie
     $this->cookie['cur_page'] = $this->uri->segment(3, 0);
-    $this->cookie['total_rows'] = $this->m_family_status->all_rows($this->cookie);
+    $this->cookie['total_rows'] = $this->m_salary_status->all_rows($this->cookie);
     set_cookie_menu($this->menu_id, $this->cookie);
     //main data
     $data['menu'] = $this->menu;
     $data['cookie'] = $this->cookie;
-    $data['main'] = $this->m_family_status->list_data($this->cookie);
+    $data['main'] = $this->m_salary_status->list_data($this->cookie);
     $data['pagination_info'] = pagination_info(count($data['main']), $this->cookie);
     //set pagination
     set_pagination($this->menu, $this->cookie);
@@ -53,7 +53,7 @@ class Family_status extends MY_Controller
       $data['main'] = null;
     } else {
       create_log(3, $this->menu['menu_name']);
-      $data['main'] = $this->m_family_status->by_field('family_status_id', $id);
+      $data['main'] = $this->m_salary_status->by_field('salary_status_id', $id);
     }
     $data['id'] = $id;
     $data['menu'] = $this->menu;
@@ -67,24 +67,24 @@ class Family_status extends MY_Controller
     if (!isset($data['is_active'])) {
       $data['is_active'] = 0;
     }
-    $cek = $this->m_family_status->by_field('family_status_name', $data['family_status_name']);
+    $cek = $this->m_salary_status->by_field('salary_status_name', $data['salary_status_name']);
     if ($id == null) {
       if ($cek != null) {
-        $this->session->set_flashdata('flash_error', 'Status keluarga sudah ada di sistem.');
+        $this->session->set_flashdata('flash_error', 'Status karyawan sudah ada di sistem.');
         redirect(site_url() . '/' .  $this->menu['controller']  . '/form/');
       }
-      $data['family_status_id'] = $this->uuid->v4();
+      $data['salary_status_id'] = $this->uuid->v4();
       unset($data['old']);
-      $this->m_family_status->save($data, $id);
+      $this->m_salary_status->save($data, $id);
       create_log(2, $this->menu['menu_name']);
       $this->session->set_flashdata('flash_success', 'Data berhasil ditambahkan.');
     } else {
-      if ($data['old'] != $data['family_status_name'] && $cek != null) {
-        $this->session->set_flashdata('flash_error', 'Status keluarga sudah ada di sistem.');
+      if ($data['old'] != $data['salary_status_name'] && $cek != null) {
+        $this->session->set_flashdata('flash_error', 'Status karyawan sudah ada di sistem.');
         redirect(site_url() . '/' . $this->menu['controller'] . '/form/' . $id);
       }
       unset($data['old']);
-      $this->m_family_status->save($data, $id);
+      $this->m_salary_status->save($data, $id);
       create_log(3, $this->menu['menu_name']);
       $this->session->set_flashdata('flash_success', 'Data berhasil diubah.');
     }
@@ -94,7 +94,7 @@ class Family_status extends MY_Controller
   public function delete($id = null)
   {
     ($id == null) ? authorize($this->menu, '_create') : authorize($this->menu, '_update');
-    $this->m_family_status->delete($id);
+    $this->m_salary_status->delete($id);
     create_log(4, $this->menu['menu_name']);
     $this->session->set_flashdata('flash_success', 'Data berhasil dihapus.');
     redirect(site_url() . '/' . $this->menu['controller'] . '/' . $this->menu['url'] . '/' . $this->cookie['cur_page']);
@@ -104,9 +104,9 @@ class Family_status extends MY_Controller
   {
     authorize($this->menu, '_update');
     if ($type == 'enable') {
-      $this->m_family_status->update($id, array('is_active' => 1));
+      $this->m_salary_status->update($id, array('is_active' => 1));
     } else {
-      $this->m_family_status->update($id, array('is_active' => 0));
+      $this->m_salary_status->update($id, array('is_active' => 0));
     }
     create_log(3, $this->this->menu['menu_name']);
     redirect(site_url() . '/' . $this->menu['controller'] . '/' . $this->menu['url'] . '/' . $this->cookie['cur_page']);
@@ -120,21 +120,21 @@ class Family_status extends MY_Controller
         switch ($type) {
           case 'delete':
             authorize($this->menu, '_delete');
-            $this->m_family_status->delete($key);
+            $this->m_salary_status->delete($key);
             $flash = 'Data berhasil dihapus.';
             $t = 4;
             break;
 
           case 'enable':
             authorize($this->menu, '_update');
-            $this->m_family_status->update($key, array('is_active' => 1));
+            $this->m_salary_status->update($key, array('is_active' => 1));
             $flash = 'Data berhasil diaktifkan.';
             $t = 3;
             break;
 
           case 'disable':
             authorize($this->menu, '_update');
-            $this->m_family_status->update($key, array('is_active' => 0));
+            $this->m_salary_status->update($key, array('is_active' => 0));
             $flash = 'Data berhasil dinonaktifkan.';
             $t = 3;
             break;

@@ -52,7 +52,7 @@ if (!function_exists('set_pagination')) {
   {
     $CI = get_instance();
     $config['per_page'] = $data['per_page'];
-    $config['base_url'] = site_url() . '/' . $menu['url'] . '/index/' . $id;
+    $config['base_url'] = site_url() . '/' . $menu['controller'] . '/index/' . $id;
     $config['total_rows'] = $data['total_rows'];
     $CI->pagination->initialize($config);
   }
