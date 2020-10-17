@@ -33,15 +33,24 @@
                   <input type="hidden" class="form-control form-control-sm" name="old" id="old" value="<?= @$main['employee_id'] ?>" required>
                 <?php endif; ?>
                 <div class="form-group row">
-                  <label for="menu" class="col-sm-2 col-form-label text-right">Kode <span class="text-danger">*</span></label>
+                  <label for="menu" class="col-sm-2 col-form-label text-right">Nomor Induk <span class="text-danger">*</span></label>
                   <div class="col-sm-2">
                     <input type="text" class="form-control form-control-sm" name="employee_id" id="employee_id" value="<?= @$main['employee_id'] ?>" required>
                   </div>
                 </div>
                 <div class="form-group row">
-                  <label for="menu" class="col-sm-2 col-form-label text-right">Nama Departemen <span class="text-danger">*</span></label>
+                  <label for="menu" class="col-sm-2 col-form-label text-right">Nama Lengkap <span class="text-danger">*</span></label>
                   <div class="col-sm-4">
                     <input type="text" class="form-control form-control-sm" name="employee_name" id="employee_name" value="<?= @$main['employee_name'] ?>" required>
+                  </div>
+                </div>
+                <div class="form-group row">
+                  <label for="menu" class="col-sm-2 col-form-label text-right">Jenis Kelamin <span class="text-danger">*</span></label>
+                  <div class="col-sm-2">
+                    <select class="form-control form-control-sm select2" name="sex" id="sex">
+                      <option value="M" <?= (@$main['sex'] == 'M') ? 'selected' : '' ?>>Laki-laki</option>
+                      <option value="F" <?= (@$main['sex'] == 'F') ? 'selected' : '' ?>>Perempuan</option>
+                    </select>
                   </div>
                 </div>
                 <div id="icon-container" class="form-group row">
@@ -54,7 +63,11 @@
                   <label for="url" class="col-sm-2 col-form-label text-right">Aktif</label>
                   <div class="col-sm-3">
                     <div class="pretty p-icon">
-                      <input class="icheckbox" type="checkbox" name="is_active" id="is_active" value="1" <?php if(@$main){echo (@$main['is_active'] == 1) ? 'checked' : '';}else{echo 'checked';}  ?>>
+                      <input class="icheckbox" type="checkbox" name="is_active" id="is_active" value="1" <?php if (@$main) {
+                                                                                                            echo (@$main['is_active'] == 1) ? 'checked' : '';
+                                                                                                          } else {
+                                                                                                            echo 'checked';
+                                                                                                          }  ?>>
                       <div class="state">
                         <i class="icon fas fa-check"></i><label></label>
                       </div>

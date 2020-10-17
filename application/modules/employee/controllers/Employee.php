@@ -15,7 +15,7 @@ class Employee extends MY_Controller
       'm_employee'
     ));
 
-    $this->menu_id = '98.01';
+    $this->menu_id = '11';
     $this->menu = $this->m_config->get_menu($this->menu_id);
     if ($this->menu == null) redirect(site_url() . '/error/error_403');
 
