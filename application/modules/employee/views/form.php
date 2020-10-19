@@ -59,7 +59,17 @@
                     <div class="form-group row">
                       <label for="menu" class="col-sm-3 col-form-label text-right">Tanggal Lahir <span class="text-danger">*</span></label>
                       <div class="col-sm-3">
-                        <input type="text" class="form-control form-control-sm datepicker" name="dob" id="dob" value="<?= @$main['dob'] ?>" required>
+                        <input type="text" class="form-control form-control-sm datepicker" name="dob" id="dob" value="<?= reverse_date(@$main['dob']) ?>" required>
+                      </div>
+                    </div>
+                    <div class="form-group row">
+                      <label for="menu" class="col-sm-3 col-form-label text-right">Agama <span class="text-danger">*</span></label>
+                      <div class="col-sm-4">
+                        <select class="form-control form-control-sm select2" name="religion_id" id="religion_id">
+                          <?php foreach ($religion as $r) : ?>
+                            <option value="<?= $r['religion_id'] ?>" <?= (@$main['religion_id'] == $r['religion_id']) ? 'selected' : '' ?>><?= $r['religion_name'] ?></option>
+                          <?php endforeach; ?>
+                        </select>
                       </div>
                     </div>
                     <div class="form-group row">
@@ -79,12 +89,12 @@
                       <div class="col-sm-3">
                         <select class="form-control form-control-sm select2" name="family_status_id" id="family_status_id">
                           <?php foreach ($family_status as $r) : ?>
-                            <option value="<?= $r['family_status_id'] ?>"><?= $r['family_status_name'] ?></option>
+                            <option value="<?= $r['family_status_id'] ?>" <?= (@$main['family_status_id'] == $r['family_status_id']) ? 'selected' : '' ?>><?= $r['family_status_name'] ?></option>
                           <?php endforeach; ?>
                         </select>
                       </div>
                     </div>
-                    <h6><i class="fas fa-map-marker-alt"></i> Alamat</h6>
+                    <h6><i class="fas fa-map-marker-alt mt-3"></i> Alamat</h6>
                     <div class="form-group row">
                       <label for="menu" class="col-sm-3 col-form-label text-right">Provinsi <span class="text-danger">*</span></label>
                       <div class="col-sm-5">
@@ -164,6 +174,13 @@
                       </div>
                     </div>
                     <div class="form-group row">
+                      <label for="menu" class="col-sm-3 col-form-label text-right">Tanggal Masuk <span class="text-danger">*</span></label>
+                      <div class="col-sm-3">
+                        <input type="text" class="form-control form-control-sm datepicker" name="entry_date" id="entry_date" value="<?= reverse_date(@$main['entry_date']) ?>" required>
+                      </div>
+                    </div>
+                    <h6><i class="fas fa-money-bill-wave mt-3"></i> Pengupahan</h6>
+                    <div class="form-group row">
                       <label for="menu" class="col-sm-3 col-form-label text-right">Status Upah <span class="text-danger">*</span></label>
                       <div class="col-sm-5">
                         <select class="form-control form-control-sm select2" name="salary_status_id" id="salary_status_id">
@@ -171,6 +188,30 @@
                             <option value="<?= $r['salary_status_id'] ?>" <?= (@$main['salary_status_id'] == $r['salary_status_id']) ? 'selected' : '' ?>><?= $r['salary_status_name'] ?></option>
                           <?php endforeach; ?>
                         </select>
+                      </div>
+                    </div>
+                    <div class="form-group row">
+                      <label for="menu" class="col-sm-3 col-form-label text-right">Nomor BPJS KS</label>
+                      <div class="col-sm-5">
+                        <input type="text" class="form-control form-control-sm" name="bpjs_ks_number" id="bpjs_ks_number" value="<?= @$main['bpjs_ks_number'] ?>">
+                      </div>
+                    </div>
+                    <div class="form-group row">
+                      <label for="menu" class="col-sm-3 col-form-label text-right">Nomor BPJS TK</label>
+                      <div class="col-sm-5">
+                        <input type="text" class="form-control form-control-sm" name="bpjs_tk_number" id="bpjs_tk_number" value="<?= @$main['bpjs_tk_number'] ?>">
+                      </div>
+                    </div>
+                    <div class="form-group row">
+                      <label for="menu" class="col-sm-3 col-form-label text-right">Nama Bank</label>
+                      <div class="col-sm-3">
+                        <input type="text" class="form-control form-control-sm" name="bank_name" id="bank_name" value="<?= @$main['bank_name'] ?>">
+                      </div>
+                    </div>
+                    <div class="form-group row">
+                      <label for="menu" class="col-sm-3 col-form-label text-right">No Rekening Bank</label>
+                      <div class="col-sm-5">
+                        <input type="text" class="form-control form-control-sm" name="bank_account" id="bank_account" value="<?= @$main['bank_account'] ?>">
                       </div>
                     </div>
                   </div>

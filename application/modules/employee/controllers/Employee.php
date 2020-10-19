@@ -19,6 +19,7 @@ class Employee extends MY_Controller
       'position/m_position',
       'employee_status/m_employee_status',
       'salary_status/m_salary_status',
+      'religion/m_religion',
     ));
 
     $this->menu_id = '11';
@@ -65,6 +66,7 @@ class Employee extends MY_Controller
     $data['menu'] = $this->menu;
     $data['province'] = $this->m_employee->province_data();
     $data['family_status'] = $this->m_family_status->all_data();
+    $data['religion'] = $this->m_religion->all_data();
     $data['department'] = $this->m_department->all_data();
     $data['division'] = $this->m_division->all_data();
     $data['position'] = $this->m_position->all_data();

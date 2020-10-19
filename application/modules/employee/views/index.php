@@ -82,9 +82,10 @@
                             </div>
                           </th>
                           <th class="text-center" width="50">Aksi</th>
-                          <th class="text-center" width="100"><?= table_sort($menu['menu_id'], 'Kode', 'employee_id', $cookie['order']) ?></th>
-                          <th class="text-center" width="200"><?= table_sort($menu['menu_id'], 'Nama Departemen', 'employee_name', $cookie['order']) ?></th>
-                          <th class="text-center">Deskripsi</th>
+                          <th class="text-center" width="100"><?= table_sort($menu['menu_id'], 'ID', 'employee_id', $cookie['order']) ?></th>
+                          <th class="text-center" width="200"><?= table_sort($menu['menu_id'], 'Nama Pegawai', 'employee_name', $cookie['order']) ?></th>
+                          <th class="text-center" width="200"><?= table_sort($menu['menu_id'], 'Departemen', 'department_name', $cookie['order']) ?></th>
+                          <th class="text-center" width="200"><?= table_sort($menu['menu_id'], 'Divisi', 'division_name', $cookie['order']) ?></th>
                           <th class="text-center" width="70"><?= table_sort($menu['menu_id'], 'Status', 'is_active', $cookie['order']) ?></th>
                         </tr>
                       </thead>
@@ -119,7 +120,8 @@
                                 </td>
                                 <td class="text-center"><?= $r['employee_id'] ?></td>
                                 <td><?= $r['employee_name'] ?></td>
-                                <td><?= $r['description'] ?></td>
+                                <td><?= $r['department_id'] ?></td>
+                                <td><?= $r['division_id'] ?></td>
                                 <td class="text-center td-status">
                                   <?php if ($menu['_update'] == 1) : ?>
                                     <?php if ($r['is_active'] == 1) : ?>
