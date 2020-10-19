@@ -56,6 +56,9 @@
   <script src="<?= base_url() ?>plugins/sweetalert2/sweetalert2.js"></script>
   <!-- Toastr -->
   <script src="<?= base_url() ?>plugins/toastr/toastr.min.js"></script>
+  <!-- Chained -->
+  <script src="<?= base_url() ?>plugins/jquery-chained/jquery.chained.min.js"></script>
+  <script src="<?= base_url() ?>plugins/jquery-chained/jquery.chained.remote.min.js"></script>
   <!-- overlayScrollbars -->
   <script src="<?= base_url() ?>plugins/overlayScrollbars/js/jquery.overlayScrollbars.min.js"></script>
   <!-- AdminLTE App -->

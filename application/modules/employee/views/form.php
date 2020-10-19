@@ -28,6 +28,7 @@
             </div>
             <form id="form" action="<?= site_url() . '/' . $menu['controller'] . '/save/' . $id ?>" method="post" autocomplete="off" enctype="multipart/form-data">
               <div class="card-body">
+                <h6>Data Dasar</h6>
                 <div class="flash-error" data-flasherror="<?= $this->session->flashdata('flash_error') ?>"></div>
                 <?php if ($id != null) : ?>
                   <input type="hidden" class="form-control form-control-sm" name="old" id="old" value="<?= @$main['employee_id'] ?>" required>
@@ -53,25 +54,58 @@
                     </select>
                   </div>
                 </div>
-                <div id="icon-container" class="form-group row">
-                  <label for="icon" class="col-sm-2 col-form-label text-right">Deskripsi</label>
-                  <div class="col-sm-6">
-                    <input type="text" class="form-control form-control-sm" name="description" id="description" value="<?= @$main['description'] ?>">
+                <div class="form-group row">
+                  <label for="menu" class="col-sm-2 col-form-label text-right">Tanggal Lahir <span class="text-danger">*</span></label>
+                  <div class="col-sm-2">
+                    <input type="text" class="form-control form-control-sm datepicker" name="dob" id="dob" value="<?= @$main['dob'] ?>" required>
                   </div>
                 </div>
                 <div class="form-group row">
-                  <label for="url" class="col-sm-2 col-form-label text-right">Aktif</label>
+                  <label for="menu" class="col-sm-2 col-form-label text-right">Nomor KTP <span class="text-danger">*</span></label>
                   <div class="col-sm-3">
-                    <div class="pretty p-icon">
-                      <input class="icheckbox" type="checkbox" name="is_active" id="is_active" value="1" <?php if (@$main) {
-                                                                                                            echo (@$main['is_active'] == 1) ? 'checked' : '';
-                                                                                                          } else {
-                                                                                                            echo 'checked';
-                                                                                                          }  ?>>
-                      <div class="state">
-                        <i class="icon fas fa-check"></i><label></label>
-                      </div>
-                    </div>
+                    <input type="text" class="form-control form-control-sm" name="id_number" id="id_number" value="<?= @$main['id_number'] ?>" required>
+                  </div>
+                </div>
+                <div class="form-group row">
+                  <label for="menu" class="col-sm-2 col-form-label text-right">Nomor NPWP</label>
+                  <div class="col-sm-3">
+                    <input type="text" class="form-control form-control-sm" name="tax_number" id="tax_number" value="<?= @$main['tax_number'] ?>">
+                  </div>
+                </div>
+                <h6>Alamat</h6>
+                <div class="form-group row">
+                  <label for="menu" class="col-sm-2 col-form-label text-right">Provinsi <span class="text-danger">*</span></label>
+                  <div class="col-sm-3">
+                    <select class="form-control form-control-sm select2" name="province_id" id="province_id">
+                      <option value="">--</option>
+                      <?php foreach ($province as $r) : ?>
+                        <option value="<?= $r['area_id'] ?>"><?= $r['area_name'] ?></option>
+                      <?php endforeach; ?>
+                    </select>
+                  </div>
+                </div>
+                <div class="form-group row">
+                  <label for="menu" class="col-sm-2 col-form-label text-right">Kabupaten <span class="text-danger">*</span></label>
+                  <div class="col-sm-3">
+                    <select class="form-control form-control-sm select2" name="regency_id" id="regency_id">
+                      <option value="">--</option>
+                    </select>
+                  </div>
+                </div>
+                <div class="form-group row">
+                  <label for="menu" class="col-sm-2 col-form-label text-right">Kecamatan <span class="text-danger">*</span></label>
+                  <div class="col-sm-3">
+                    <select class="form-control form-control-sm select2" name="district_id" id="district_id">
+                      <option value="">--</option>
+                    </select>
+                  </div>
+                </div>
+                <div class="form-group row">
+                  <label for="menu" class="col-sm-2 col-form-label text-right">Kelurahan / Desa <span class="text-danger">*</span></label>
+                  <div class="col-sm-3">
+                    <select class="form-control form-control-sm select2" name="village_id" id="village_id">
+                      <option value="">--</option>
+                    </select>
                   </div>
                 </div>
               </div>
@@ -135,5 +169,24 @@
         form.submit();
       }
     });
+
+
+
+    $("#regency_id").remoteChained({
+      parents: "#province_id",
+      url: "<?= site_url() . '/' . $menu['controller'] . '/ajax/regency' ?>"
+    });
+
+    $("#district_id").remoteChained({
+      parents: "#regency_id",
+      url: "<?= site_url() . '/' . $menu['controller'] . '/ajax/district' ?>"
+    });
+
+    $("#village_id").remoteChained({
+      parents: "#district_id",
+      url: "<?= site_url() . '/' . $menu['controller'] . '/ajax/village' ?>"
+    });
+
+    $("#province_id").val('').trigger('change');
   })
 </script>

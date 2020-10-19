@@ -57,6 +57,7 @@ class Employee extends MY_Controller
     }
     $data['id'] = $id;
     $data['menu'] = $this->menu;
+    $data['province'] = $this->m_employee->province_data();
     $this->render('form', $data);
   }
 
@@ -153,8 +154,26 @@ class Employee extends MY_Controller
       if ($id == null) {
         echo ($cek != null) ? 'false' : 'true';
       } else {
-        echo($id != $data['employee_id'] && $cek != null) ? 'false' : 'true';
+        echo ($id != $data['employee_id'] && $cek != null) ? 'false' : 'true';
       }
+    }
+
+    if ($type == 'regency') {
+      $province_id = $this->input->get('province_id');
+      $res = $this->m_employee->regency_data($province_id);
+      echo json_encode($res);
+    }
+
+    if ($type == 'district') {
+      $regency_id = $this->input->get('regency_id');
+      $res = $this->m_employee->district_data($regency_id);
+      echo json_encode($res);
+    }
+
+    if ($type == 'village') {
+      $district_id = $this->input->get('district_id');
+      $res = $this->m_employee->village_data($district_id);
+      echo json_encode($res);
     }
   }
 }

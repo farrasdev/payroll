@@ -1,14 +1,14 @@
 <?php
 defined('BASEPATH') or exit('No direct script access allowed');
 
-class M_departement extends CI_Model
+class M_department extends CI_Model
 {
 
   public function where($cookie)
   {
     $where = "WHERE a.is_deleted = 0 ";
     if (@$cookie['search']['term'] != '') {
-      $where .= "AND a.departement_name LIKE '%" . $this->db->escape_like_str($cookie['search']['term']) . "%' ";
+      $where .= "AND a.department_name LIKE '%" . $this->db->escape_like_str($cookie['search']['term']) . "%' ";
     }
     return $where;
   }
@@ -16,7 +16,7 @@ class M_departement extends CI_Model
   public function list_data($cookie)
   {
     $where = $this->where($cookie);
-    $sql = "SELECT * FROM departement a 
+    $sql = "SELECT * FROM department a 
       $where
       ORDER BY "
       . $cookie['order']['field'] . " " . $cookie['order']['type'] .
@@ -29,7 +29,7 @@ class M_departement extends CI_Model
   {
     $where = "WHERE a.is_deleted = 0 ";
 
-    $sql = "SELECT * FROM departement a $where ORDER BY created_at";
+    $sql = "SELECT * FROM department a $where ORDER BY created_at";
     $query = $this->db->query($sql);
     return $query->result_array();
   }
@@ -38,14 +38,14 @@ class M_departement extends CI_Model
   {
     $where = $this->where($cookie);
 
-    $sql = "SELECT COUNT(1) as total FROM departement a $where";
+    $sql = "SELECT COUNT(1) as total FROM department a $where";
     $query = $this->db->query($sql);
     return $query->row_array()['total'];
   }
 
   function by_field($field, $val)
   {
-    $sql = "SELECT * FROM departement WHERE $field = ?";
+    $sql = "SELECT * FROM department WHERE $field = ?";
     $query = $this->db->query($sql, array($val));
     $row = $query->row_array();
     return $row;
@@ -56,11 +56,11 @@ class M_departement extends CI_Model
     if ($id == null) {
       $data['created_at'] = date('Y-m-d H:i:s');
       $data['created_by'] = $this->session->userdata('user_fullname');
-      $this->db->insert('departement', $data);
+      $this->db->insert('department', $data);
     } else {
       $data['updated_at'] = date('Y-m-d H:i:s');
       $data['updated_by'] = $this->session->userdata('user_fullname');
-      $this->db->where('departement_id', $id)->update('departement', $data);
+      $this->db->where('department_id', $id)->update('department', $data);
     }
   }
 
@@ -68,18 +68,18 @@ class M_departement extends CI_Model
   {
     $data['updated_at'] = date('Y-m-d H:i:s');
     $data['updated_by'] = $this->session->userdata('fullname');
-    $this->db->where('departement_id', $id)->update('departement', $data);
+    $this->db->where('department_id', $id)->update('department', $data);
   }
 
   public function delete($id, $permanent = true)
   {
     if ($permanent) {
-      $this->db->where('departement_id', $id)->delete('departement');
+      $this->db->where('department_id', $id)->delete('department');
     } else {
       $data['is_deleted'] = 1;
       $data['updated_at'] = date('Y-m-d H:i:s');
       $data['updated_by'] = $this->session->userdata('user_fullname');
-      $this->db->where('departement_id', $id)->update('departement', $data);
+      $this->db->where('department_id', $id)->update('department', $data);
     }
   }
 }

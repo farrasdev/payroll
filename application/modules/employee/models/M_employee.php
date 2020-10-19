@@ -82,4 +82,45 @@ class M_employee extends CI_Model
       $this->db->where('employee_id', $id)->update('employee', $data);
     }
   }
+
+  public function province_data()
+  {
+    return $this->db->query("SELECT * FROM area WHERE LENGTH(area_id) = 2")->result_array();
+  }
+
+  public function regency_data($province_id)
+  {
+    $res = array("" => "--");
+    if ($province_id != "") {
+      $regency = $this->db->query("SELECT * FROM area WHERE area_id LIKE '$province_id%' AND LENGTH(area_id) = 5")->result_array();
+      foreach ($regency as $k => $v) {
+        $res[$v['area_id']] = $v['area_name'];
+      }
+    }
+    return $res;
+  }
+
+  public function district_data($regency_id)
+  {
+    $res = array("" => "--");
+    if ($regency_id != "") {
+      $regency = $this->db->query("SELECT * FROM area WHERE area_id LIKE '$regency_id%' AND LENGTH(area_id) = 8")->result_array();
+      foreach ($regency as $k => $v) {
+        $res[$v['area_id']] = $v['area_name'];
+      }
+    }
+    return $res;
+  }
+
+  public function village_data($district_id)
+  {
+    $res = array("" => "--");
+    if ($district_id != "") {
+      $regency = $this->db->query("SELECT * FROM area WHERE area_id LIKE '$district_id%' AND LENGTH(area_id) = 13")->result_array();
+      foreach ($regency as $k => $v) {
+        $res[$v['area_id']] = $v['area_name'];
+      }
+    }
+    return $res;
+  }
 }

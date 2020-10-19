@@ -1,7 +1,7 @@
 <?php
 defined('BASEPATH') or exit('No direct script access allowed');
 
-class Departement extends MY_Controller
+class Department extends MY_Controller
 {
 
   var $menu_id, $menu, $cookie;
@@ -12,7 +12,7 @@ class Departement extends MY_Controller
 
     $this->load->model(array(
       'config/m_config',
-      'm_departement'
+      'm_department'
     ));
 
     $this->menu_id = '98.01';
@@ -22,7 +22,7 @@ class Departement extends MY_Controller
     //cookie 
     $this->cookie = get_cookie_menu($this->menu_id);
     if ($this->cookie['search'] == null) $this->cookie['search'] = array('term' => '');
-    if ($this->cookie['order'] == null) $this->cookie['order'] = array('field' => 'departement_id', 'type' => 'asc');
+    if ($this->cookie['order'] == null) $this->cookie['order'] = array('field' => 'department_id', 'type' => 'asc');
     if ($this->cookie['per_page'] == null) $this->cookie['per_page'] = 10;
     if ($this->cookie['cur_page'] == null) 0;
   }
@@ -32,12 +32,12 @@ class Departement extends MY_Controller
     authorize($this->menu, '_read');
     //cookie
     $this->cookie['cur_page'] = $this->uri->segment(3, 0);
-    $this->cookie['total_rows'] = $this->m_departement->all_rows($this->cookie);
+    $this->cookie['total_rows'] = $this->m_department->all_rows($this->cookie);
     set_cookie_menu($this->menu_id, $this->cookie);
     //main data
     $data['menu'] = $this->menu;
     $data['cookie'] = $this->cookie;
-    $data['main'] = $this->m_departement->list_data($this->cookie);
+    $data['main'] = $this->m_department->list_data($this->cookie);
     $data['pagination_info'] = pagination_info(count($data['main']), $this->cookie);
     //set pagination
     set_pagination($this->menu, $this->cookie);
@@ -53,7 +53,7 @@ class Departement extends MY_Controller
       $data['main'] = null;
     } else {
       create_log(3, $this->menu['menu_name']);
-      $data['main'] = $this->m_departement->by_field('departement_id', $id);
+      $data['main'] = $this->m_department->by_field('department_id', $id);
     }
     $data['id'] = $id;
     $data['menu'] = $this->menu;
@@ -67,23 +67,23 @@ class Departement extends MY_Controller
     if (!isset($data['is_active'])) {
       $data['is_active'] = 0;
     }
-    $cek = $this->m_departement->by_field('departement_id', $data['departement_id']);
+    $cek = $this->m_department->by_field('department_id', $data['department_id']);
     if ($id == null) {
       if ($cek != null) {
         $this->session->set_flashdata('flash_error', 'Kode sudah ada di sistem.');
         redirect(site_url() . '/' .  $this->menu['controller']  . '/form/');
       }
       unset($data['old']);
-      $this->m_departement->save($data, $id);
+      $this->m_department->save($data, $id);
       create_log(2, $this->menu['menu_name']);
       $this->session->set_flashdata('flash_success', 'Kode berhasil ditambahkan.');
     } else {
-      if ($data['old'] != $data['departement_id'] && $cek != null) {
+      if ($data['old'] != $data['department_id'] && $cek != null) {
         $this->session->set_flashdata('flash_error', 'Kode sudah ada di sistem.');
         redirect(site_url() . '/' . $this->menu['controller'] . '/form/' . $id);
       }
       unset($data['old']);
-      $this->m_departement->save($data, $id);
+      $this->m_department->save($data, $id);
       create_log(3, $this->menu['menu_name']);
       $this->session->set_flashdata('flash_success', 'Data berhasil diubah.');
     }
@@ -93,7 +93,7 @@ class Departement extends MY_Controller
   public function delete($id = null)
   {
     ($id == null) ? authorize($this->menu, '_create') : authorize($this->menu, '_update');
-    $this->m_departement->delete($id);
+    $this->m_department->delete($id);
     create_log(4, $this->menu['menu_name']);
     $this->session->set_flashdata('flash_success', 'Data berhasil dihapus.');
     redirect(site_url() . '/' . $this->menu['controller'] . '/' . $this->menu['url'] . '/' . $this->cookie['cur_page']);
@@ -103,9 +103,9 @@ class Departement extends MY_Controller
   {
     authorize($this->menu, '_update');
     if ($type == 'enable') {
-      $this->m_departement->update($id, array('is_active' => 1));
+      $this->m_department->update($id, array('is_active' => 1));
     } else {
-      $this->m_departement->update($id, array('is_active' => 0));
+      $this->m_department->update($id, array('is_active' => 0));
     }
     create_log(3, $this->this->menu['menu_name']);
     redirect(site_url() . '/' . $this->menu['controller'] . '/' . $this->menu['url'] . '/' . $this->cookie['cur_page']);
@@ -119,21 +119,21 @@ class Departement extends MY_Controller
         switch ($type) {
           case 'delete':
             authorize($this->menu, '_delete');
-            $this->m_departement->delete($key);
+            $this->m_department->delete($key);
             $flash = 'Data berhasil dihapus.';
             $t = 4;
             break;
 
           case 'enable':
             authorize($this->menu, '_update');
-            $this->m_departement->update($key, array('is_active' => 1));
+            $this->m_department->update($key, array('is_active' => 1));
             $flash = 'Data berhasil diaktifkan.';
             $t = 3;
             break;
 
           case 'disable':
             authorize($this->menu, '_update');
-            $this->m_departement->update($key, array('is_active' => 0));
+            $this->m_department->update($key, array('is_active' => 0));
             $flash = 'Data berhasil dinonaktifkan.';
             $t = 3;
             break;
@@ -149,11 +149,11 @@ class Departement extends MY_Controller
   {
     if ($type == 'check_id') {
       $data = $this->input->post();
-      $cek = $this->m_departement->by_field('departement_id', $data['departement_id']);
+      $cek = $this->m_department->by_field('department_id', $data['department_id']);
       if ($id == null) {
         echo ($cek != null) ? 'false' : 'true';
       } else {
-        echo($id != $data['departement_id'] && $cek != null) ? 'false' : 'true';
+        echo ($id != $data['department_id'] && $cek != null) ? 'false' : 'true';
       }
     }
   }
