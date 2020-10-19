@@ -12,7 +12,13 @@ class Employee extends MY_Controller
 
     $this->load->model(array(
       'config/m_config',
-      'm_employee'
+      'm_employee',
+      'family_status/m_family_status',
+      'department/m_department',
+      'division/m_division',
+      'position/m_position',
+      'employee_status/m_employee_status',
+      'salary_status/m_salary_status',
     ));
 
     $this->menu_id = '11';
@@ -58,6 +64,12 @@ class Employee extends MY_Controller
     $data['id'] = $id;
     $data['menu'] = $this->menu;
     $data['province'] = $this->m_employee->province_data();
+    $data['family_status'] = $this->m_family_status->all_data();
+    $data['department'] = $this->m_department->all_data();
+    $data['division'] = $this->m_division->all_data();
+    $data['position'] = $this->m_position->all_data();
+    $data['employee_status'] = $this->m_employee_status->all_data();
+    $data['salary_status'] = $this->m_salary_status->all_data();
     $this->render('form', $data);
   }
 
