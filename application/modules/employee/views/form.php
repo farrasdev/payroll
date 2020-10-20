@@ -96,38 +96,42 @@
                     </div>
                     <h6><i class="fas fa-map-marker-alt mt-3"></i> Alamat</h6>
                     <div class="form-group row">
-                      <label for="menu" class="col-sm-3 col-form-label text-right">Provinsi <span class="text-danger">*</span></label>
+                      <label for="menu" class="col-sm-3 col-form-label text-right">Provinsi</label>
                       <div class="col-sm-5">
-                        <select class="form-control form-control-sm select2" name="province_id" id="province_id">
+                        <input type="text" class="form-control form-control-sm" name="province_name" id="province_name" value="<?= @$main['province_name'] ?>">
+                        <!-- <select class="form-control form-control-sm select2" name="province_id" id="province_id">
                           <option value="">--</option>
                           <?php foreach ($province as $r) : ?>
                             <option value="<?= $r['area_id'] ?>"><?= $r['area_name'] ?></option>
                           <?php endforeach; ?>
-                        </select>
+                        </select> -->
                       </div>
                     </div>
                     <div class="form-group row">
-                      <label for="menu" class="col-sm-3 col-form-label text-right">Kabupaten <span class="text-danger">*</span></label>
+                      <label for="menu" class="col-sm-3 col-form-label text-right">Kabupaten</label>
                       <div class="col-sm-5">
-                        <select class="form-control form-control-sm select2" name="regency_id" id="regency_id">
+                        <input type="text" class="form-control form-control-sm" name="regency_name" id="regency_name" value="<?= @$main['regency_name'] ?>">
+                        <!-- <select class="form-control form-control-sm select2" name="regency_id" id="regency_id">
                           <option value="">--</option>
-                        </select>
+                        </select> -->
                       </div>
                     </div>
                     <div class="form-group row">
-                      <label for="menu" class="col-sm-3 col-form-label text-right">Kecamatan <span class="text-danger">*</span></label>
+                      <label for="menu" class="col-sm-3 col-form-label text-right">Kecamatan</label>
                       <div class="col-sm-5">
-                        <select class="form-control form-control-sm select2" name="district_id" id="district_id">
+                        <input type="text" class="form-control form-control-sm" name="district_name" id="district_name" value="<?= @$main['district_name'] ?>">
+                        <!-- <select class="form-control form-control-sm select2" name="district_id" id="district_id">
                           <option value="">--</option>
-                        </select>
+                        </select> -->
                       </div>
                     </div>
                     <div class="form-group row">
-                      <label for="menu" class="col-sm-3 col-form-label text-right">Kelurahan / Desa <span class="text-danger">*</span></label>
+                      <label for="menu" class="col-sm-3 col-form-label text-right">Kelurahan / Desa</label>
                       <div class="col-sm-5">
-                        <select class="form-control form-control-sm select2" name="village_id" id="village_id">
+                        <input type="text" class="form-control form-control-sm" name="village_name" id="village_name" value="<?= @$main['village_name'] ?>">
+                        <!-- <select class="form-control form-control-sm select2" name="village_id" id="village_id">
                           <option value="">--</option>
-                        </select>
+                        </select> -->
                       </div>
                     </div>
                   </div>
@@ -136,7 +140,8 @@
                     <div class="form-group row">
                       <label for="menu" class="col-sm-3 col-form-label text-right">Departemen <span class="text-danger">*</span></label>
                       <div class="col-sm-5">
-                        <select class="form-control form-control-sm select2" name="department_id" id="department_id">
+                        <select class="form-control form-control-sm select2" name="department_id" id="department_id" required>
+                          <option value="">--</option>
                           <?php foreach ($department as $r) : ?>
                             <option value="<?= $r['department_id'] ?>" <?= (@$main['department_id'] == $r['department_id']) ? 'selected' : '' ?>><?= $r['department_name'] ?></option>
                           <?php endforeach; ?>
@@ -146,7 +151,8 @@
                     <div class="form-group row">
                       <label for="menu" class="col-sm-3 col-form-label text-right">Divisi <span class="text-danger">*</span></label>
                       <div class="col-sm-5">
-                        <select class="form-control form-control-sm select2" name="division_id" id="division_id">
+                        <select class="form-control form-control-sm select2" name="division_id" id="division_id" required>
+                          <option value="">--</option>
                           <?php foreach ($division as $r) : ?>
                             <option value="<?= $r['division_id'] ?>" <?= (@$main['division_id'] == $r['division_id']) ? 'selected' : '' ?>><?= $r['division_name'] ?></option>
                           <?php endforeach; ?>
@@ -156,7 +162,8 @@
                     <div class="form-group row">
                       <label for="menu" class="col-sm-3 col-form-label text-right">Posisi <span class="text-danger">*</span></label>
                       <div class="col-sm-5">
-                        <select class="form-control form-control-sm select2" name="position_id" id="position_id">
+                        <select class="form-control form-control-sm select2" name="position_id" id="position_id" required>
+                          <option value="">--</option>
                           <?php foreach ($position as $r) : ?>
                             <option value="<?= $r['position_id'] ?>" <?= (@$main['position_id'] == $r['position_id']) ? 'selected' : '' ?>><?= $r['position_name'] ?></option>
                           <?php endforeach; ?>
@@ -166,7 +173,8 @@
                     <div class="form-group row">
                       <label for="menu" class="col-sm-3 col-form-label text-right">Status Pegawai <span class="text-danger">*</span></label>
                       <div class="col-sm-5">
-                        <select class="form-control form-control-sm select2" name="employee_status_id" id="employee_status_id">
+                        <select class="form-control form-control-sm select2" name="employee_status_id" id="employee_status_id" required>
+                          <option value="">--</option>
                           <?php foreach ($employee_status as $r) : ?>
                             <option value="<?= $r['employee_status_id'] ?>" <?= (@$main['employee_status_id'] == $r['employee_status_id']) ? 'selected' : '' ?>><?= $r['employee_status_name'] ?></option>
                           <?php endforeach; ?>
@@ -179,11 +187,27 @@
                         <input type="text" class="form-control form-control-sm datepicker" name="entry_date" id="entry_date" value="<?= reverse_date(@$main['entry_date']) ?>" required>
                       </div>
                     </div>
+                    <div class="form-group row">
+                      <label for="url" class="col-sm-3 col-form-label text-right">Aktif</label>
+                      <div class="col-sm-3">
+                        <div class="pretty p-icon">
+                          <input class="icheckbox" type="checkbox" name="is_active" id="is_active" value="1" <?php if (@$main) {
+                                                                                                                echo (@$main['is_active'] == 1) ? 'checked' : '';
+                                                                                                              } else {
+                                                                                                                echo 'checked';
+                                                                                                              }  ?>>
+                          <div class="state">
+                            <i class="icon fas fa-check"></i><label></label>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
                     <h6><i class="fas fa-money-bill-wave mt-3"></i> Pengupahan</h6>
                     <div class="form-group row">
                       <label for="menu" class="col-sm-3 col-form-label text-right">Status Upah <span class="text-danger">*</span></label>
                       <div class="col-sm-5">
-                        <select class="form-control form-control-sm select2" name="salary_status_id" id="salary_status_id">
+                        <select class="form-control form-control-sm select2" name="salary_status_id" id="salary_status_id" required>
+                          <option value="">--</option>
                           <?php foreach ($salary_status as $r) : ?>
                             <option value="<?= $r['salary_status_id'] ?>" <?= (@$main['salary_status_id'] == $r['salary_status_id']) ? 'selected' : '' ?>><?= $r['salary_status_name'] ?></option>
                           <?php endforeach; ?>
@@ -237,7 +261,7 @@
 <!-- /.content-wrapper -->
 <script>
   $(document).ready(function() {
-    $("#form").validate({
+    var form = $("#form").validate({
       rules: {
         employee_id: {
           remote: {
@@ -262,6 +286,8 @@
         error.addClass("invalid-feedback");
         if (element.prop("type") === "checkbox") {
           error.insertAfter(element.next("label"));
+        } else if ($(element).hasClass('select2')) {
+          error.insertAfter(element.next(".select2-container")).addClass('mt-1');
         } else {
           error.insertAfter(element);
         }
@@ -297,6 +323,26 @@
       url: "<?= site_url() . '/' . $menu['controller'] . '/ajax/village' ?>"
     });
 
+    <?php if ($id != null) : ?>
+      setTimeout(function() {
+        $("#province_id").val('<?= @$main['province_id'] ?>').trigger('change');
+        setTimeout(function() {
+          $("#regency_id").val('<?= @$main['regency_id'] ?>').trigger('change');
+          setTimeout(function() {
+            $("#district_id").val('<?= @$main['district_id'] ?>').trigger('change');
+            setTimeout(function() {
+              $("#village_id").val('<?= @$main['village_id'] ?>').trigger('change');
+            }, 500);
+          }, 500);
+        }, 500);
+      }, 500);
+
+    <?php endif; ?>
+
     $("#province_id").val('').trigger('change');
+
+    $(".select2").on('change', function() {
+      form.element($(this));
+    })
   })
 </script>

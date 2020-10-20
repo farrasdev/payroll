@@ -16,7 +16,10 @@ class M_employee extends CI_Model
   public function list_data($cookie)
   {
     $where = $this->where($cookie);
-    $sql = "SELECT * FROM employee a 
+    $sql = "SELECT a.*, b.department_name, c.division_name, d.position_name FROM employee a 
+      LEFT JOIN department b ON a.department_id = b.department_id
+      LEFT JOIN division c ON a.division_id = c.division_id
+      LEFT JOIN position d ON a.position_id = d.position_id
       $where
       ORDER BY "
       . $cookie['order']['field'] . " " . $cookie['order']['type'] .

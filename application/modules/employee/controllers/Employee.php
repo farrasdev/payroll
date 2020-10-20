@@ -83,6 +83,8 @@ class Employee extends MY_Controller
       $data['is_active'] = 0;
     }
     $cek = $this->m_employee->by_field('employee_id', $data['employee_id']);
+    $data['dob'] = reverse_date($data['dob']);
+    $data['entry_date'] = reverse_date($data['entry_date']);
     if ($id == null) {
       if ($cek != null) {
         $this->session->set_flashdata('flash_error', 'Kode sudah ada di sistem.');
