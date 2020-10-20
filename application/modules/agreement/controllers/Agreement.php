@@ -197,4 +197,17 @@ class Agreement extends MY_Controller
       echo json_encode($res);
     }
   }
+
+  public function print_pdf($id)
+  {
+    $main = $this->m_agreement->by_field('agreement_id', $id);
+    $profile = $this->m_profile->get_first();
+    $this->load->library('pdfmc');
+    $pdf = new Pdf('p', 'mm', array(210, 300));
+    $pdf->AliasNbPages();
+    $pdf->SetTitle('Perjanjian Kerja ' . $main['agreement_number']);
+    $pdf->AddPage();
+
+    $pdf->Image(FCPATH . 'assets/images/logos/' . $profile['logo'], 10, 10, 15, 15);
+  }
 }

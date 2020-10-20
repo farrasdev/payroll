@@ -113,7 +113,7 @@
                                 </td>
                                 <td class="text-center">
                                   <?php if ($menu['_report'] == 1) : ?>
-                                    <a class="text-success mr-1" target="_blank" href="<?= site_url() . '/' . $menu['controller'] . '/print/' . $r['agreement_id'] ?>"><i class="fas fa-print"></i></a>
+                                    <a class="text-success mr-1" target="_blank" href="<?= site_url() . '/' . $menu['controller'] . '/print_pdf/' . $r['agreement_id'] ?>"><i class="fas fa-print"></i></a>
                                   <?php endif; ?>
                                   <?php if ($menu['_update'] == 1) : ?>
                                     <a class="text-warning mr-1" href="<?= site_url() . '/' . $menu['controller'] . '/form/' . $r['agreement_id'] ?>"><i class="fas fa-pencil-alt"></i></a>
