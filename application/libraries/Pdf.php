@@ -1,7 +1,7 @@
 <?php
 include_once APPPATH . '/third_party/fpdf/fpdf.php';
 
-class Pdfmc extends FPDF
+class Pdf extends FPDF
 {
   var $widths;
   var $aligns;
