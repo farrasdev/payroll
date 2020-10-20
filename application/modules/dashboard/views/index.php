@@ -5,11 +5,11 @@
     <div class="container-fluid">
       <div class="row mb-2">
         <div class="col-sm-6">
-          <h1 class="m-0 text-dark"><?=@$menu['menu']?></h1>
+          <h1 class="m-0 text-dark"><?= @$menu['menu'] ?></h1>
         </div><!-- /.col -->
         <div class="col-sm-6">
           <ol class="breadcrumb float-sm-right">
-            <li class="breadcrumb-item active"><?=@$menu['menu']?></li>
+            <li class="breadcrumb-item active"><?= @$menu['menu'] ?></li>
           </ol>
         </div><!-- /.col -->
       </div><!-- /.row -->
@@ -19,12 +19,12 @@
   <!-- Main content -->
   <div class="content">
     <div class="container-fluid">
-      <div class="row">       
+      <div class="row">
         <div class="col-lg-12">
           <div class="card">
             <div class="card-body">
-              <h6 class="card-title">Welcome to Ignite Framwork</h6>
-              <p class="card-text">ADD Komputer Codeigniter Framwork for team purpose.</p>
+              <h6 class="card-title">Welcome to <?= $profile['app_name'] ?></h6>
+              <p class="card-text"><?= $profile['company_name'] ?></p>
             </div>
             <div class="card-footer">
 
