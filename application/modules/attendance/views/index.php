@@ -88,6 +88,7 @@
                           <th class="text-center" width="80">Tanggal</th>
                           <th class="text-center" width="50">Kode</th>
                           <th class="text-center" width="50">Regular</th>
+                          <th class="text-center" width="50">HM</th>
                           <th class="text-center" width="70">Over 1,5</th>
                           <th class="text-center" width="60">Over 2</th>
                           <th class="text-center" width="60">Over 3</th>
@@ -123,12 +124,13 @@
                                     <a class="text-danger btn-delete" href="<?= site_url() . '/' . $menu['controller'] . '/delete/' . $r['attendance_id'] ?>"><i class="fas fa-trash-alt"></i></a>
                                   <?php endif; ?>
                                 </td>
-                                <td class="text-center"><?= $r['employee_id'] ?></td>
+                                <td class="text-center text-bold"><?= $r['employee_id'] ?></td>
                                 <td class="text-center"><?= $r['division_name'] ?></td>
                                 <td><?= $r['employee_name'] ?></td>
                                 <td class="text-center"><?= reverse_date($r['attendance_date']) ?></td>
-                                <td class="text-center"><?= $r['shift_id'] ?></td>
+                                <td class="text-center text-bold"><?= $r['shift_id'] ?></td>
                                 <td class="text-center"><?= num_id($r['regulartime']) ?></td>
+                                <td class="text-center"><?= num_id($r['hourmachine']) ?></td>
                                 <td class="text-center"><?= num_id($r['overtime_15']) ?></td>
                                 <td class="text-center"><?= num_id($r['overtime_2']) ?></td>
                                 <td class="text-center"><?= num_id($r['overtime_3']) ?></td>

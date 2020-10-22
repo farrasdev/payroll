@@ -68,6 +68,12 @@
                   </div>
                 </div>
                 <div class="form-group row">
+                  <label class="col-sm-2 col-form-label text-right">Hour Machine <span class="text-danger">*</span></label>
+                  <div class="col-sm-2">
+                    <input type="text" class="form-control form-control-sm num-int" name="hourmachine" id="hourmachine" value="<?= @$main['hourmachine'] ?>" required>
+                  </div>
+                </div>
+                <div class="form-group row">
                   <label class="col-sm-2 col-form-label text-right">Overtime 1,5 <span class="text-danger">*</span></label>
                   <div class="col-sm-2">
                     <input type="text" class="form-control form-control-sm num-int" name="overtime_15" id="overtime_15" value="<?= @$main['overtime_15'] ?>" required>
