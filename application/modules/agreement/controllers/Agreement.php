@@ -1,6 +1,10 @@
 <?php
 defined('BASEPATH') or exit('No direct script access allowed');
 
+require './vendor/autoload.php';
+
+use Spipu\Html2Pdf\Html2Pdf;
+
 class Agreement extends MY_Controller
 {
 
@@ -198,16 +202,50 @@ class Agreement extends MY_Controller
     }
   }
 
-  public function print_pdf($id)
+  public function print_pdf_pdf($id)
   {
     $main = $this->m_agreement->by_field('agreement_id', $id);
     $profile = $this->m_profile->get_first();
-    $this->load->library('pdfmc');
+    $this->load->library('pdf');
     $pdf = new Pdf('p', 'mm', array(210, 300));
     $pdf->AliasNbPages();
     $pdf->SetTitle('Perjanjian Kerja ' . $main['agreement_number']);
     $pdf->AddPage();
 
-    $pdf->Image(FCPATH . 'assets/images/logos/' . $profile['logo'], 10, 10, 15, 15);
+    $pdf->Image(FCPATH . 'images/logos/' . $profile['logo'], 10, 10, 15, 15);
+    $pdf->SetFont('Times', 'B', 18);
+    $pdf->Cell(0, 8, $profile['company_name'], 0, 1, 'C');
+    $pdf->SetFont('Times', '', 11);
+    $pdf->Cell(0, 5, $profile['address'], 0, 1, 'C');
+    $pdf->Line(10, 28, 200, 28);
+
+    $pdf->Cell(0, 8, '', 0, 1, 'C');
+    $pdf->SetFont('Times', 'BU', 12);
+    $pdf->Cell(0, 5, 'Perjanjian Kerja Waktu Tertentu', 0, 1, 'C');
+    $pdf->SetFont('Times', 'B', 12);
+    $pdf->Cell(0, 5, 'No. ' . $main['agreement_number'], 0, 1, 'C');
+    $pdf->Cell(0, 5, 'No. ' . $main['agreement_number'], 0, 1, 'C');
+    $pdf->Cell(0, 5, 'Perjanjian Kerja  Waktu Tertentu ini (untuk selanjutnya disebut ”Perjanjian Kerja”), dibuat dan ditandatangani oleh dan antara:', 0, 1, 'C');
+
+    $pdf->Output('I', 'Perjanjian_Kerja_' . $main['agreement_number'] . '_' . date('Ymdhis') . '.pdf');
+  }
+
+  public function print_pdf($id)
+  {
+    // $expld_resep_id = explode('-', $resepgroup_id);
+    // $resep_id = @$expld_resep_id[1];
+    ob_start();
+    $data['profile'] = $this->m_profile->get_first();
+    $data['main'] = $this->m_agreement->by_field('agreement_id', $id);
+    // $data['identitas'] = $this->m_identitas->get_first();
+    // $data['main'] = $this->m_resep->get_data($resep_id);
+    // $data['rinc'] = $this->m_resep->farmasi_rinc($resep_id);
+    $this->load->view('print_pdf', $data);
+    $html = ob_get_contents();
+    ob_end_clean();
+
+    $html2pdf = new Html2Pdf('P', 'A4', 'en');
+    $html2pdf->writeHTML($html);
+    $html2pdf->output('perjanjian_kerja_'  . '_' . date('YmdHis') . '_.pdf');
   }
 }

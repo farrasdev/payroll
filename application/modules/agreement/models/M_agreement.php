@@ -48,7 +48,18 @@ class M_agreement extends CI_Model
 
   function by_field($field, $val)
   {
-    $sql = "SELECT * FROM agreement WHERE $field = ?";
+    $sql = "SELECT 
+      a.*, 
+      b.department_name, b.description as department_description,
+      c.division_name, c.description as division_description,
+      d.position_name, d.description as position_description,
+      e.family_status_name, e.description as family_status_description
+    FROM agreement a 
+    LEFT JOIN department b ON a.department_id = b.department_id
+    LEFT JOIN division c ON a.division_id = c.division_id
+    LEFT JOIN position d ON a.position_id = d.position_id
+    LEFT JOIN family_status e ON a.family_status_id = e.family_status_id
+    WHERE $field = ?";
     $query = $this->db->query($sql, array($val));
     $row = $query->row_array();
     return $row;

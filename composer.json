@@ -1,0 +1,7 @@
+{
+  "name" : "html2pdf/codeigniter",
+  "require": {
+    "dompdf/dompdf" : "0.6.*",
+    "spipu/html2pdf": "^5.2"
+  }
+}
