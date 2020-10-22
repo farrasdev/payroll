@@ -82,9 +82,13 @@
                             </div>
                           </th>
                           <th class="text-center" width="50">Aksi</th>
-                          <th class="text-center" width="100"><?= table_sort($menu['menu_id'], 'Kode', 'position_id', $cookie['order']) ?></th>
-                          <th class="text-center" width="200"><?= table_sort($menu['menu_id'], 'Nama Posisi', 'position_name', $cookie['order']) ?></th>
-                          <th class="text-center">Deskripsi</th>
+                          <th class="text-center" width="80"><?= table_sort($menu['menu_id'], 'Kode', 'shift_id', $cookie['order']) ?></th>
+                          <th class="text-center"><?= table_sort($menu['menu_id'], 'Nama Shift', 'shift_name', $cookie['order']) ?></th>
+                          <th class="text-center" width="100">Regular Time</th>
+                          <th class="text-center" width="100">Overtime 1,5</th>
+                          <th class="text-center" width="100">Overtime 2</th>
+                          <th class="text-center" width="100">Overtime 3</th>
+                          <th class="text-center" width="100">Overtime 4</th>
                           <th class="text-center" width="70"><?= table_sort($menu['menu_id'], 'Status', 'is_active', $cookie['order']) ?></th>
                         </tr>
                       </thead>
@@ -103,7 +107,7 @@
                                 <td class="text-center"><?= $cookie['cur_page'] + ($i++) ?></td>
                                 <td class="text-center">
                                   <div class="pretty p-icon">
-                                    <input class="checkitem" type="checkbox" value="<?= $r['position_id'] ?>" name="checkitem[]" onclick="checkItem();" />
+                                    <input class="checkitem" type="checkbox" value="<?= $r['shift_id'] ?>" name="checkitem[]" onclick="checkItem();" />
                                     <div class="state">
                                       <i class="icon fas fa-check"></i><label></label>
                                     </div>
@@ -111,23 +115,27 @@
                                 </td>
                                 <td class="text-center">
                                   <?php if ($menu['_update'] == 1) : ?>
-                                    <a class="text-warning mr-1" href="<?= site_url() . '/' . $menu['controller'] . '/form/' . $r['position_id'] ?>"><i class="fas fa-pencil-alt"></i></a>
+                                    <a class="text-warning mr-1" href="<?= site_url() . '/' . $menu['controller'] . '/form/' . $r['shift_id'] ?>"><i class="fas fa-pencil-alt"></i></a>
                                   <?php endif; ?>
                                   <?php if ($menu['_delete'] == 1) : ?>
-                                    <a class="text-danger btn-delete" href="<?= site_url() . '/' . $menu['controller'] . '/delete/' . $r['position_id'] ?>"><i class="fas fa-trash-alt"></i></a>
+                                    <a class="text-danger btn-delete" href="<?= site_url() . '/' . $menu['controller'] . '/delete/' . $r['shift_id'] ?>"><i class="fas fa-trash-alt"></i></a>
                                   <?php endif; ?>
                                 </td>
-                                <td class="text-center"><?= $r['position_id'] ?></td>
-                                <td><?= $r['position_name'] ?></td>
-                                <td><?= $r['description'] ?></td>
+                                <td class="text-center"><?= $r['shift_id'] ?></td>
+                                <td><?= $r['shift_name'] ?></td>
+                                <td class="text-center"><?= num_id($r['regular_time']) ?></td>
+                                <td class="text-center"><?= num_id($r['overtime_15']) ?></td>
+                                <td class="text-center"><?= num_id($r['overtime_2']) ?></td>
+                                <td class="text-center"><?= num_id($r['overtime_3']) ?></td>
+                                <td class="text-center"><?= num_id($r['overtime_4']) ?></td>
                                 <td class="text-center td-status">
                                   <?php if ($menu['_update'] == 1) : ?>
                                     <?php if ($r['is_active'] == 1) : ?>
-                                      <a href="<?= site_url() . '/' . $menu['controller'] . '/status/disable/' . $r['position_id'] ?>">
+                                      <a href="<?= site_url() . '/' . $menu['controller'] . '/status/disable/' . $r['shift_id'] ?>">
                                         <i class="icon-status fas fa-toggle-on text-success"></i>
                                       </a>
                                     <?php else : ?>
-                                      <a href="<?= site_url() . '/' . $menu['controller'] . '/status/enable/' . $r['position_id'] ?>">
+                                      <a href="<?= site_url() . '/' . $menu['controller'] . '/status/enable/' . $r['shift_id'] ?>">
                                         <i class="icon-status fas fa-toggle-off text-gray"></i>
                                       </a>
                                     <?php endif; ?>

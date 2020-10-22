@@ -66,11 +66,11 @@ if (!function_exists('pagination_info')) {
       $str .= '0 - 0 dari 0';
     } else {
       if ($list_rows > 0) {
-        $str .= ($data['cur_page'] + 1);
+        $str .= (num_id($data['cur_page'] + 1));
       } else {
-        $str .= ($data['cur_page']);
+        $str .= (num_id($data['cur_page']));
       }
-      $str .= " - " . ($data['cur_page'] + $list_rows) . " dari " . $data['total_rows'];
+      $str .= " - " . (num_id($data['cur_page'] + $list_rows) . " dari " . num_id($data['total_rows']));
     }
     $str .= " data";
     return $str;

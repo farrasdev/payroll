@@ -69,7 +69,7 @@
                 <div class="col-md-12">
                   <div class="flash-success" data-flashsuccess="<?= $this->session->flashdata('flash_success') ?>"></div>
                   <div class="table-responsive">
-                    <table class="table table-bordered table-sm table-head-fixed">
+                    <table class="table table-bordered table-sm table-striped table-head-fixed">
                       <thead>
                         <tr>
                           <th class="text-center" width="40">No.</th>
