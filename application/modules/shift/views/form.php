@@ -47,7 +47,7 @@
                 <div class="form-group row">
                   <label for="menu" class="col-sm-2 col-form-label text-right">Regular Time <span class="text-danger">*</span></label>
                   <div class="col-sm-2">
-                    <input type="text" class="form-control form-control-sm num-int" name="regular_time" id="regular_time" value="<?= @$main['regular_time'] ?>" required>
+                    <input type="text" class="form-control form-control-sm num-int" name="regulartime" id="regulartime" value="<?= @$main['regulartime'] ?>" required>
                   </div>
                 </div>
                 <div class="form-group row">
