@@ -9,7 +9,7 @@
         </div><!-- /.col -->
         <div class="col-sm-6">
           <ol class="breadcrumb float-sm-right">
-            <li class="breadcrumb-item active">Master Data</li>
+            <li class="breadcrumb-item active">Kehadiran</li>
             <li class="breadcrumb-item active"><?= @$menu['menu_name'] ?></li>
             <li class="breadcrumb-item active"><?= ($id == null) ? 'Tambah' : 'Ubah'; ?></li>
           </ol>
@@ -31,7 +31,7 @@
                 <div class="flash-error" data-flasherror="<?= $this->session->flashdata('flash_error') ?>"></div>
                 <input type="hidden" class="form-control form-control-sm" name="attendance_id" id="attendance_id" value="<?= @$main['attendance_id'] ?>" required>
                 <?php if ($id != null) : ?>
-                  <input type="hidden" class="form-control form-control-sm" name="old" id="old" value="<?= @$main['shift_id'] ?>" required>
+                  <input type="hidden" class="form-control form-control-sm" name="old" id="old" value="<?= @$main['attendance_id'] ?>" required>
                 <?php endif; ?>
                 <div class="form-group row">
                   <label class="col-sm-2 col-form-label text-right">Tanggal <span class="text-danger">*</span></label>

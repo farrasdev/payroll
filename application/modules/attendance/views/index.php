@@ -9,7 +9,7 @@
         </div><!-- /.col -->
         <div class="col-sm-6">
           <ol class="breadcrumb float-sm-right">
-            <li class="breadcrumb-item active">Master Data</li>
+            <li class="breadcrumb-item active">Kehadiran</li>
             <li class="breadcrumb-item active"><?= @$menu['menu_name'] ?></li>
           </ol>
         </div><!-- /.col -->
@@ -117,10 +117,10 @@
                                 </td>
                                 <td class="text-center">
                                   <?php if ($menu['_update'] == 1) : ?>
-                                    <a class="text-warning mr-1" href="<?= site_url() . '/' . $menu['controller'] . '/form/' . $r['shift_id'] ?>"><i class="fas fa-pencil-alt"></i></a>
+                                    <a class="text-warning mr-1" href="<?= site_url() . '/' . $menu['controller'] . '/form/' . $r['attendance_id'] ?>"><i class="fas fa-pencil-alt"></i></a>
                                   <?php endif; ?>
                                   <?php if ($menu['_delete'] == 1) : ?>
-                                    <a class="text-danger btn-delete" href="<?= site_url() . '/' . $menu['controller'] . '/delete/' . $r['shift_id'] ?>"><i class="fas fa-trash-alt"></i></a>
+                                    <a class="text-danger btn-delete" href="<?= site_url() . '/' . $menu['controller'] . '/delete/' . $r['attendance_id'] ?>"><i class="fas fa-trash-alt"></i></a>
                                   <?php endif; ?>
                                 </td>
                                 <td class="text-center"><?= $r['employee_id'] ?></td>

@@ -70,7 +70,15 @@ class M_attendance extends CI_Model
 
   function by_field($field, $val)
   {
-    $sql = "SELECT * FROM attendance WHERE $field = ?";
+    $sql = "SELECT 
+            a.*, b.employee_name, c.department_name, d.division_name, e.position_name, 
+            f.shift_id, f.shift_name
+          FROM attendance a 
+          JOIN employee b ON a.employee_id = b.employee_id
+          LEFT JOIN department c ON b.department_id = c.department_id
+          LEFT JOIN division d ON b.division_id = d.division_id
+          LEFT JOIN position e ON b.position_id = e.position_id
+          JOIN shift f ON a.shift_id = f.shift_id WHERE $field = ?";
     $query = $this->db->query($sql, array($val));
     $row = $query->row_array();
     return $row;
