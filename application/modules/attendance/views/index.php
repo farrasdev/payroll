@@ -82,14 +82,16 @@
                             </div>
                           </th>
                           <th class="text-center" width="50">Aksi</th>
-                          <th class="text-center" width="80"><?= table_sort($menu['menu_id'], 'Kode', 'shift_id', $cookie['order']) ?></th>
-                          <th class="text-center"><?= table_sort($menu['menu_id'], 'Nama Shift', 'shift_name', $cookie['order']) ?></th>
-                          <th class="text-center" width="100">Regular Time</th>
-                          <th class="text-center" width="100">Overtime 1,5</th>
-                          <th class="text-center" width="100">Overtime 2</th>
-                          <th class="text-center" width="100">Overtime 3</th>
-                          <th class="text-center" width="100">Overtime 4</th>
-                          <th class="text-center" width="70"><?= table_sort($menu['menu_id'], 'Status', 'is_active', $cookie['order']) ?></th>
+                          <th class="text-center" width="80"><?= table_sort($menu['menu_id'], 'ID', 'employee_id', $cookie['order']) ?></th>
+                          <th class="text-center" width="100">Divisi</th>
+                          <th class="text-center"><?= table_sort($menu['menu_id'], 'Nama Pegawai', 'employee_name', $cookie['order']) ?></th>
+                          <th class="text-center" width="80">Tanggal</th>
+                          <th class="text-center" width="50">Kode</th>
+                          <th class="text-center" width="50">Regular</th>
+                          <th class="text-center" width="70">Over 1,5</th>
+                          <th class="text-center" width="60">Over 2</th>
+                          <th class="text-center" width="60">Over 3</th>
+                          <th class="text-center" width="60">Over 4</th>
                         </tr>
                       </thead>
                       <?php if (@$main == null) : ?>
@@ -121,32 +123,16 @@
                                     <a class="text-danger btn-delete" href="<?= site_url() . '/' . $menu['controller'] . '/delete/' . $r['shift_id'] ?>"><i class="fas fa-trash-alt"></i></a>
                                   <?php endif; ?>
                                 </td>
+                                <td class="text-center"><?= $r['employee_id'] ?></td>
+                                <td class="text-center"><?= $r['division_name'] ?></td>
+                                <td><?= $r['employee_name'] ?></td>
+                                <td class="text-center"><?= reverse_date($r['attendance_date']) ?></td>
                                 <td class="text-center"><?= $r['shift_id'] ?></td>
-                                <td><?= $r['shift_name'] ?></td>
                                 <td class="text-center"><?= num_id($r['regulartime']) ?></td>
                                 <td class="text-center"><?= num_id($r['overtime_15']) ?></td>
                                 <td class="text-center"><?= num_id($r['overtime_2']) ?></td>
                                 <td class="text-center"><?= num_id($r['overtime_3']) ?></td>
                                 <td class="text-center"><?= num_id($r['overtime_4']) ?></td>
-                                <td class="text-center td-status">
-                                  <?php if ($menu['_update'] == 1) : ?>
-                                    <?php if ($r['is_active'] == 1) : ?>
-                                      <a href="<?= site_url() . '/' . $menu['controller'] . '/status/disable/' . $r['shift_id'] ?>">
-                                        <i class="icon-status fas fa-toggle-on text-success"></i>
-                                      </a>
-                                    <?php else : ?>
-                                      <a href="<?= site_url() . '/' . $menu['controller'] . '/status/enable/' . $r['shift_id'] ?>">
-                                        <i class="icon-status fas fa-toggle-off text-gray"></i>
-                                      </a>
-                                    <?php endif; ?>
-                                  <?php else : ?>
-                                    <?php if ($r['is_active'] == 1) : ?>
-                                      <i class="icon-status fas fa-toggle-on text-success"></i>
-                                    <?php else : ?>
-                                      <i class="icon-status fas fa-toggle-off text-gray"></i>
-                                    <?php endif; ?>
-                                  <?php endif; ?>
-                                </td>
                               </tr>
                             <?php endforeach; ?>
                           </form>
@@ -166,8 +152,8 @@
                     </button>
                     <div class="dropdown-menu">
                       <?php if ($menu['_update'] == 1) : ?>
-                        <a class="dropdown-item" href="javascript:multipleAction('enable')">Aktif</a>
-                        <a class="dropdown-item" href="javascript:multipleAction('disable')">Non Aktif</a>
+                        <!-- <a class="dropdown-item" href="javascript:multipleAction('enable')">Aktif</a>
+                        <a class="dropdown-item" href="javascript:multipleAction('disable')">Non Aktif</a> -->
                       <?php endif; ?>
                       <?php if ($menu['_delete'] == 1) : ?>
                         <a class="dropdown-item" href="javascript:multipleAction('delete')">Hapus</a>

@@ -32,7 +32,7 @@ class M_employee extends CI_Model
   {
     $where = "WHERE a.is_deleted = 0 ";
 
-    $sql = "SELECT * FROM employee a $where ORDER BY created_at";
+    $sql = "SELECT * FROM employee a $where ORDER BY employee_name";
     $query = $this->db->query($sql);
     return $query->result_array();
   }
