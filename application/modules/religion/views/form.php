@@ -105,6 +105,8 @@
         error.addClass("invalid-feedback");
         if (element.prop("type") === "checkbox") {
           error.insertAfter(element.next("label"));
+        } else if ($(element).hasClass('select2')) {
+          error.insertAfter(element.next(".select2-container")).addClass('mt-1');
         } else {
           error.insertAfter(element);
         }
