@@ -64,6 +64,38 @@ class Attendance extends MY_Controller
     $this->render('form', $data);
   }
 
+  public function form_collective()
+  {
+    authorize($this->menu, '_create');
+    $data['menu'] = $this->menu;
+    $data['employee'] = $this->m_employee->all_data();
+    $this->render('form_collective', $data);
+  }
+
+  public function form_collective_list()
+  {
+    if (!$this->input->post()) {
+      redirect(site_url() . '/' . $this->menu['controller'] . '/form_collective');
+    } else {
+      $data = $this->input->post();
+      $data['start_date'] = reverse_date($data['start_date']);
+      $data['end_date'] = reverse_date($data['end_date']);
+      $data['menu'] = $this->menu;
+      $data['attendance'] = $this->m_attendance->get_collective($data);
+      $data['employee'] = $this->m_employee->by_field('employee_id', $data['employee_id']);
+      $data['shift'] = $this->m_shift->all_data();
+      $this->render('form_collective_list', $data);
+    }
+  }
+
+  public function form_collective_action()
+  {
+    $data = $this->input->post();
+    $this->m_attendance->save_collective($data);
+    $this->session->set_flashdata('flash_success', 'Data berhasil ditambah.');
+    redirect(site_url() . '/' . $this->menu['controller'] . '/' . $this->menu['url'] . '/' . $this->cookie['cur_page']);
+  }
+
   public function save($id = null)
   {
     ($id == null) ? authorize($this->menu, '_create') : authorize($this->menu, '_update');

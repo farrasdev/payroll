@@ -97,21 +97,6 @@
                     <input type="text" class="form-control form-control-sm num-int" name="overtime_4" id="overtime_4" value="<?= @$main['overtime_4'] ?>" required>
                   </div>
                 </div>
-                <div class="form-group row">
-                  <label for="url" class="col-sm-2 col-form-label text-right">Aktif</label>
-                  <div class="col-sm-3">
-                    <div class="pretty p-icon">
-                      <input class="icheckbox" type="checkbox" name="is_active" id="is_active" value="1" <?php if (@$main) {
-                                                                                                            echo (@$main['is_active'] == 1) ? 'checked' : '';
-                                                                                                          } else {
-                                                                                                            echo 'checked';
-                                                                                                          }  ?>>
-                      <div class="state">
-                        <i class="icon fas fa-check"></i><label></label>
-                      </div>
-                    </div>
-                  </div>
-                </div>
               </div>
               <div class="card-footer">
                 <div class="row">

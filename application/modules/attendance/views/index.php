@@ -31,6 +31,7 @@
                 <div class="col-md-6">
                   <?php if ($menu['_create'] == 1 || $menu['_update'] == 1) : ?>
                     <a class="btn btn-sm btn-primary" href="<?= site_url() . '/' . $menu['controller'] . '/form' ?>"><i class="fas fa-plus-circle"></i> Tambah</a>
+                    <a class="btn btn-sm btn-default ml-2" href="<?= site_url() . '/' . $menu['controller'] . '/form_collective' ?>"><i class="fas fa-plus-circle"></i> Tambah Kolektif</a>
                   <?php endif; ?>
                 </div>
                 <div class="col-md-3 offset-md-3">

@@ -115,4 +115,70 @@ class M_attendance extends CI_Model
       $this->db->where('attendance_id', $id)->update('attendance', $data);
     }
   }
+
+  public function get_collective($data)
+  {
+    $diff = date_difference($data['end_date'], $data['start_date']) + 1;
+    $result = array();
+
+    for ($i = 0; $i < $diff; $i++) {
+      $cur_date = date('Y-m-d', strtotime($data['start_date'] . " + $i days"));
+      $row = array(
+        'attendance_id' => '',
+        'shift_id' => '',
+        'attendance_date' => $cur_date,
+        'regulartime' => "0",
+        'hourmachine' => "0",
+        'overtime_15' => "0",
+        'overtime_2' => "0",
+        'overtime_3' => "0",
+        'overtime_4' => "0",
+      );
+      $attendance = $this->db->query(
+        "SELECT 
+          attendance_id, shift_id, attendance_date, regulartime, hourmachine, 
+          overtime_15, overtime_2, overtime_3, overtime_4 
+        FROM attendance 
+        WHERE 
+          attendance_date = '$cur_date' 
+          AND employee_id ='" . $data['employee_id'] . "'"
+      )->row_array();
+      if ($attendance != null) {
+        array_push($result, $attendance);
+      } else {
+        array_push($result, $row);
+      }
+    }
+    return $result;
+  }
+
+  public function save_collective($data)
+  {
+    foreach ($data['attendance_id'] as $k => $v) {
+      $d = array(
+        'attendance_id' => $data['attendance_id'][$k],
+        'shift_id' => $data['shift_id_' . $k],
+        'employee_id' => $data['employee_id'],
+        'attendance_date' => $data['attendance_date_' . $k],
+        'regulartime' => $data['regulartime_' . $k],
+        'hourmachine' => $data['hourmachine_' . $k],
+        'overtime_15' => $data['overtime_15_' . $k],
+        'overtime_2' => $data['overtime_2_' . $k],
+        'overtime_3' => $data['overtime_3_' . $k],
+        'overtime_4' => $data['overtime_4_' . $k],
+      );
+      if ($data['attendance_id'][$k] == '') {
+        //insert
+        $d['attendance_id'] = $this->uuid->v4();
+        $d['created_at'] = date('Y-m-d H:i:s');
+        $d['created_by'] = $this->session->userdata('user_fullname');
+        $this->db->insert('attendance', $d);
+      } else {
+        //update
+        $d['updated_at'] = date('Y-m-d H:i:s');
+        $d['updated_by'] = $this->session->userdata('user_fullname');
+        $this->db->where('attendance_id', $data['attendance_id'][$k])->update('attendance', $d);
+      }
+    }
+  }
 }

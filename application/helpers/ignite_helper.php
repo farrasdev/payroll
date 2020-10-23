@@ -131,6 +131,34 @@ if (!function_exists('table_sort')) {
   }
 }
 
+if (!function_exists('month_id')) {
+  function month_id($val = null)
+  {
+    $arr = ['Januari', 'Februari', 'Maret', 'April', 'Mei', 'Juni', 'Juli', 'Agustus', 'September', 'Oktober', 'November', 'Desember'];
+    if ($val == null) {
+      return $arr;
+    } else {
+      return $arr[intval($val) - 1];
+    }
+  }
+}
+
+if (!function_exists('date_id')) {
+  function date_id($date = null)
+  {
+    if ($date == null) {
+      return $date;
+    } else {
+      $arr_date = explode('-', $date);
+      if (count($arr_date) != 3) {
+        return $date;
+      } else {
+        return $arr_date[2] . " " . month_id($arr_date[1]) . " " . $arr_date[0];
+      }
+    }
+  }
+}
+
 if (!function_exists('reverse_date')) {
   function reverse_date($date = null, $sp = null, $tp = null, $sp2 = null)
   {
@@ -182,5 +210,17 @@ if (!function_exists('num_id')) {
     } else {
       return $s;
     }
+  }
+}
+
+if (!function_exists('date_difference')) {
+  function date_difference($date_1, $date_2, $differenceFormat = '%a')
+  {
+    $datetime1 = date_create($date_1);
+    $datetime2 = date_create($date_2);
+
+    $interval = date_diff($datetime1, $datetime2);
+
+    return $interval->format($differenceFormat);
   }
 }
