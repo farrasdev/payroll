@@ -141,10 +141,6 @@
                       Aksi
                     </button>
                     <div class="dropdown-menu">
-                      <?php if ($menu['_update'] == 1) : ?>
-                        <a class="dropdown-item" href="javascript:multipleAction('enable')">Aktif</a>
-                        <a class="dropdown-item" href="javascript:multipleAction('disable')">Non Aktif</a>
-                      <?php endif; ?>
                       <?php if ($menu['_delete'] == 1) : ?>
                         <a class="dropdown-item" href="javascript:multipleAction('delete')">Hapus</a>
                       <?php endif; ?>

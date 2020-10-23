@@ -72,17 +72,17 @@ class Payroll extends MY_Controller
     $cek = $this->m_payroll->by_field('payroll_id', $data['payroll_id']);
     if ($id == null) {
       if ($cek != null) {
-        $this->session->set_flashdata('flash_error', 'Kode sudah ada di sistem.');
+        $this->session->set_flashdata('flash_error', 'Data sudah ada di sistem.');
         redirect(site_url() . '/' .  $this->menu['controller']  . '/form/');
       }
       $data['payroll_id'] = $this->uuid->v4();
       unset($data['old']);
       $this->m_payroll->save($data, $id);
       create_log(2, $this->menu['menu_name']);
-      $this->session->set_flashdata('flash_success', 'Kode berhasil ditambahkan.');
+      $this->session->set_flashdata('flash_success', 'Data berhasil ditambahkan.');
     } else {
       if ($data['old'] != $data['payroll_id'] && $cek != null) {
-        $this->session->set_flashdata('flash_error', 'Kode sudah ada di sistem.');
+        $this->session->set_flashdata('flash_error', 'Data sudah ada di sistem.');
         redirect(site_url() . '/' . $this->menu['controller'] . '/form/' . $id);
       }
       unset($data['old']);
