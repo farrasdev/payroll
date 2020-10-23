@@ -7,9 +7,9 @@ class M_employee_expense extends CI_Model
   public function where($cookie)
   {
     $where = "WHERE a.is_deleted = 0 ";
-    // if (@$cookie['search']['term'] != '') {
-    //   $where .= "AND a.employee_expense_name LIKE '%" . $this->db->escape_like_str($cookie['search']['term']) . "%' ";
-    // }
+    if (@$cookie['search']['term'] != '') {
+      $where .= "AND b.employee_name LIKE '%" . $this->db->escape_like_str($cookie['search']['term']) . "%' ";
+    }
     return $where;
   }
 
@@ -41,7 +41,7 @@ class M_employee_expense extends CI_Model
   {
     $where = $this->where($cookie);
 
-    $sql = "SELECT COUNT(1) as total FROM employee_expense a $where";
+    $sql = "SELECT COUNT(1) as total FROM employee_expense a JOIN employee b ON a.employee_id = b.employee_id $where";
     $query = $this->db->query($sql);
     return $query->row_array()['total'];
   }
