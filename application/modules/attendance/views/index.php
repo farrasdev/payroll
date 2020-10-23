@@ -111,7 +111,7 @@
                                 <td class="text-center"><?= $cookie['cur_page'] + ($i++) ?></td>
                                 <td class="text-center">
                                   <div class="pretty p-icon">
-                                    <input class="checkitem" type="checkbox" value="<?= $r['shift_id'] ?>" name="checkitem[]" onclick="checkItem();" />
+                                    <input class="checkitem" type="checkbox" value="<?= $r['attendance_id'] ?>" name="checkitem[]" onclick="checkItem();" />
                                     <div class="state">
                                       <i class="icon fas fa-check"></i><label></label>
                                     </div>
