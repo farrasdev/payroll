@@ -15,14 +15,14 @@ class Payroll extends MY_Controller
       'm_payroll'
     ));
 
-    $this->menu_id = '31';
+    $this->menu_id = '32';
     $this->menu = $this->m_config->get_menu($this->menu_id);
     if ($this->menu == null) redirect(site_url() . '/error/error_403');
 
     //cookie 
     $this->cookie = get_cookie_menu($this->menu_id);
     if ($this->cookie['search'] == null) $this->cookie['search'] = array('term' => '');
-    if ($this->cookie['order'] == null) $this->cookie['order'] = array('field' => 'payroll_id', 'type' => 'asc');
+    if ($this->cookie['order'] == null) $this->cookie['order'] = array('field' => 'created_at', 'type' => 'desc');
     if ($this->cookie['per_page'] == null) $this->cookie['per_page'] = 10;
     if ($this->cookie['cur_page'] == null) 0;
   }
@@ -67,12 +67,15 @@ class Payroll extends MY_Controller
     if (!isset($data['is_active'])) {
       $data['is_active'] = 0;
     }
+    $data['start_date'] = reverse_date($data['start_date']);
+    $data['end_date'] = reverse_date($data['end_date']);
     $cek = $this->m_payroll->by_field('payroll_id', $data['payroll_id']);
     if ($id == null) {
       if ($cek != null) {
         $this->session->set_flashdata('flash_error', 'Kode sudah ada di sistem.');
         redirect(site_url() . '/' .  $this->menu['controller']  . '/form/');
       }
+      $data['payroll_id'] = $this->uuid->v4();
       unset($data['old']);
       $this->m_payroll->save($data, $id);
       create_log(2, $this->menu['menu_name']);
@@ -153,7 +156,7 @@ class Payroll extends MY_Controller
       if ($id == null) {
         echo ($cek != null) ? 'false' : 'true';
       } else {
-        echo($id != $data['payroll_id'] && $cek != null) ? 'false' : 'true';
+        echo ($id != $data['payroll_id'] && $cek != null) ? 'false' : 'true';
       }
     }
   }

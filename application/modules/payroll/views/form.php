@@ -29,36 +29,20 @@
             <form id="form" action="<?= site_url() . '/' . $menu['controller'] . '/save/' . $id ?>" method="post" autocomplete="off" enctype="multipart/form-data">
               <div class="card-body">
                 <div class="flash-error" data-flasherror="<?= $this->session->flashdata('flash_error') ?>"></div>
+                <input type="hidden" class="form-control form-control-sm" name="payroll_id" id="payroll_id" value="<?= @$main['payroll_id'] ?>" required>
                 <?php if ($id != null) : ?>
                   <input type="hidden" class="form-control form-control-sm" name="old" id="old" value="<?= @$main['payroll_id'] ?>" required>
                 <?php endif; ?>
                 <div class="form-group row">
-                  <label for="menu" class="col-sm-2 col-form-label text-right">Kode <span class="text-danger">*</span></label>
+                  <label for="icon" class="col-sm-2 col-form-label text-right">Tanggal Awal<span class="text-danger">*</span></label>
                   <div class="col-sm-2">
-                    <input type="text" class="form-control form-control-sm" name="payroll_id" id="payroll_id" value="<?= @$main['payroll_id'] ?>" required>
+                    <input type="text" class="form-control form-control-sm datepicker" name="start_date" id="start_date" value="<?= @reverse_date($main['start_date']) ?>" required>
                   </div>
                 </div>
                 <div class="form-group row">
-                  <label for="menu" class="col-sm-2 col-form-label text-right">Nama Divisi <span class="text-danger">*</span></label>
-                  <div class="col-sm-4">
-                    <input type="text" class="form-control form-control-sm" name="payroll_name" id="payroll_name" value="<?= @$main['payroll_name'] ?>" required>
-                  </div>
-                </div>
-                <div id="icon-container" class="form-group row">
-                  <label for="icon" class="col-sm-2 col-form-label text-right">Deskripsi</label>
-                  <div class="col-sm-6">
-                    <input type="text" class="form-control form-control-sm" name="description" id="description" value="<?= @$main['description'] ?>">
-                  </div>
-                </div>
-                <div class="form-group row">
-                  <label for="url" class="col-sm-2 col-form-label text-right">Aktif</label>
-                  <div class="col-sm-3">
-                    <div class="pretty p-icon">
-                      <input class="icheckbox" type="checkbox" name="is_active" id="is_active" value="1" <?php if(@$main){echo (@$main['is_active'] == 1) ? 'checked' : '';}else{echo 'checked';}  ?>>
-                      <div class="state">
-                        <i class="icon fas fa-check"></i><label></label>
-                      </div>
-                    </div>
+                  <label for="icon" class="col-sm-2 col-form-label text-right">Tanggal Akhir<span class="text-danger">*</span></label>
+                  <div class="col-sm-2">
+                    <input type="text" class="form-control form-control-sm datepicker" name="end_date" id="end_date" value="<?= @reverse_date($main['end_date']) ?>" required>
                   </div>
                 </div>
               </div>

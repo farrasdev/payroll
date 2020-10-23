@@ -82,10 +82,9 @@
                             </div>
                           </th>
                           <th class="text-center" width="50">Aksi</th>
-                          <th class="text-center" width="100"><?= table_sort($menu['menu_id'], 'Kode', 'payroll_id', $cookie['order']) ?></th>
-                          <th class="text-center" width="200"><?= table_sort($menu['menu_id'], 'Nama Divisi', 'payroll_name', $cookie['order']) ?></th>
+                          <th class="text-center" width="150"><?= table_sort($menu['menu_id'], 'Tanggal Awal', 'start_date', $cookie['order']) ?></th>
+                          <th class="text-center" width="150"><?= table_sort($menu['menu_id'], 'Tanggal Akhir', 'end_date', $cookie['order']) ?></th>
                           <th class="text-center">Deskripsi</th>
-                          <th class="text-center" width="70"><?= table_sort($menu['menu_id'], 'Status', 'is_active', $cookie['order']) ?></th>
                         </tr>
                       </thead>
                       <?php if (@$main == null) : ?>
@@ -117,28 +116,9 @@
                                     <a class="text-danger btn-delete" href="<?= site_url() . '/' . $menu['controller'] . '/delete/' . $r['payroll_id'] ?>"><i class="fas fa-trash-alt"></i></a>
                                   <?php endif; ?>
                                 </td>
-                                <td class="text-center"><?= $r['payroll_id'] ?></td>
-                                <td><?= $r['payroll_name'] ?></td>
-                                <td><?= $r['description'] ?></td>
-                                <td class="text-center td-status">
-                                  <?php if ($menu['_update'] == 1) : ?>
-                                    <?php if ($r['is_active'] == 1) : ?>
-                                      <a href="<?= site_url() . '/' . $menu['controller'] . '/status/disable/' . $r['payroll_id'] ?>">
-                                        <i class="icon-status fas fa-toggle-on text-success"></i>
-                                      </a>
-                                    <?php else : ?>
-                                      <a href="<?= site_url() . '/' . $menu['controller'] . '/status/enable/' . $r['payroll_id'] ?>">
-                                        <i class="icon-status fas fa-toggle-off text-gray"></i>
-                                      </a>
-                                    <?php endif; ?>
-                                  <?php else : ?>
-                                    <?php if ($r['is_active'] == 1) : ?>
-                                      <i class="icon-status fas fa-toggle-on text-success"></i>
-                                    <?php else : ?>
-                                      <i class="icon-status fas fa-toggle-off text-gray"></i>
-                                    <?php endif; ?>
-                                  <?php endif; ?>
-                                </td>
+                                <td class="text-center"><?= date_id($r['start_date']) ?></td>
+                                <td class="text-center"><?= date_id($r['end_date']) ?></td>
+                                <td><?= @$r['description'] ?></td>
                               </tr>
                             <?php endforeach; ?>
                           </form>
@@ -157,10 +137,6 @@
                       Aksi
                     </button>
                     <div class="dropdown-menu">
-                      <?php if ($menu['_update'] == 1) : ?>
-                        <a class="dropdown-item" href="javascript:multipleAction('enable')">Aktif</a>
-                        <a class="dropdown-item" href="javascript:multipleAction('disable')">Non Aktif</a>
-                      <?php endif; ?>
                       <?php if ($menu['_delete'] == 1) : ?>
                         <a class="dropdown-item" href="javascript:multipleAction('delete')">Hapus</a>
                       <?php endif; ?>
