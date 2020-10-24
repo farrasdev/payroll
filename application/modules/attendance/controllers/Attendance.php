@@ -24,7 +24,7 @@ class Attendance extends MY_Controller
     //cookie 
     $this->cookie = get_cookie_menu($this->menu_id);
     if ($this->cookie['search'] == null) $this->cookie['search'] = array('term' => '');
-    if ($this->cookie['order'] == null) $this->cookie['order'] = array('field' => 'attendance_id', 'type' => 'asc');
+    if ($this->cookie['order'] == null) $this->cookie['order'] = array('field' => 'attendance_date', 'type' => 'desc');
     if ($this->cookie['per_page'] == null) $this->cookie['per_page'] = 10;
     if ($this->cookie['cur_page'] == null) 0;
   }
