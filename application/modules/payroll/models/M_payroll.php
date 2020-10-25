@@ -51,6 +51,21 @@ class M_payroll extends CI_Model
     return $row;
   }
 
+  public function detail($id)
+  {
+    $data = $this->db->where('payroll_id', $id)->get('payroll')->row_array();
+    $data['detail'] = $this->db->query(
+      "SELECT 
+        a.*, b.employee_name, b.tax_number, b.entry_date, b.dob 
+      FROM payroll_detail a
+      JOIN employee b ON a.employee_id = b.employee_id
+      ORDER BY a.employee_id ASC
+      "
+    )->result_array();
+
+    return $data;
+  }
+
   public function save($data, $id = null)
   {
     if ($id == null) {
@@ -226,6 +241,7 @@ class M_payroll extends CI_Model
 
         $expense_all = (@$expense_total_row['expense_total'] == NULL) ? 0 : $expense_total_row['expense_total'];
         $all_total = $meal_all + $comm_trans_all + $coeficient_all + $overtime_all + $hourmachine_total + $expense_all;
+        $salary_and_all = $salary_receive_sub + $all_total;
 
         //BPJS KS
         $bpjs_ks_salary = $row['bpjs_ks_salary'];
@@ -252,8 +268,8 @@ class M_payroll extends CI_Model
         $deduction_total = $bpjs_ks_employee + $bpjs_tk_jht_employee + $bpjs_tk_jp_employee + $punishment + $tax;
 
         //SALARY RECEIVE TOTAL
-        $salary_receive_total = $salary_receive_sub - $deduction_total;
-        $salary_receive_final = round($salary_receive_sub, -2);
+        $salary_receive_total = $salary_and_all - $deduction_total;
+        $salary_receive_final = round($salary_receive_total, -2);
 
         $d = array(
           'payroll_detail_id' => $this->uuid->v4(),
@@ -303,6 +319,7 @@ class M_payroll extends CI_Model
           'hourmachine_all' => $hourmachine_all,
           'expense_all' => $expense_all,
           'all_total' => $all_total,
+          'salary_and_all' => $salary_and_all,
           'bpjs_ks_salary' => $bpjs_ks_salary,
           'bpjs_ks_employee' => $bpjs_ks_employee,
           'bpjs_ks_company' => $bpjs_ks_company,

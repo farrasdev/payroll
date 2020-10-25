@@ -84,7 +84,8 @@
                           <th class="text-center" width="50">Aksi</th>
                           <th class="text-center" width="150"><?= table_sort($menu['menu_id'], 'Tanggal Awal', 'start_date', $cookie['order']) ?></th>
                           <th class="text-center" width="150"><?= table_sort($menu['menu_id'], 'Tanggal Akhir', 'end_date', $cookie['order']) ?></th>
-                          <th class="text-center">Deskripsi</th>
+                          <th class="text-center" width="250">Dibuat pada</th>
+                          <th class="text-center" width="">Dibuat oleh</th>
                         </tr>
                       </thead>
                       <?php if (@$main == null) : ?>
@@ -110,7 +111,7 @@
                                 </td>
                                 <td class="text-center">
                                   <?php if ($menu['_update'] == 1) : ?>
-                                    <a class="text-warning mr-1" href="<?= site_url() . '/' . $menu['controller'] . '/form/' . $r['payroll_id'] ?>"><i class="fas fa-pencil-alt"></i></a>
+                                    <a class="text-success mr-1" href="<?= site_url() . '/' . $menu['controller'] . '/detail/' . $r['payroll_id'] ?>"><i class="fas fa-list"></i></a>
                                   <?php endif; ?>
                                   <?php if ($menu['_delete'] == 1) : ?>
                                     <a class="text-danger btn-delete" href="<?= site_url() . '/' . $menu['controller'] . '/delete/' . $r['payroll_id'] ?>"><i class="fas fa-trash-alt"></i></a>
@@ -118,7 +119,8 @@
                                 </td>
                                 <td class="text-center"><?= date_id($r['start_date']) ?></td>
                                 <td class="text-center"><?= date_id($r['end_date']) ?></td>
-                                <td><?= @$r['description'] ?></td>
+                                <td class="text-center"><?= reverse_date($r['created_at'], '-', 'full_date', ' ') ?></td>
+                                <td><?= $r['created_by'] ?></td>
                               </tr>
                             <?php endforeach; ?>
                           </form>

@@ -60,6 +60,21 @@ class Payroll extends MY_Controller
     $this->render('form', $data);
   }
 
+  public function detail($id = null)
+  {
+    ($id == null) ? authorize($this->menu, '_create') : authorize($this->menu, '_update');
+    if ($id == null) {
+      create_log(2, $this->menu['menu_name']);
+      redirect(site_url() . '/' . $this->menu['controller'] . '/' . $this->menu['url'] . '/' . $this->cookie['cur_page']);
+    } else {
+      create_log(3, $this->menu['menu_name']);
+      $data['main'] = $this->m_payroll->detail($id);
+    }
+    $data['id'] = $id;
+    $data['menu'] = $this->menu;
+    $this->render('detail', $data);
+  }
+
   public function save($id = null)
   {
     ($id == null) ? authorize($this->menu, '_create') : authorize($this->menu, '_update');
