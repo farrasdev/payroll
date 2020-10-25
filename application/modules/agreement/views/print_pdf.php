@@ -224,9 +224,6 @@
       </tr>
     </table>
   </div>
-  <p style="margin-left:40px;margin-right:40px;text-align:left;line-height:1.3;">
-    Perjanjian Kerja ini melingkupi segala sesuatu yang berkaitan dengan pekerjaan yang diberikan oleh PERUSAHAAN kepada PEKERJA.
-  </p>
   <br>
   <p style="margin-left:40px;margin-right:40px;text-align:center;line-height:1.3;font-weight:bold;">
     PASAL 4<br>WAKTU DAN HARI KERJA
@@ -312,12 +309,176 @@
   </div>
   <br>
   <br><br><br><br><br><br><br><br><br><br><br><br><br>
-  <!-- Page 3 -->
+  <!-- Page 14 -->
   <!-- Pasal  -->
-  <br><br><br>
+  <br><br><br><br><br><br>
   <p style="margin-left:40px;margin-right:40px;text-align:center;line-height:1.3;font-weight:bold;">
-    PASAL 3<br>JANGKA WAKTU
+    PASAL 14<br>KERAHASIAAN
   </p>
+  <div style="margin-left:40px;margin-right:40px;">
+    <table>
+      <tr>
+        <td width="25">1. </td>
+        <td width="645">
+          <p style="text-align:justify;line-height:1.3;">
+            PEKERJA wajib menjaga segala rahasia, informasi, data dan hal-hal lain yang dikategorikan sebagai informasi penting Perusahaan, baik selama masa kerja maupun tidak.
+          </p>
+        </td>
+      </tr>
+      <tr>
+        <td width="25">2. </td>
+        <td width="645">
+          <p style="text-align:justify;line-height:1.3;">
+            PEKERJA dilarang untuk membuka atau memberitahukan rahasia tersebut kepada pihak manapun, baik sendiri-sendiri maupun bersama-sama, atau kepada perusahaan lain, secara langsung maupun tidak langsung.
+          </p>
+        </td>
+      </tr>
+      <tr>
+        <td width="25">3. </td>
+        <td width="645">
+          <p style="text-align:justify;line-height:1.3;">
+            Apabila PERUSAHAAN menemukan adanya kebocoran informasi dan/atau rahasia, maka PERUSAHAAN memiliki hak untuk setiap saat mengajukan tuntutan, gugatan dan/atau permohonan ganti rugi atau kompensasi sesuai dengan ketentuan hukum yang berlaku.
+          </p>
+        </td>
+      </tr>
+    </table>
+  </div>
+  <br>
+  <p style="margin-left:40px;margin-right:40px;text-align:center;line-height:1.3;font-weight:bold;">
+    PASAL 15<br>ATURAN TAMBAHAN
+  </p>
+  <div style="margin-left:40px;margin-right:40px;">
+    <table>
+      <tr>
+        <td width="25">1. </td>
+        <td width="645">
+          <p style="text-align:justify;line-height:1.3;">
+            PERJANJIAN ini tunduk kepada peraturan perundang-undangan Republik Indonesia.
+          </p>
+        </td>
+      </tr>
+      <tr>
+        <td width="25">2. </td>
+        <td width="645">
+          <p style="text-align:justify;line-height:1.3;">
+            Para Pihak dengan ini mengesampingkan Pasal 1266 dan Pasal 1267 dari Kitab Undang-Undang Hukum Perdata sepanjang pasal tersebut mensyaratkan persetujuan pengadilan untuk pemutusan PERJANJIAN ini.
+          </p>
+        </td>
+      </tr>
+      <tr>
+        <td width="25">3. </td>
+        <td width="645">
+          <p style="text-align:justify;line-height:1.3;">
+            Segala perselisihan hubungan industrial yang timbul dari atau sehubungan dengan PERJANJIAN ini akan diselesaikan oleh Para Pihak menurut ketentuan peraturan perundang-undangan yang berlaku.
+          </p>
+        </td>
+      </tr>
+      <tr>
+        <td width="25">4. </td>
+        <td width="645">
+          <p style="text-align:justify;line-height:1.3;">
+            Segala sesuatu yang belum diatur dalam Perjanjian Kerja ini akan diatur dalam peraturan dan perintah kerja/instruksi dari PERUSAHAAN yang merupakan bagian yang tidak dapat dipisahkan dari Perjanjian Kerja ini, antara lain sebagai berikut:
+          </p>
+        </td>
+      </tr>
+      <tr>
+        <td width="25"></td>
+        <td width="645">
+          <table>
+            <tr>
+              <td width="25">a.</td>
+              <td width="610">
+                <p style="text-align:justify;line-height:1.3;">
+                  Peraturan Perusahaan;
+                </p>
+              </td>
+            </tr>
+            <tr>
+              <td width="25">b.</td>
+              <td width="610">
+                <p style="text-align:justify;line-height:1.3;">
+                  Surat Keputusan Direksi; dan
+                </p>
+              </td>
+            </tr>
+            <tr>
+              <td width="25">c.</td>
+              <td width="610">
+                <p style="text-align:justify;line-height:1.3;">
+                  Surat Keputusan Human Resources Department yang diterbitkan sesuai dengan Keputusan Direksi dan/atau telah mendapat persetujuan tertulis dari Direksi.
+                </p>
+              </td>
+            </tr>
+          </table>
+        </td>
+      </tr>
+      <tr>
+        <td width="25">5. </td>
+        <td width="645">
+          <p style="text-align:justify;line-height:1.3;">
+            Perjanjian Kerja ini merupakan kesepakatan final dan menyeluruh antara PERUSAHAAN dan PEKERJA serta menggantikan seluruh kesepakatan atau pemahaman sebelumnya baik secara lisan maupun tulisan
+          </p>
+        </td>
+      </tr>
+      <tr>
+        <td width="25">6. </td>
+        <td width="645">
+          <p style="text-align:justify;line-height:1.3;">
+            Perjanjian Kerja ini dibuat dalam 2 (dua) rangkap, yang masing-masing ditandatangani secara sah dan patut, sehingga memiliki kedudukan dan kekuatan hukum yang sama. Perjanjian Kerja ini dinyatakan berlaku sejak ditandatanganinya Perjanjian Kerja ini, oleh Para Pihak dan Para Pihak dengan ini menyatakan bahwa keduanya telah membaca dan mengerti sepenuhnya dan sepakat untuk mengikatkan diri dengan syarat-syarat sebagaimana tercantum diatas.
+          </p>
+        </td>
+      </tr>
+    </table>
+  </div>
+  <p style="margin-left:40px;margin-right:40px;text-align:justify;line-height:1.3;">
+    Demikian Perjanjian Kerja ini dibuat dalam keadaan sehat jasmani dan rohani dan tanpa ada paksaan dari pihak manapun dan mulai berlaku sejak tanggal <?= @date_id($main['start_date']) ?>
+  </p>
+  <br><br>
+  <div style="margin-left:40px;margin-right:40px;">
+    <table>
+      <tr>
+        <td width="250">PEKERJA / WORKER </td>
+        <td width="150"></td>
+        <td width="300"><?= strtoupper($profile['company_name']) ?></td>
+      </tr>
+      <tr>
+        <td width="250"><br><br><br><br></td>
+        <td width="150"><br><br><br><br></td>
+        <td width="300"><br><br><br><br></td>
+      </tr>
+      <tr>
+        <td width="250"><?= $main['employee_name'] ?> </td>
+        <td width="150"></td>
+        <td width="300"><u><?= strtoupper($main['signature_name']) ?></u></td>
+      </tr>
+      <tr>
+        <td width="250"></td>
+        <td width="150"></td>
+        <td width="300">HRD MANAGER</td>
+      </tr>
+    </table>
+  </div>
+  <br><br><br><br><br><br><br><br><br><br>
+  <!-- PAGE LAMPIRAN -->
+  <br><br><br>
+  <p style="margin-left:40px;margin-right:40px;text-align:justify;line-height:1.3;">
+    Lampiran Perjanjian Kerja <br>
+    No. <?= $main['agreement_number'] ?> Tertanggal <?= date_id($main['agreement_date']) ?>
+  </p>
+  <br><br><br>
+  <p style="margin-left:40px;margin-right:40px;text-align:justify;line-height:1.3;font-size:20px">
+    FASILITAS DAN BENEFIT
+  </p>
+  <div style="margin-left:40px;margin-right:40px;">
+    <table>
+      <tr>
+        <td width="20">1. </td>
+        <td width="200">Nama Karyawan </td>
+        <td width="10">:</td>
+        <td width="500"><?= strtoupper($main['employee_name']) ?></td>
+      </tr>
+    </table>
+  </div>
 </body>
 
 </html>
