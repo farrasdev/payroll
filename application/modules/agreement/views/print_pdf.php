@@ -475,7 +475,128 @@
         <td width="20">1. </td>
         <td width="200">Nama Karyawan </td>
         <td width="10">:</td>
-        <td width="500"><?= strtoupper($main['employee_name']) ?></td>
+        <td width="450"><?= strtoupper($main['employee_name']) ?></td>
+      </tr>
+      <tr>
+        <td width="20">2. </td>
+        <td width="200">Tempat, Tanggal Lahir </td>
+        <td width="10">:</td>
+        <td width="450"><?= strtoupper($main['pob']) . ', ' . date_id($main['dob']) ?></td>
+      </tr>
+      <tr>
+        <td width="20">3. </td>
+        <td width="200">Alamat (KTP) </td>
+        <td width="10">:</td>
+        <td width="450"><?= 'Desa. ' . strtoupper($main['village_name']) . ', Kecamatan. ' . strtoupper($main['district_name']) . ', Kabupaten. ' . strtoupper($main['regency_name']) ?></td>
+      </tr>
+      <tr>
+        <td width="20">4. </td>
+        <td width="200">Jenis Kelamin </td>
+        <td width="10">:</td>
+        <td width="450"><?= ($main['sex'] == "M") ? 'Laki-laki' : 'Perempuan' ?></td>
+      </tr>
+      <tr>
+        <td width="20">5. </td>
+        <td width="200">Mulai Bekerja </td>
+        <td width="10">:</td>
+        <td width="450"><?= date_id($main['start_date']) ?></td>
+      </tr>
+      <tr>
+        <td width="20">6. </td>
+        <td width="200">Status Tanggungan </td>
+        <td width="10">:</td>
+        <td width="450"><?= strtoupper($main['family_status_name']) ?></td>
+      </tr>
+      <tr>
+        <td width="20">7. </td>
+        <td width="200">Jabatan/Posisi </td>
+        <td width="10">:</td>
+        <td width="450"><?= strtoupper($main['position_name']) ?></td>
+      </tr>
+      <tr>
+        <td width="20">8. </td>
+        <td width="200">Department </td>
+        <td width="10">:</td>
+        <td width="450"><?= strtoupper($main['department_name']) ?></td>
+      </tr>
+      <tr>
+        <td width="20">9. </td>
+        <td width="200">Status Penerimaan </td>
+        <td width="10">:</td>
+        <td width="450"><?= strtoupper($main['reqruitment_status']) ?></td>
+      </tr>
+      <tr>
+        <td width="20">10. </td>
+        <td width="200">Lokasi Kerja </td>
+        <td width="10">:</td>
+        <td width="450"><?= strtoupper($main['department_name']) ?></td>
+      </tr>
+      <tr>
+        <td width="20">11. </td>
+        <td width="200">Upah Pokok Sebulan </td>
+        <td width="10">:</td>
+        <td width="450"><?= strtoupper($main['salary']) ?></td>
+      </tr>
+      <tr>
+        <td width="20">12. </td>
+        <td width="200">Overtime </td>
+        <td width="10">:</td>
+        <td width="450"><?= strtoupper($main['overtime_status']) ?></td>
+      </tr>
+      <tr>
+        <td width="20">13. </td>
+        <td width="200">Uang makan </td>
+        <td width="10">:</td>
+        <td width="450"><?= strtoupper($main['meal_allowance']) ?></td>
+      </tr>
+      <tr>
+        <td width="20">14. </td>
+        <td width="200">HM </td>
+        <td width="10">:</td>
+        <td width="450"><?= @strtoupper($main['hourmachine']) ?></td>
+      </tr>
+      <tr>
+        <td width="20">15. </td>
+        <td width="200">Npwp </td>
+        <td width="10">:</td>
+        <td width="450"><?= strtoupper($main['tax_number']) ?></td>
+      </tr>
+      <tr>
+        <td width="20">16. </td>
+        <td width="200">No. Rekening Bank </td>
+        <td width="10">:</td>
+        <td width="450"><?= strtoupper($main['bank_name']) ?></td>
+      </tr>
+      <tr>
+        <td width="20">17. </td>
+        <td width="200">Pajak Penghasilan </td>
+        <td width="10">:</td>
+        <td width="450"><?= strtoupper($main['bank_account']) ?></td>
+      </tr>
+    </table>
+  </div>
+  <br><br><br>
+  <div style="margin-left:40px;margin-right:40px;">
+    <table>
+      <tr>
+        <td width="250">PEKERJA / WORKER </td>
+        <td width="150"></td>
+        <td width="300"><?= strtoupper($profile['company_name']) ?></td>
+      </tr>
+      <tr>
+        <td width="250"><br><br><br><br></td>
+        <td width="150"><br><br><br><br></td>
+        <td width="300"><br><br><br><br></td>
+      </tr>
+      <tr>
+        <td width="250"><?= $main['employee_name'] ?> </td>
+        <td width="150"></td>
+        <td width="300"><u><?= strtoupper($main['signature_name']) ?></u></td>
+      </tr>
+      <tr>
+        <td width="250"></td>
+        <td width="150"></td>
+        <td width="300">HRD MANAGER</td>
       </tr>
     </table>
   </div>

@@ -86,10 +86,16 @@ class M_attendance extends CI_Model
 
   public function save($data, $id = null)
   {
+    $check = $this->db->where('employee_id', $data['employee_id'])->where('attendance_data', $data['attendance_date'])->get('attendance')->row_array();
+    if ($check == null) {
+    }
     if ($id == null) {
       $data['created_at'] = date('Y-m-d H:i:s');
       $data['created_by'] = $this->session->userdata('user_fullname');
-      $this->db->insert('attendance', $data);
+      $check = $this->db->where('employee_id', $data['employee_id'])->where('attendance_data', $data['attendance_date'])->get('attendance')->row_array();
+      if ($check == null) {
+        $this->db->insert('attendance', $data);
+      }
     } else {
       $data['updated_at'] = date('Y-m-d H:i:s');
       $data['updated_by'] = $this->session->userdata('user_fullname');
