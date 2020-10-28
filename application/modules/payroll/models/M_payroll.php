@@ -90,6 +90,7 @@ class M_payroll extends CI_Model
           LEFT JOIN employee_status e ON a.employee_status_id = e.employee_status_id
           LEFT JOIN salary_status f ON a.salary_status_id = f.salary_status_id
           LEFT JOIN family_status g ON a.family_status_id = g.family_status_id
+          WHERE a.is_active = 1
           "
       )->result_array();
       foreach ($pegawai as $row) {
@@ -132,6 +133,17 @@ class M_payroll extends CI_Model
         $sakit = (@$absent['sakit'] == null) ? 0 : $absent['sakit'];
         $libur = (@$absent['libur'] == null) ? 0 : $absent['libur'];
         $cuti = (@$absent['cuti'] == null) ? 0 : $absent['cuti'];
+
+
+        //CHECK JIKA ABSEN KOSONG TAMBAHKAN KE ALPA
+        $diff = date_difference($data['end_date'], $data['start_date']);
+        for ($i = 0; $i <= $diff; $i++) {
+          $cur_date = date('Y-m-d', strtotime($data['start_date'] . " + $i days"));
+          $check = $this->db->where('employee_id', $row['employee_id'])->where('attendance_date', $cur_date)->get('attendance')->row_array();
+          if ($check == null) {
+            $alpa += 1;
+          }
+        }
 
         $normal_work_days_contract = $normal_work_days_total + $normal_work_days_parttime;
 
@@ -260,7 +272,7 @@ class M_payroll extends CI_Model
         $bpjs_tk_premi = $bpjs_tk_jkk + $bpjs_tk_jkm + $bpjs_tk_jht_employee + $bpjs_tk_jht_company + $bpjs_tk_jp_employee + $bpjs_tk_jp_company;
 
         //PUNISHMENT
-        $punishment = $contract_salary / 30 * $alpa;
+        $punishment = $contract_salary / $days_total * $alpa;
 
         //TAX
         $tax = 0;

@@ -85,27 +85,34 @@ class Payroll extends MY_Controller
     $data['start_date'] = reverse_date($data['start_date']);
     $data['end_date'] = reverse_date($data['end_date']);
     $cek = $this->m_payroll->by_field('payroll_id', $data['payroll_id']);
-    if ($id == null) {
-      if ($cek != null) {
-        $this->session->set_flashdata('flash_error', 'Data sudah ada di sistem.');
-        redirect(site_url() . '/' .  $this->menu['controller']  . '/form/');
+
+    $diff = date_difference($data['end_date'], $data['start_date']);
+    if ($diff <= 31) {
+      if ($id == null) {
+        if ($cek != null) {
+          $this->session->set_flashdata('flash_error', 'Data sudah ada di sistem.');
+          redirect(site_url() . '/' .  $this->menu['controller']  . '/form/');
+        }
+        $data['payroll_id'] = $this->uuid->v4();
+        unset($data['old']);
+        $this->m_payroll->save($data, $id);
+        create_log(2, $this->menu['menu_name']);
+        $this->session->set_flashdata('flash_success', 'Data berhasil ditambahkan.');
+      } else {
+        if ($data['old'] != $data['payroll_id'] && $cek != null) {
+          $this->session->set_flashdata('flash_error', 'Data sudah ada di sistem.');
+          redirect(site_url() . '/' . $this->menu['controller'] . '/form/' . $id);
+        }
+        unset($data['old']);
+        $this->m_payroll->save($data, $id);
+        create_log(3, $this->menu['menu_name']);
+        $this->session->set_flashdata('flash_success', 'Data berhasil diubah.');
       }
-      $data['payroll_id'] = $this->uuid->v4();
-      unset($data['old']);
-      $this->m_payroll->save($data, $id);
-      create_log(2, $this->menu['menu_name']);
-      $this->session->set_flashdata('flash_success', 'Data berhasil ditambahkan.');
+      redirect(site_url() . '/' . $this->menu['controller'] . '/' . $this->menu['url'] . '/' . $this->cookie['cur_page']);
     } else {
-      if ($data['old'] != $data['payroll_id'] && $cek != null) {
-        $this->session->set_flashdata('flash_error', 'Data sudah ada di sistem.');
-        redirect(site_url() . '/' . $this->menu['controller'] . '/form/' . $id);
-      }
-      unset($data['old']);
-      $this->m_payroll->save($data, $id);
-      create_log(3, $this->menu['menu_name']);
-      $this->session->set_flashdata('flash_success', 'Data berhasil diubah.');
+      $this->session->set_flashdata('flash_error', 'Tanggal tidak boleh lebih dari 31.');
+      redirect(site_url() . '/' .  $this->menu['controller']  . '/form/');
     }
-    redirect(site_url() . '/' . $this->menu['controller'] . '/' . $this->menu['url'] . '/' . $this->cookie['cur_page']);
   }
 
   public function delete($id = null)
