@@ -27,8 +27,8 @@
               <h3 class="card-title">Detail <?= $menu['menu_name'] ?></h3>
             </div>
             <div class="card-body">
-              <div class="table-responsive">
-                <table class="table table-striped table-bordered table-sm" style="font-size:12px;width:3000px">
+              <div class="table-responsive" style="height:50vh">
+                <table class="table table-head-fixed text-nowrap table-striped table-bordered table-sm" style="font-size:12px;width:3000px">
                   <thead>
                     <tr>
                       <th class="text-center text-middle" width="30" rowspan="2">No</th>
