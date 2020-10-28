@@ -84,7 +84,7 @@
                           </th>
                           <th class="text-center" width="50">Aksi</th>
                           <th class="text-center" width="80"><?= table_sort($menu['menu_id'], 'ID', 'employee_id', $cookie['order']) ?></th>
-                          <th class="text-center" width="100">Divisi</th>
+                          <th class="text-center" width="150">Divisi</th>
                           <th class="text-center"><?= table_sort($menu['menu_id'], 'Nama Pegawai', 'employee_name', $cookie['order']) ?></th>
                           <th class="text-center" width="80">Tanggal</th>
                           <th class="text-center" width="50">Kode</th>
