@@ -85,6 +85,10 @@ class Employee extends MY_Controller
     $cek = $this->m_employee->by_field('employee_id', $data['employee_id']);
     $data['dob'] = reverse_date($data['dob']);
     $data['entry_date'] = reverse_date($data['entry_date']);
+    $data['contract_salary'] = num_sys($data['contract_salary']);
+    $data['bpjs_ks_salary'] = num_sys($data['bpjs_ks_salary']);
+    $data['bpjs_tk_salary'] = num_sys($data['bpjs_tk_salary']);
+    $data['hourmachine_salary'] = num_sys($data['hourmachine_salary']);
     if ($id == null) {
       if ($cek != null) {
         $this->session->set_flashdata('flash_error', 'Kode sudah ada di sistem.');

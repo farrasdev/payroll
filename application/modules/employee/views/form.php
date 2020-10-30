@@ -215,15 +215,39 @@
                       </div>
                     </div>
                     <div class="form-group row">
+                      <label for="menu" class="col-sm-3 col-form-label text-right">Upah</label>
+                      <div class="col-sm-5">
+                        <input type="text" class="form-control form-control-sm num-int" name="contract_salary" id="contract_salary" value="<?= @$main['contract_salary'] ?>">
+                      </div>
+                    </div>
+                    <div class="form-group row">
+                      <label for="menu" class="col-sm-3 col-form-label text-right">Upah HM</label>
+                      <div class="col-sm-5">
+                        <input type="text" class="form-control form-control-sm num-int" name="hourmachine_salary" id="hourmachine_salary" value="<?= @$main['hourmachine_salary'] ?>">
+                      </div>
+                    </div>
+                    <div class="form-group row">
                       <label for="menu" class="col-sm-3 col-form-label text-right">Nomor BPJS KS</label>
                       <div class="col-sm-5">
                         <input type="text" class="form-control form-control-sm" name="bpjs_ks_number" id="bpjs_ks_number" value="<?= @$main['bpjs_ks_number'] ?>">
                       </div>
                     </div>
                     <div class="form-group row">
+                      <label for="menu" class="col-sm-3 col-form-label text-right">Upah BPJS KS</label>
+                      <div class="col-sm-5">
+                        <input type="text" class="form-control form-control-sm num-int" name="bpjs_ks_salary" id="bpjs_ks_salary" value="<?= @$main['bpjs_ks_salary'] ?>">
+                      </div>
+                    </div>
+                    <div class="form-group row">
                       <label for="menu" class="col-sm-3 col-form-label text-right">Nomor BPJS TK</label>
                       <div class="col-sm-5">
                         <input type="text" class="form-control form-control-sm" name="bpjs_tk_number" id="bpjs_tk_number" value="<?= @$main['bpjs_tk_number'] ?>">
+                      </div>
+                    </div>
+                    <div class="form-group row">
+                      <label for="menu" class="col-sm-3 col-form-label text-right">Upah BPJS TK</label>
+                      <div class="col-sm-5">
+                        <input type="text" class="form-control form-control-sm num-int" name="bpjs_tk_salary" id="bpjs_tk_salary" value="<?= @$main['bpjs_tk_salary'] ?>">
                       </div>
                     </div>
                     <div class="form-group row">
