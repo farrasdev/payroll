@@ -157,10 +157,16 @@
                       <tr>
                         <td>- Tunjangan Jabatan</td>
                         <td>:</td>
-                        <td class="text-right" style="border-bottom:1px solid black"><?= num_id($detail['position_all']) ?></td>
+                        <td class="text-right"><?= num_id($detail['position_all']) ?></td>
                         <td></td>
                       </tr>
-                      <?php $total_a = $detail['salary_parttime_sub'] + $detail['salary_contract_sub'] + $detail['position_all'] ?>
+                      <tr>
+                        <td>- Tunjangan Koefisien</td>
+                        <td>:</td>
+                        <td class="text-right" style="border-bottom:1px solid black"><?= num_id($detail['coeficient_all']) ?></td>
+                        <td></td>
+                      </tr>
+                      <?php $total_a = $detail['salary_parttime_sub'] + $detail['salary_contract_sub'] + $detail['position_all'] + $detail['coeficient_all'] ?>
                       <tr>
                         <td class="text-center text-bold" colspan="3">TOTAL A</td>
                         <td class="text-right text-bold"><?= num_id($total_a) ?></td>
@@ -189,12 +195,18 @@
                         <td></td>
                       </tr>
                       <tr>
+                        <td>- Uang Transport & Komunikasi</td>
+                        <td>:</td>
+                        <td class="text-right"><?= num_id($detail['comm_trans_all']) ?></td>
+                        <td></td>
+                      </tr>
+                      <tr>
                         <td>- Rapel</td>
                         <td>:</td>
                         <td class="text-right" style="border-bottom:1px solid black"><?= num_id($detail['expense_all']) ?></td>
                         <td></td>
                       </tr>
-                      <?php $total_b = $detail['overtime_all'] + $detail['hourmachine_all'] + $detail['meal_all'] ?>
+                      <?php $total_b = $detail['overtime_all'] + $detail['hourmachine_all'] + $detail['meal_all'] + $detail['comm_trans_all'] + $detail['expense_all'] ?>
                       <tr>
                         <td class="text-center text-bold" colspan="3">TOTAL B</td>
                         <td class="text-right text-bold"><?= num_id($total_b) ?></td>
