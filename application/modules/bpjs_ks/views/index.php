@@ -29,9 +29,7 @@
             <div class="card-body">
               <div class="row">
                 <div class="col-md-6">
-                  <?php if ($menu['_create'] == 1 || $menu['_update'] == 1) : ?>
-                    <a class="btn btn-sm btn-primary" href="<?= site_url() . '/' . $menu['controller'] . '/form' ?>"><i class="fas fa-plus-circle"></i> Tambah</a>
-                  <?php endif; ?>
+
                 </div>
                 <div class="col-md-3 offset-md-3">
                   <form action="<?= site_url() . '/app/search/' . $menu['menu_id'] ?>" method="post" autocomplete="off">
