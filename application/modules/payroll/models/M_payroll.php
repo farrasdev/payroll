@@ -235,10 +235,12 @@ class M_payroll extends CI_Model
 
         //ALLOWANCE
         $meal_all = $work_days_total * 20000;
+        $position_all = 0;
         $comm_trans_all = 0;
         $coeficient_all = 0;
         $overtime_all = $overtime_salary * $overtime_total;
-        $hourmachine_all = $hourmachine_total * 3500;
+        $hourmachine_salary = $row['hourmachine_salary'];
+        $hourmachine_all = $hourmachine_total * $hourmachine_salary;
 
         //RAPELAN
         $expense_total_row = $this->db->query(
@@ -323,10 +325,12 @@ class M_payroll extends CI_Model
           'contract_salary' => $contract_salary,
           'parttime_salary' => $parttime_salary,
           'overtime_salary' => $overtime_salary,
+          'hourmachine_salary' => $hourmachine_salary,
           'salary_parttime_sub' => $salary_parttime_sub,
           'salary_contract_sub' => $salary_contract_sub,
           'salary_receive_sub' => $salary_receive_sub,
           'meal_all' => $meal_all,
+          'position_all' => $position_all,
           'comm_trans_all' => $comm_trans_all,
           'coeficient_all' => $coeficient_all,
           'overtime_all' => $overtime_all,
