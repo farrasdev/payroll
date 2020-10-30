@@ -45,6 +45,7 @@
                       <th class="text-center text-middle" width="150" rowspan="2">Salary</th>
                       <th class="text-center text-middle" width="150" colspan="2">BPJS Ketenagakerjaan (Karyawan)</th>
                       <th class="text-center text-middle" width="150" colspan="4">BPJS Ketenagakerjaan (Perusahaan)</th>
+                      <th class="text-center text-middle" width="150" rowspan="2">Iuran</th>
                     </tr>
                     <tr>
                       <th class="text-center text-middle">JHT (2%)</th>
