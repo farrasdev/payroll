@@ -269,7 +269,9 @@ class M_payroll extends CI_Model
         $bpjs_tk_jht_company = $bpjs_tk_salary * (3.7 / 100);
         $bpjs_tk_jp_employee = $bpjs_tk_salary * (1 / 100);
         $bpjs_tk_jp_company = $bpjs_tk_salary * (2 / 100);
-        $bpjs_tk_premi = $bpjs_tk_jkk + $bpjs_tk_jkm + $bpjs_tk_jht_employee + $bpjs_tk_jht_company + $bpjs_tk_jp_employee + $bpjs_tk_jp_company;
+        $bpjs_tk_jkk_company = $bpjs_tk_salary * (1.74 / 100);
+        $bpjs_tk_jkm_company = $bpjs_tk_salary * (0.3 / 100);
+        $bpjs_tk_premi = $bpjs_tk_jkk + $bpjs_tk_jkm + $bpjs_tk_jht_employee + $bpjs_tk_jht_company + $bpjs_tk_jp_employee + $bpjs_tk_jp_company + $bpjs_tk_jkk_company + $bpjs_tk_jkm_company;
 
         //PUNISHMENT
         $punishment = $contract_salary / $days_total * $alpa;
