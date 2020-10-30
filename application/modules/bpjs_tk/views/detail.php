@@ -44,7 +44,7 @@
                       <th class="text-center text-middle" width="80" rowspan="2">Status Pegawai</th>
                       <th class="text-center text-middle" width="150" rowspan="2">Salary</th>
                       <th class="text-center text-middle" width="150" colspan="2">BPJS Ketenagakerjaan (Karyawan)</th>
-                      <th class="text-center text-middle" width="150" colspan="2">BPJS Ketenagakerjaan (Perusahaan)</th>
+                      <th class="text-center text-middle" width="150" colspan="4">BPJS Ketenagakerjaan (Perusahaan)</th>
                     </tr>
                     <tr>
                       <th class="text-center text-middle">JHT (2%)</th>
@@ -73,6 +73,10 @@
                         <td class="text-middle text-center"><?= num_id($r['bpjs_tk_salary']) ?></td>
                         <td class="text-middle text-center"><?= num_id($r['bpjs_tk_jht_employee']) ?></td>
                         <td class="text-middle text-center"><?= num_id($r['bpjs_tk_jp_employee']) ?></td>
+                        <td class="text-middle text-center"><?= num_id($r['bpjs_tk_jht_company']) ?></td>
+                        <td class="text-middle text-center"><?= num_id($r['bpjs_tk_jp_company']) ?></td>
+                        <td class="text-middle text-center"><?= num_id($r['bpjs_tk_jkk_company']) ?></td>
+                        <td class="text-middle text-center"><?= num_id($r['bpjs_tk_jkm_company']) ?></td>
                         <td class="text-middle text-center"><?= num_id($r['bpjs_ks_premi']) ?></td>
                       </tr>
                     <?php endforeach; ?>
