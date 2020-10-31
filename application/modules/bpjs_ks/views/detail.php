@@ -27,7 +27,38 @@
               <h3 class="card-title">Detail <?= $menu['menu_name'] ?></h3>
             </div>
             <div class="card-body">
-              <div class="table-responsive" style="height:50vh">
+              <div class="row">
+                <div class="col-md-6">
+                  <div class="table-responsive">
+                    <table class="table table-striped table-sm">
+                      <tbody>
+                        <tr>
+                          <td>Tanggal Awal</td>
+                          <td class="text-center" width="30">:</td>
+                          <td><?= date_id($payroll['start_date']) ?></td>
+                        </tr>
+                        <tr>
+                          <td>Tanggal Akhir</td>
+                          <td class="text-center" width="30">:</td>
+                          <td><?= date_id($payroll['end_date']) ?></td>
+                        </tr>
+                      </tbody>
+                    </table>
+                  </div>
+                </div>
+                <div class="col-md-3 offset-md-3">
+                  <form action="<?= site_url() . '/' . $this->menu['controller'] . '/search_detail/' . $id  ?>" method="post" autocomplete="off">
+                    <div class="input-group input-group-sm">
+                      <input class="form-control" type="text" name="search" value="<?= @$search ?>" placeholder="Pencarian">
+                      <span class="input-group-append">
+                        <button type="submit" class="btn btn-default"><i class="fas fa-search"></i></button>
+                        <a class="btn btn-default" href="<?= site_url() . '/' . $this->menu['controller'] . '/reset_detail/' . $id  ?>"><i class="fas fa-sync-alt"></i></a>
+                      </span>
+                    </div>
+                  </form>
+                </div>
+              </div><!-- /.row -->
+              <div class="table-responsive mt-3">
                 <table class="table table-head-fixed text-nowrap table-striped table-bordered table-sm" style="font-size:12px;">
                   <thead>
                     <tr>
@@ -44,23 +75,39 @@
                     </tr>
                   </thead>
                   <tbody>
-                    <?php $i = 1;
-                    foreach ($main['detail'] as $r) : ?>
+                    <?php if ($main == null) : ?>
                       <tr>
-                        <td class="text-middle text-center"><?= $i++ ?></td>
-                        <td class="text-middle text-center"><?= $r['employee_id'] ?></td>
-                        <td class="text-middle"><?= $r['employee_name'] ?></td>
-                        <td class="text-middle text-center"><?= $r['department_name'] ?></td>
-                        <td class="text-middle text-center"><?= $r['division_name'] ?></td>
-                        <td class="text-middle text-center"><?= $r['position_name'] ?></td>
-                        <td class="text-middle text-center"><?= num_id($r['bpjs_ks_salary']) ?></td>
-                        <td class="text-middle text-center"><?= num_id($r['bpjs_ks_employee']) ?></td>
-                        <td class="text-middle text-center"><?= num_id($r['bpjs_ks_company']) ?></td>
-                        <td class="text-middle text-center"><?= num_id($r['bpjs_ks_premi']) ?></td>
+                        <td class="text-center" colspan="99">Tidak ada data</td>
                       </tr>
-                    <?php endforeach; ?>
+                    <?php else : ?>
+                      <?php $i = 1;
+                      foreach ($main as $r) : ?>
+                        <tr>
+                          <td class="text-middle text-center"><?= $i++ ?></td>
+                          <td class="text-middle text-center"><?= $r['employee_id'] ?></td>
+                          <td class="text-middle"><?= $r['employee_name'] ?></td>
+                          <td class="text-middle text-center"><?= $r['department_name'] ?></td>
+                          <td class="text-middle text-center"><?= $r['division_name'] ?></td>
+                          <td class="text-middle text-center"><?= $r['position_name'] ?></td>
+                          <td class="text-middle text-center"><?= num_id($r['bpjs_ks_salary']) ?></td>
+                          <td class="text-middle text-center"><?= num_id($r['bpjs_ks_employee']) ?></td>
+                          <td class="text-middle text-center"><?= num_id($r['bpjs_ks_company']) ?></td>
+                          <td class="text-middle text-center"><?= num_id($r['bpjs_ks_premi']) ?></td>
+                        </tr>
+                      <?php endforeach; ?>
+                    <?php endif; ?>
                   </tbody>
                 </table>
+              </div>
+            </div>
+            <div class="card-footer">
+              <div class="row">
+                <div class="col-md-6">
+
+                </div>
+                <div class="col-md-6 float-right">
+                  <?php echo $this->pagination->create_links(); ?>
+                </div>
               </div>
             </div>
           </div>
