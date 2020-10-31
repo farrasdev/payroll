@@ -76,6 +76,7 @@ class Payroll extends MY_Controller
 
     $data['cur_page'] = $this->uri->segment(4, 0);
     $data['main'] = $this->m_payroll->detail($id, $data['cur_page'], $config['per_page'], $data['search']);
+    $data['payroll'] = $this->m_payroll->by_field('payroll_id', $id);
     $data['id'] = $id;
     $data['menu'] = $this->menu;
     $this->render('detail', $data);

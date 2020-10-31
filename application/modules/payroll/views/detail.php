@@ -29,7 +29,22 @@
             <div class="card-body">
               <div class="row">
                 <div class="col-md-6">
-
+                  <div class="table-responsive">
+                    <table class="table table-striped table-sm">
+                      <tbody>
+                        <tr>
+                          <td>Tanggal Awal</td>
+                          <td class="text-center" width="30">:</td>
+                          <td><?= date_id($payroll['start_date']) ?></td>
+                        </tr>
+                        <tr>
+                          <td>Tanggal Akhir</td>
+                          <td class="text-center" width="30">:</td>
+                          <td><?= date_id($payroll['end_date']) ?></td>
+                        </tr>
+                      </tbody>
+                    </table>
+                  </div>
                 </div>
                 <div class="col-md-3 offset-md-3">
                   <form action="<?= site_url() . '/' . $this->menu['controller'] . '/search_detail/' . $id  ?>" method="post" autocomplete="off">
