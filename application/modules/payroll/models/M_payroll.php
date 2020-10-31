@@ -128,14 +128,16 @@ class M_payroll extends CI_Model
         )->row_array()['normal_work_days_parttime'];
 
 
-        $normal_work_days_total = $this->db->query(
-          "SELECT 
-            COUNT(attendance_id) as normal_work_days_total 
-          FROM attendance 
-          WHERE 
-            attendance_date BETWEEN '" . $data['start_date'] . "' AND '" . $data['end_date'] . "' 
-        ORDER BY attendance_date"
-        )->row_array()['normal_work_days_total'];
+        // $normal_work_days_total = $this->db->query(
+        //   "SELECT 
+        //     COUNT(attendance_id) as normal_work_days_total 
+        //   FROM attendance 
+        //   WHERE 
+        //     attendance_date BETWEEN '" . $data['start_date'] . "' AND '" . $data['end_date'] . "' 
+        // ORDER BY attendance_date"
+        // )->row_array()['normal_work_days_total'];
+        $diff = date_difference($data['end_date'], $data['start_date']) + 1;
+        $normal_work_days_total = $diff;
 
         $absent = $this->db->query(
           "SELECT 
@@ -215,9 +217,9 @@ class M_payroll extends CI_Model
             ORDER BY attendance_date"
         )->row_array();
 
-        $hb = (@$overtime_off_row['hb'] == null) ? 0 : $overtime_off_row['hb'];
-        $hb1 = (@$overtime_off_row['hb1'] == null) ? 0 : $overtime_off_row['hb1'];
-        $hb2 = (@$overtime_off_row['hb2'] == null) ? 0 : $overtime_off_row['hb2'];
+        $hb = (@$overtime_holiday_row['hb'] == null) ? 0 : $overtime_holiday_row['hb'];
+        $hb1 = (@$overtime_holiday_row['hb1'] == null) ? 0 : $overtime_holiday_row['hb1'];
+        $hb2 = (@$overtime_holiday_row['hb2'] == null) ? 0 : $overtime_holiday_row['hb2'];
 
         $overtime_holiday = $hb * 25 + $hb1 * 25 + $hb2 * 25;
 
@@ -258,9 +260,21 @@ class M_payroll extends CI_Model
 
         //ALLOWANCE
         $meal_all = $work_days_total * 20000;
+
         $position_all = 0;
+        $position_all_raw = $this->db->query(
+          "SELECT SUM(nominal) as total FROM position_all WHERE employee_id = '" . $row['employee_id'] . "' AND position_all_date BETWEEN '" . $data['start_date'] . "' AND '" . $data['end_date'] . "' "
+        )->row_array();
+        $position_all = ($position_all_raw['total'] == NULL) ? 0 : $position_all_raw['total'];
+
         $comm_trans_all = 0;
+
         $coeficient_all = 0;
+        $coeficient_all_raw = $this->db->query(
+          "SELECT SUM(nominal) as total FROM coeficient_all WHERE employee_id = '" . $row['employee_id'] . "' AND coeficient_all_date BETWEEN '" . $data['start_date'] . "' AND '" . $data['end_date'] . "' "
+        )->row_array();
+        $coeficient_all = ($coeficient_all_raw['total'] == NULL) ? 0 : $coeficient_all_raw['total'];
+
         $overtime_all = $overtime_salary * $overtime_total;
         $hourmachine_salary = $row['hourmachine_salary'];
         $hourmachine_all = $hourmachine_total * $hourmachine_salary;

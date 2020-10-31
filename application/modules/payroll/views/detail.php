@@ -87,7 +87,7 @@
                       <th class="text-center text-middle" width="50" rowspan="2">Overttime Fee</th>
                       <th class="text-center text-middle" width="50" rowspan="2">THL</th>
                       <th class="text-center text-middle" width="50" rowspan="2">PKWT / PKWTT</th>
-                      <th class="text-center text-middle" colspan="8">Upah & Tunjangan</th>
+                      <th class="text-center text-middle" colspan="9">Upah & Tunjangan</th>
                       <th class="text-center text-middle" colspan="6">Deduction</th>
                       <th class="text-center text-middle" width="50" rowspan="2">Total Salary <br>(A-B)</th>
                       <th class="text-center text-middle" width="50" rowspan="2">Total Salary <br>(A-B)<br> (Pembulatan)</th>
@@ -109,6 +109,7 @@
                       <th class="text-center text-middle" width="30">Transportasi & Pulsa</th>
                       <th class="text-center text-middle" width="30">Koefisien</th>
                       <th class="text-center text-middle" width="30">Overtime</th>
+                      <th class="text-center text-middle" width="30">Hourmachine</th>
                       <th class="text-center text-middle" width="30">Lain-lain</th>
                       <th class="text-center text-middle" width="30">Total (A)</th>
                       <th class="text-center text-middle" width="30">BPJS TK (JHT)</th>
@@ -162,6 +163,7 @@
                           <td class="text-middle text-center"><?= num_id(round($r['salary_contract_sub'], 0)) ?></td>
                           <td class="text-middle text-center"><?= num_id(round($r['salary_receive_sub'], 0)) ?></td>
                           <td class="text-middle text-center"><?= num_id(round($r['meal_all'], 0)) ?></td>
+                          <td class="text-middle text-center"><?= num_id(round($r['position_all'], 0)) ?></td>
                           <td class="text-middle text-center"><?= num_id(round($r['comm_trans_all'], 0)) ?></td>
                           <td class="text-middle text-center"><?= num_id(round($r['coeficient_all'], 0)) ?></td>
                           <td class="text-middle text-center"><?= num_id(round($r['overtime_all'], 0)) ?></td>
