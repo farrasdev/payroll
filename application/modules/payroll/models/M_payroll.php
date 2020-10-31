@@ -268,6 +268,10 @@ class M_payroll extends CI_Model
         $position_all = ($position_all_raw['total'] == NULL) ? 0 : $position_all_raw['total'];
 
         $comm_trans_all = 0;
+        $comm_trans_all_raw = $this->db->query(
+          "SELECT SUM(nominal) as total FROM comm_trans_all WHERE employee_id = '" . $row['employee_id'] . "' AND comm_trans_all_date BETWEEN '" . $data['start_date'] . "' AND '" . $data['end_date'] . "' "
+        )->row_array();
+        $comm_trans_all = ($comm_trans_all_raw['total'] == NULL) ? 0 : $comm_trans_all_raw['total'];
 
         $coeficient_all = 0;
         $coeficient_all_raw = $this->db->query(
