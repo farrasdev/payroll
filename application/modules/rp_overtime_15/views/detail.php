@@ -26,7 +26,38 @@
               <h3 class="card-title">Detail <?= $menu['menu_name'] ?></h3>
             </div>
             <div class="card-body">
-              <div class="table-responsive" style="height:50vh">
+              <div class="row">
+                <div class="col-md-6">
+                  <div class="table-responsive">
+                    <table class="table table-striped table-sm">
+                      <tbody>
+                        <tr>
+                          <td>Tanggal Awal</td>
+                          <td class="text-center" width="30">:</td>
+                          <td><?= date_id(reverse_date($start_date)) ?></td>
+                        </tr>
+                        <tr>
+                          <td>Tanggal Akhir</td>
+                          <td class="text-center" width="30">:</td>
+                          <td><?= date_id(reverse_date($end_date)) ?></td>
+                        </tr>
+                      </tbody>
+                    </table>
+                  </div>
+                </div>
+                <div class="col-md-3 offset-md-3">
+                  <form action="<?= site_url() . '/' . $this->menu['controller'] . '/search_detail/' . $start_date . '/' . $end_date  ?>" method="post" autocomplete="off">
+                    <div class="input-group input-group-sm">
+                      <input class="form-control" type="text" name="search" value="<?= @$search ?>" placeholder="Pencarian">
+                      <span class="input-group-append">
+                        <button type="submit" class="btn btn-default"><i class="fas fa-search"></i></button>
+                        <a class="btn btn-default" href="<?= site_url() . '/' . $this->menu['controller'] . '/reset_detail/' . $start_date . '/' . $end_date  ?>"><i class="fas fa-sync-alt"></i></a>
+                      </span>
+                    </div>
+                  </form>
+                </div>
+              </div><!-- /.row -->
+              <div class="table-responsive mt-3">
                 <table class="table table-head-fixed text-nowrap table-striped table-bordered table-sm" style="font-size:12px; width:1500px">
                   <thead>
                     <tr>
@@ -57,6 +88,16 @@
                     <?php endforeach; ?>
                   </tbody>
                 </table>
+              </div>
+            </div>
+            <div class="card-footer">
+              <div class="row">
+                <div class="col-md-6">
+
+                </div>
+                <div class="col-md-6 float-right">
+                  <?php echo $this->pagination->create_links(); ?>
+                </div>
               </div>
             </div>
           </div>

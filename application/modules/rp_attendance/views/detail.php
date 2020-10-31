@@ -34,12 +34,12 @@
                         <tr>
                           <td>Tanggal Awal</td>
                           <td class="text-center" width="30">:</td>
-                          <td><?= date_id($start_date) ?></td>
+                          <td><?= date_id(reverse_date($start_date)) ?></td>
                         </tr>
                         <tr>
                           <td>Tanggal Akhir</td>
                           <td class="text-center" width="30">:</td>
-                          <td><?= date_id($end_date) ?></td>
+                          <td><?= date_id(reverse_date($end_date)) ?></td>
                         </tr>
                       </tbody>
                     </table>

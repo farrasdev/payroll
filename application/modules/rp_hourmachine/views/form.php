@@ -44,7 +44,7 @@
               <div class="card-footer">
                 <div class="row">
                   <div class="col-md-10 offset-md-2">
-                    <button type="submit" class="btn btn-sm btn-primary btn-submit"><i class="fas fa-save"></i> Simpan</button>
+                    <button type="submit" class="btn btn-sm btn-primary btn-submit"><i class="fas fa-cogs"></i> Proses</button>
                     <a class="btn btn-sm btn-default btn-cancel" href="<?= site_url() . '/' . $menu['controller'] . '/' . $menu['url'] ?>"><i class="fas fa-times"></i> Batal</a>
                   </div>
                 </div>
