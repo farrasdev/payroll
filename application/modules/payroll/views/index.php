@@ -38,7 +38,7 @@
                   <?php endif; ?>
                 </div>
                 <div class="col-md-3 offset-md-3">
-                  <form action="<?= site_url() . '/app/search/' . $menu['menu_id'] ?>" method="post" autocomplete="off">
+                  <!-- <form action="<?= site_url() . '/app/search/' . $menu['menu_id'] ?>" method="post" autocomplete="off">
                     <div class="input-group input-group-sm">
                       <input class="form-control" type="text" name="term" value="<?= @$cookie['search']['term'] ?>" placeholder="Pencarian">
                       <span class="input-group-append">
@@ -46,7 +46,7 @@
                         <a class="btn btn-default" href="<?= site_url() . '/app/reset/' . $menu['menu_id'] ?>"><i class="fas fa-sync-alt"></i></a>
                       </span>
                     </div>
-                  </form>
+                  </form> -->
                 </div>
               </div><!-- /.row -->
               <div class="row mb-2 mt-2">
