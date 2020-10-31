@@ -51,17 +51,40 @@ class M_bpjs_tk extends CI_Model
     return $row;
   }
 
-  public function detail($id)
+  public function detail($id, $limit, $offset, $search = "")
   {
-    $data = $this->db->where('payroll_id', $id)->get('payroll')->row_array();
-    $data['detail'] = $this->db->query(
+    $search = $this->db->escape_like_str($search);
+    $where = "";
+    if ($search != '') {
+      $where = "WHERE b.employee_name LIKE '%$search%'";
+    }
+    $data = $this->db->query(
       "SELECT 
-        a.*, b.id_number, b.employee_name, b.sex, b.tax_number, b.entry_date, b.dob 
+        a.*, b.id_number, b.sex, b.employee_name, b.tax_number, b.entry_date, b.dob 
       FROM payroll_detail a
       JOIN employee b ON a.employee_id = b.employee_id
-      ORDER BY a.employee_id ASC
+      $where
+      ORDER BY a.employee_id ASC LIMIT $limit, $offset
       "
     )->result_array();
+
+    return $data;
+  }
+
+  public function detail_total($id, $search = "")
+  {
+    $search = $this->db->escape_like_str($search);
+    $where = "";
+    if ($search != '') {
+      $where = "WHERE b.employee_name LIKE '%$search%'";
+    }
+    $data = $this->db->query(
+      "SELECT 
+        COUNT(1) as total
+      FROM payroll_detail a 
+      JOIN employee b ON a.employee_id = b.employee_id
+      $where"
+    )->row_array();
 
     return $data;
   }

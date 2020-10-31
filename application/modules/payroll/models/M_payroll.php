@@ -89,21 +89,6 @@ class M_payroll extends CI_Model
     return $data;
   }
 
-  public function total_detail($id)
-  {
-    $data = $this->db->where('payroll_id', $id)->get('payroll')->row_array();
-    $data['detail'] = $this->db->query(
-      "SELECT 
-        a.*, b.employee_name, b.tax_number, b.entry_date, b.dob 
-      FROM payroll_detail a
-      JOIN employee b ON a.employee_id = b.employee_id
-      ORDER BY a.employee_id ASC
-      "
-    )->result_array();
-
-    return $data;
-  }
-
   public function save($data, $id = null)
   {
     if ($id == null) {

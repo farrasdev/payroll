@@ -27,6 +27,10 @@
               <h3 class="card-title">Daftar <?= $menu['menu_name'] ?></h3>
             </div>
             <div class="card-body">
+              <div class="alert alert-info alert-dismissible">
+                <h6><i class="icon fas fa-info"></i> Informasi!</h6>
+                Fitur ini adalah fitur untuk melihat data iuran BPJS Tenaga Kerja. Data ini muncul atas pembuatan data pengupahan terlebih dulu.
+              </div>
               <div class="row">
                 <div class="col-md-6">
 
