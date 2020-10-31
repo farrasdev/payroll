@@ -17,7 +17,7 @@ class Rp_overtime_4 extends MY_Controller
       'employee/m_employee'
     ));
 
-    $this->menu_id = '27';
+    $this->menu_id = '22.06';
     $this->menu = $this->m_config->get_menu($this->menu_id);
     if ($this->menu == null) redirect(site_url() . '/error/error_403');
 
@@ -61,7 +61,18 @@ class Rp_overtime_4 extends MY_Controller
     if ($start_date == "" || $end_date == "") {
       redirect(site_url() . '/' . $this->menu['controller'] . '/form');
     } else {
-      $data['main'] = $this->m_rp_overtime_4->get_data($start_date, $end_date);
+      $data['search'] = @$this->session->userdata("search_" . $this->menu_id);
+
+      $config['per_page'] = 10;
+      $config['base_url'] = site_url() . '/' . $this->menu['controller'] . '/detail/' . $start_date . '/' . $end_date . '/';
+      $config['total_rows'] = $this->m_payroll->detail_total($data['search'])['total'];
+      $this->pagination->initialize($config);
+
+      $data['cur_page'] = $this->uri->segment(5, 0);
+      $data['main'] = $this->m_rp_overtime_4->detail($start_date, $end_date, $data['cur_page'], $config['per_page'], $data['search']);
+      $data['start_date'] = $start_date;
+      $data['end_date'] = $end_date;
+
       if ($data['main'] == null) {
         redirect(site_url() . '/' . $this->menu['controller'] . '/form');
       } else {
@@ -75,5 +86,18 @@ class Rp_overtime_4 extends MY_Controller
         $this->render('detail', $data);
       }
     }
+  }
+
+  public function search_detail($start_date, $end_date)
+  {
+    $search = html_escape($this->input->post('search'));
+    $this->session->set_userdata(array("search_" . $this->menu_id => $search));
+    redirect(site_url() . '/' . $this->menu['controller'] . '/detail/' . $start_date . '/' . $end_date . '/');
+  }
+
+  public function reset_detail($start_date, $end_date)
+  {
+    $this->session->set_userdata(array("search_" . $this->menu_id => ""));
+    redirect(site_url() . '/' . $this->menu['controller'] . '/detail/' . $start_date . '/' . $end_date . '/');
   }
 }
