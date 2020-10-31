@@ -27,6 +27,10 @@
               <h3 class="card-title">Daftar <?= $menu['menu_name'] ?></h3>
             </div>
             <div class="card-body">
+              <div class="alert alert-info alert-dismissible">
+                <h5><i class="icon fas fa-info"></i> Informasi!</h5>
+                Fitur ini digunakan untuk membuat pengupahan dengan periode tertentu. Sistem akan menghitung otomatis sesuai dengan tanggal awal dan tanggal akhir ditentukan. Laporan-laporan pengupahan bergantung dengan fitur ini.
+              </div>
               <div class="row">
                 <div class="col-md-6">
                   <?php if ($menu['_create'] == 1 || $menu['_update'] == 1) : ?>

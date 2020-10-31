@@ -28,19 +28,23 @@
             </div>
             <form id="form" action="<?= site_url() . '/' . $menu['controller'] . '/save/' . $id ?>" method="post" autocomplete="off" enctype="multipart/form-data">
               <div class="card-body">
+                <div class="alert alert-info alert-dismissible">
+                  <h5><i class="icon fas fa-info"></i> Informasi!</h5>
+                  Tentukan periode pengupahan dengan memilih tanggal awal dan tanggal akhir. Tunggu hingga proses selesai. Jangan tutup halaman ini ketika proses berlangsung.
+                </div>
                 <div class="flash-error" data-flasherror="<?= $this->session->flashdata('flash_error') ?>"></div>
                 <input type="hidden" class="form-control form-control-sm" name="payroll_id" id="payroll_id" value="<?= @$main['payroll_id'] ?>" required>
                 <?php if ($id != null) : ?>
                   <input type="hidden" class="form-control form-control-sm" name="old" id="old" value="<?= @$main['payroll_id'] ?>" required>
                 <?php endif; ?>
                 <div class="form-group row">
-                  <label for="icon" class="col-sm-2 col-form-label text-right">Tanggal Awal<span class="text-danger">*</span></label>
+                  <label for="icon" class="col-sm-2 col-form-label text-right">Tanggal Awal <span class="text-danger">*</span></label>
                   <div class="col-sm-2">
                     <input type="text" class="form-control form-control-sm datepicker" name="start_date" id="start_date" value="<?= @reverse_date($main['start_date']) ?>" required>
                   </div>
                 </div>
                 <div class="form-group row">
-                  <label for="icon" class="col-sm-2 col-form-label text-right">Tanggal Akhir<span class="text-danger">*</span></label>
+                  <label for="icon" class="col-sm-2 col-form-label text-right">Tanggal Akhir <span class="text-danger">*</span></label>
                   <div class="col-sm-2">
                     <input type="text" class="form-control form-control-sm datepicker" name="end_date" id="end_date" value="<?= @reverse_date($main['end_date']) ?>" required>
                   </div>
@@ -49,7 +53,7 @@
               <div class="card-footer">
                 <div class="row">
                   <div class="col-md-10 offset-md-2">
-                    <button type="submit" class="btn btn-sm btn-primary btn-submit"><i class="fas fa-save"></i> Simpan</button>
+                    <button type="submit" class="btn btn-sm btn-primary btn-submit"><i class="fas fa-cogs"></i> Proses</button>
                     <a class="btn btn-sm btn-default btn-cancel" href="<?= site_url() . '/' . $menu['controller'] . '/' . $menu['url'] ?>"><i class="fas fa-times"></i> Batal</a>
                   </div>
                 </div>

@@ -9,7 +9,7 @@
         </div><!-- /.col -->
         <div class="col-sm-6">
           <ol class="breadcrumb float-sm-right">
-            <li class="breadcrumb-item active">Master Data</li>
+            <li class="breadcrumb-item active">Payroll</li>
             <li class="breadcrumb-item active"><?= @$menu['menu_name'] ?></li>
             <li class="breadcrumb-item active"><?= ($id == null) ? 'Tambah' : 'Ubah'; ?></li>
           </ol>
@@ -27,8 +27,24 @@
               <h3 class="card-title">Detail <?= $menu['menu_name'] ?></h3>
             </div>
             <div class="card-body">
-              <div class="table-responsive" style="height:50vh">
-                <table class="table table-head-fixed text-nowrap table-striped table-bordered table-sm" style="font-size:12px;width:3000px">
+              <div class="row">
+                <div class="col-md-6">
+
+                </div>
+                <div class="col-md-3 offset-md-3">
+                  <form action="<?= site_url() . '/' . $this->menu['controller'] . '/search_detail/' . $id  ?>" method="post" autocomplete="off">
+                    <div class="input-group input-group-sm">
+                      <input class="form-control" type="text" name="search" value="<?= @$search ?>" placeholder="Pencarian">
+                      <span class="input-group-append">
+                        <button type="submit" class="btn btn-default"><i class="fas fa-search"></i></button>
+                        <a class="btn btn-default" href="<?= site_url() . '/' . $this->menu['controller'] . '/reset_detail/' . $id  ?>"><i class="fas fa-sync-alt"></i></a>
+                      </span>
+                    </div>
+                  </form>
+                </div>
+              </div><!-- /.row -->
+              <div class="table-responsive mt-3">
+                <table id="table-detail" class="table table-head-fixed text-nowrap table-striped table-bordered table-sm">
                   <thead>
                     <tr>
                       <th class="text-center text-middle" width="30" rowspan="2">No</th>
@@ -89,61 +105,77 @@
                     </tr>
                   </thead>
                   <tbody>
-                    <?php $i = 1;
-                    foreach ($main['detail'] as $r) : ?>
+                    <?php if ($main == null) : ?>
                       <tr>
-                        <td class="text-middle text-center"><?= $i++ ?></td>
-                        <td class="text-middle text-center"><?= $r['employee_id'] ?></td>
-                        <td class="text-middle"><?= $r['employee_name'] ?></td>
-                        <td class="text-middle text-center"><?= $r['department_name'] ?></td>
-                        <td class="text-middle text-center"><?= $r['division_name'] ?></td>
-                        <td class="text-middle text-center"><?= $r['position_name'] ?></td>
-                        <td class="text-middle text-center"><?= $r['tax_number'] ?></td>
-                        <td class="text-middle text-center"><?= reverse_date($r['entry_date']) ?></td>
-                        <td class="text-middle text-center"><?= $r['employee_status_name'] ?></td>
-                        <td class="text-middle text-center"><?= $r['salary_status_name'] ?></td>
-                        <td class="text-middle text-center"><?= $r['family_status_name'] ?></td>
-                        <td class="text-middle text-center"><?= reverse_date($r['dob']) ?></td>
-                        <td class="text-middle text-center"><?= $r['alpa_total'] ?></td>
-                        <td class="text-middle text-center"><?= $r['izin_total'] ?></td>
-                        <td class="text-middle text-center"><?= $r['sakit_total'] ?></td>
-                        <td class="text-middle text-center"><?= $r['libur_total'] ?></td>
-                        <td class="text-middle text-center"><?= $r['cuti_total'] ?></td>
-                        <td class="text-middle text-center"><?= $r['work_days_total'] ?></td>
-                        <td class="text-middle text-center"><?= $r['normal_work_days_parttime'] ?></td>
-                        <td class="text-middle text-center"><?= $r['normal_work_days_contract'] ?></td>
-                        <td class="text-middle text-center"><?= $r['normal_work_days_total'] ?></td>
-                        <td class="text-middle text-center"><?= $r['overtime_regular'] ?></td>
-                        <td class="text-middle text-center"><?= $r['overtime_off'] ?></td>
-                        <td class="text-middle text-center"><?= $r['overtime_holiday'] ?></td>
-                        <td class="text-middle text-center"><?= $r['overtime_over'] ?></td>
-                        <td class="text-middle text-center"><?= $r['overtime_total'] ?></td>
-                        <td class="text-middle text-center"><?= $r['hourmachine_total'] ?></td>
-                        <td class="text-middle text-center"><?= num_id($r['contract_salary']) ?></td>
-                        <td class="text-middle text-center"><?= num_id(round($r['parttime_salary'], 0)) ?></td>
-                        <td class="text-middle text-center"><?= num_id(round($r['overtime_salary'], 0)) ?></td>
-                        <td class="text-middle text-center"><?= num_id(round($r['salary_parttime_sub'], 0)) ?></td>
-                        <td class="text-middle text-center"><?= num_id(round($r['salary_contract_sub'], 0)) ?></td>
-                        <td class="text-middle text-center"><?= num_id(round($r['salary_receive_sub'], 0)) ?></td>
-                        <td class="text-middle text-center"><?= num_id(round($r['meal_all'], 0)) ?></td>
-                        <td class="text-middle text-center"><?= num_id(round($r['comm_trans_all'], 0)) ?></td>
-                        <td class="text-middle text-center"><?= num_id(round($r['coeficient_all'], 0)) ?></td>
-                        <td class="text-middle text-center"><?= num_id(round($r['overtime_all'], 0)) ?></td>
-                        <td class="text-middle text-center"><?= num_id(round($r['hourmachine_all'], 0)) ?></td>
-                        <td class="text-middle text-center"><?= num_id(round($r['expense_all'], 0)) ?></td>
-                        <td class="text-middle text-center"><?= num_id(round($r['salary_and_all'], 0)) ?></td>
-                        <td class="text-middle text-center"><?= num_id(round($r['bpjs_tk_jht_employee'], 0)) ?></td>
-                        <td class="text-middle text-center"><?= num_id(round($r['bpjs_tk_jp_employee'], 0)) ?></td>
-                        <td class="text-middle text-center"><?= num_id(round($r['bpjs_ks_employee'], 0)) ?></td>
-                        <td class="text-middle text-center"><?= num_id(round($r['punishment'], 0)) ?></td>
-                        <td class="text-middle text-center"><?= num_id(round($r['tax'], 0)) ?></td>
-                        <td class="text-middle text-center"><?= num_id(round($r['deduction_total'], 0)) ?></td>
-                        <td class="text-middle text-center"><?= num_id(round($r['salary_receive_total'], 0)) ?></td>
-                        <td class="text-middle text-center"><?= num_id(round($r['salary_receive_final'], 0)) ?></td>
+                        <td class="text-center" colspan="99">Tidak ada data</td>
                       </tr>
-                    <?php endforeach; ?>
+                    <?php else : ?>
+                      <?php $i = 1;
+                      foreach ($main as $r) : ?>
+                        <tr>
+                          <td class="text-middle text-center"><?= $cur_page + ($i++) ?></td>
+                          <td class="text-middle text-center"><?= $r['employee_id'] ?></td>
+                          <td class="text-middle"><?= $r['employee_name'] ?></td>
+                          <td class="text-middle text-center"><?= $r['department_name'] ?></td>
+                          <td class="text-middle text-center"><?= $r['division_name'] ?></td>
+                          <td class="text-middle text-center"><?= $r['position_name'] ?></td>
+                          <td class="text-middle text-center"><?= $r['tax_number'] ?></td>
+                          <td class="text-middle text-center"><?= reverse_date($r['entry_date']) ?></td>
+                          <td class="text-middle text-center"><?= $r['employee_status_name'] ?></td>
+                          <td class="text-middle text-center"><?= $r['salary_status_name'] ?></td>
+                          <td class="text-middle text-center"><?= $r['family_status_name'] ?></td>
+                          <td class="text-middle text-center"><?= reverse_date($r['dob']) ?></td>
+                          <td class="text-middle text-center"><?= $r['alpa_total'] ?></td>
+                          <td class="text-middle text-center"><?= $r['izin_total'] ?></td>
+                          <td class="text-middle text-center"><?= $r['sakit_total'] ?></td>
+                          <td class="text-middle text-center"><?= $r['libur_total'] ?></td>
+                          <td class="text-middle text-center"><?= $r['cuti_total'] ?></td>
+                          <td class="text-middle text-center"><?= $r['work_days_total'] ?></td>
+                          <td class="text-middle text-center"><?= $r['normal_work_days_parttime'] ?></td>
+                          <td class="text-middle text-center"><?= $r['normal_work_days_contract'] ?></td>
+                          <td class="text-middle text-center"><?= $r['normal_work_days_total'] ?></td>
+                          <td class="text-middle text-center"><?= $r['overtime_regular'] ?></td>
+                          <td class="text-middle text-center"><?= $r['overtime_off'] ?></td>
+                          <td class="text-middle text-center"><?= $r['overtime_holiday'] ?></td>
+                          <td class="text-middle text-center"><?= $r['overtime_over'] ?></td>
+                          <td class="text-middle text-center"><?= $r['overtime_total'] ?></td>
+                          <td class="text-middle text-center"><?= $r['hourmachine_total'] ?></td>
+                          <td class="text-middle text-center"><?= num_id($r['contract_salary']) ?></td>
+                          <td class="text-middle text-center"><?= num_id(round($r['parttime_salary'], 0)) ?></td>
+                          <td class="text-middle text-center"><?= num_id(round($r['overtime_salary'], 0)) ?></td>
+                          <td class="text-middle text-center"><?= num_id(round($r['salary_parttime_sub'], 0)) ?></td>
+                          <td class="text-middle text-center"><?= num_id(round($r['salary_contract_sub'], 0)) ?></td>
+                          <td class="text-middle text-center"><?= num_id(round($r['salary_receive_sub'], 0)) ?></td>
+                          <td class="text-middle text-center"><?= num_id(round($r['meal_all'], 0)) ?></td>
+                          <td class="text-middle text-center"><?= num_id(round($r['comm_trans_all'], 0)) ?></td>
+                          <td class="text-middle text-center"><?= num_id(round($r['coeficient_all'], 0)) ?></td>
+                          <td class="text-middle text-center"><?= num_id(round($r['overtime_all'], 0)) ?></td>
+                          <td class="text-middle text-center"><?= num_id(round($r['hourmachine_all'], 0)) ?></td>
+                          <td class="text-middle text-center"><?= num_id(round($r['expense_all'], 0)) ?></td>
+                          <td class="text-middle text-center"><?= num_id(round($r['salary_and_all'], 0)) ?></td>
+                          <td class="text-middle text-center"><?= num_id(round($r['bpjs_tk_jht_employee'], 0)) ?></td>
+                          <td class="text-middle text-center"><?= num_id(round($r['bpjs_tk_jp_employee'], 0)) ?></td>
+                          <td class="text-middle text-center"><?= num_id(round($r['bpjs_ks_employee'], 0)) ?></td>
+                          <td class="text-middle text-center"><?= num_id(round($r['punishment'], 0)) ?></td>
+                          <td class="text-middle text-center"><?= num_id(round($r['tax'], 0)) ?></td>
+                          <td class="text-middle text-center"><?= num_id(round($r['deduction_total'], 0)) ?></td>
+                          <td class="text-middle text-center"><?= num_id(round($r['salary_receive_total'], 0)) ?></td>
+                          <td class="text-middle text-center"><?= num_id(round($r['salary_receive_final'], 0)) ?></td>
+                        </tr>
+                      <?php endforeach; ?>
+                    <?php endif; ?>
                   </tbody>
                 </table>
+              </div>
+            </div>
+            <div class="card-footer">
+              <div class="row">
+                <div class="col-md-6">
+
+                </div>
+                <div class="col-md-6 float-right">
+                  <?php echo $this->pagination->create_links(); ?>
+                </div>
               </div>
             </div>
           </div>
@@ -153,6 +185,3 @@
   </div><!-- /.content -->
 </div>
 <!-- /.content-wrapper -->
-<script>
-
-</script>

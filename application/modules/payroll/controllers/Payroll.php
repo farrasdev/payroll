@@ -64,15 +64,34 @@ class Payroll extends MY_Controller
   {
     ($id == null) ? authorize($this->menu, '_create') : authorize($this->menu, '_update');
     if ($id == null) {
-      create_log(2, $this->menu['menu_name']);
       redirect(site_url() . '/' . $this->menu['controller'] . '/' . $this->menu['url'] . '/' . $this->cookie['cur_page']);
-    } else {
-      create_log(3, $this->menu['menu_name']);
-      $data['main'] = $this->m_payroll->detail($id);
     }
+
+    $data['search'] = @$this->session->userdata("search");
+
+    $config['per_page'] = 10;
+    $config['base_url'] = site_url() . '/' . $this->menu['controller'] . '/detail/' . $id . '/';
+    $config['total_rows'] = $this->m_payroll->detail_total($id, $data['search'])['total'];
+    $this->pagination->initialize($config);
+
+    $data['cur_page'] = $this->uri->segment(4, 0);
+    $data['main'] = $this->m_payroll->detail($id, $data['cur_page'], $config['per_page'], $data['search']);
     $data['id'] = $id;
     $data['menu'] = $this->menu;
     $this->render('detail', $data);
+  }
+
+  public function search_detail($id)
+  {
+    $search = html_escape($this->input->post('search'));
+    $this->session->set_userdata(array("search" => $search));
+    redirect(site_url() . '/' . $this->menu['controller'] . '/detail/' . $id . '/');
+  }
+
+  public function reset_detail($id)
+  {
+    $this->session->set_userdata(array("search" => ""));
+    redirect(site_url() . '/' . $this->menu['controller'] . '/detail/' . $id . '/');
   }
 
   public function save($id = null)
