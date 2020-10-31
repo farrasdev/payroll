@@ -28,7 +28,7 @@
             </div>
             <div class="card-body">
               <div class="alert alert-info alert-dismissible">
-                <h5><i class="icon fas fa-info"></i> Informasi!</h5>
+                <h6><i class="icon fas fa-info"></i> Informasi!</h6>
                 Fitur ini digunakan untuk membuat pengupahan dengan periode tertentu. Sistem akan menghitung otomatis sesuai dengan tanggal awal dan tanggal akhir ditentukan. Laporan-laporan pengupahan bergantung dengan fitur ini.
               </div>
               <div class="row">

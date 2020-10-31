@@ -67,7 +67,7 @@ class Payroll extends MY_Controller
       redirect(site_url() . '/' . $this->menu['controller'] . '/' . $this->menu['url'] . '/' . $this->cookie['cur_page']);
     }
 
-    $data['search'] = @$this->session->userdata("search");
+    $data['search'] = @$this->session->userdata("search_" . $this->menu_id);
 
     $config['per_page'] = 10;
     $config['base_url'] = site_url() . '/' . $this->menu['controller'] . '/detail/' . $id . '/';
@@ -85,13 +85,13 @@ class Payroll extends MY_Controller
   public function search_detail($id)
   {
     $search = html_escape($this->input->post('search'));
-    $this->session->set_userdata(array("search" => $search));
+    $this->session->set_userdata(array("search_" . $this->menu_id => $search));
     redirect(site_url() . '/' . $this->menu['controller'] . '/detail/' . $id . '/');
   }
 
   public function reset_detail($id)
   {
-    $this->session->set_userdata(array("search" => ""));
+    $this->session->set_userdata(array("search_" . $this->menu_id => ""));
     redirect(site_url() . '/' . $this->menu['controller'] . '/detail/' . $id . '/');
   }
 
