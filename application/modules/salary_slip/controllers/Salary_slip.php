@@ -17,7 +17,7 @@ class Salary_slip extends MY_Controller
       'employee/m_employee'
     ));
 
-    $this->menu_id = '35';
+    $this->menu_id = '33.03';
     $this->menu = $this->m_config->get_menu($this->menu_id);
     if ($this->menu == null) redirect(site_url() . '/error/error_403');
 
