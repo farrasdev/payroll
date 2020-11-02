@@ -173,6 +173,5 @@ class Rp_attendance extends MY_Controller
     }
 
     $pdf->Output('I', 'Kehadiran_' . $start_date . '_' . $end_date . '-' . date('Ymdhis') . '.pdf');
-    //$pdf->Cell(0, 2, @$identitas['jalan'] . ', ' . ucfirst(strtolower(clear_kab_kota(@$identitas['kabupaten']))) . ', ' . ucfirst(strtolower(@$identitas['propinsi'])), 0, 1, 'L');
   }
 }
