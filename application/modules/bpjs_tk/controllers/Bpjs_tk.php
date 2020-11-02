@@ -12,7 +12,8 @@ class Bpjs_tk extends MY_Controller
 
     $this->load->model(array(
       'config/m_config',
-      'm_bpjs_tk'
+      'm_bpjs_tk',
+      'payroll/m_payroll'
     ));
 
     $this->menu_id = '33.02';
@@ -29,20 +30,20 @@ class Bpjs_tk extends MY_Controller
 
   public function index()
   {
-    authorize($this->menu, '_read');
-    //cookie
-    $this->cookie['cur_page'] = $this->uri->segment(3, 0);
-    $this->cookie['total_rows'] = $this->m_bpjs_tk->all_rows($this->cookie);
-    set_cookie_menu($this->menu_id, $this->cookie);
-    //main data
+    redirect(site_url() . '/' . $this->menu['controller'] . '/form');
+  }
+
+  public function form()
+  {
     $data['menu'] = $this->menu;
-    $data['cookie'] = $this->cookie;
-    $data['main'] = $this->m_bpjs_tk->list_data($this->cookie);
-    $data['pagination_info'] = pagination_info(count($data['main']), $this->cookie);
-    //set pagination
-    set_pagination($this->menu, $this->cookie);
-    //render
-    $this->render('index', $data);
+    $data['payroll'] = $this->m_payroll->all_data();
+    $this->render('form', $data);
+  }
+
+  public function action()
+  {
+    $data = $this->input->post();
+    redirect(site_url() . '/' . $this->menu['controller'] . '/detail/' . $data['payroll_id']);
   }
 
   public function detail($id = null)
