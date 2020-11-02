@@ -48,4 +48,28 @@ class M_rp_attendance extends CI_Model
       ORDER BY a.employee_id"
     )->row_array();
   }
+
+  public function detail_all($start_date, $end_date)
+  {
+    $diff = date_difference($end_date, $start_date);
+    $data = $this->db->query(
+      "SELECT 
+        a.employee_id, a.employee_name 
+      FROM employee a 
+      ORDER BY a.employee_id"
+    )->result_array();
+    foreach ($data as $k => $v) {
+      $attendance = array();
+      for ($i = 0; $i <= $diff; $i++) {
+        $cur_date = date('Y-m-d', strtotime($start_date . " + $i days"));
+        $attendance[$cur_date] = "A";
+        $att = $this->db->query("SELECT shift_id FROM attendance WHERE employee_id = '" . $v['employee_id'] . "' AND attendance_date = '" . $cur_date . "'")->row_array();
+        if ($att != null) {
+          $attendance[$cur_date] = $att['shift_id'];
+        }
+      }
+      $data[$k]['attendance'] = $attendance;
+    }
+    return $data;
+  }
 }
