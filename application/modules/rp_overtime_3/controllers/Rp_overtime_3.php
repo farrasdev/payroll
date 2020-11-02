@@ -120,10 +120,10 @@ class Rp_overtime_3 extends MY_Controller
     //HEADER
     $pdf->Image(FCPATH . 'images/logos/' . $profile['logo'], 12, 9, 12, 12);
     $pdf->SetFont('Arial', 'B', 14);
-    $pdf->Cell(3, 5, '', 0, 0, 'L');
+    $pdf->Cell(15, 5, '', 0, 0, 'L');
     $pdf->Cell(0, 5, $profile['company_name'], 0, 1, 'L');
     $pdf->SetFont('Arial', '', 10);
-    $pdf->Cell(3, 6, '', 0, 0, 'L');
+    $pdf->Cell(15, 6, '', 0, 0, 'L');
     $pdf->Cell(0, 6, $profile['address'], 0, 1, 'L');
     $pdf->Cell(3, 6, '', 0, 0, 'L');
     $pdf->Line(10, 23.5, 320, 23.5);

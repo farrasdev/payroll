@@ -100,4 +100,78 @@ class Rp_hourmachine extends MY_Controller
     $this->session->set_userdata(array("search_" . $this->menu_id => ""));
     redirect(site_url() . '/' . $this->menu['controller'] . '/detail/' . $start_date . '/' . $end_date . '/');
   }
+
+  public function pdf($start_date, $end_date)
+  {
+    $diff = date_difference($end_date, $start_date);
+    $date = array();
+    for ($i = 0; $i <= $diff; $i++) {
+      $cur_date = date('Y-m-d', strtotime($start_date . " + $i days"));
+      $date[] = $cur_date;
+    }
+    $main = $this->m_rp_hourmachine->detail_all($start_date, $end_date);
+    $profile = $this->m_profile->get_first();
+    $this->load->library('pdf');
+    $pdf = new Pdf('l', 'mm', array(330, 210)); //A5
+    $pdf->AliasNbPages();
+    $pdf->SetTitle('Hourmachine ' . date_id(reverse_date($start_date)) . ' s/d ' . date_id(reverse_date($end_date)));
+    $pdf->AddPage();
+
+    //HEADER
+    $pdf->Image(FCPATH . 'images/logos/' . $profile['logo'], 12, 9, 12, 12);
+    $pdf->SetFont('Arial', 'B', 14);
+    $pdf->Cell(15, 5, '', 0, 0, 'L');
+    $pdf->Cell(0, 5, $profile['company_name'], 0, 1, 'L');
+    $pdf->SetFont('Arial', '', 10);
+    $pdf->Cell(15, 6, '', 0, 0, 'L');
+    $pdf->Cell(0, 6, $profile['address'], 0, 1, 'L');
+    $pdf->Cell(2, 6, '', 0, 0, 'L');
+    $pdf->Line(10, 23.5, 320, 23.5);
+
+    //TITLE
+    $pdf->Cell(0, 8, '', 0, 1, 'L');
+    $pdf->SetFont('Arial', 'BU', 12);
+    $pdf->Cell(0, 5, 'REKAP HOURMACHINE', 0, 1, 'C');
+    $pdf->SetFont('Arial', '', 10);
+    $pdf->Cell(0, 5, date_id(reverse_date($start_date)) . ' s/d ' . date_id(reverse_date($end_date)), 0, 1, 'C');
+
+    //TABLE HEADER
+    $pdf->Cell(0, 5, '', 0, 1, 'L');
+    $pdf->SetFont('Arial', 'B', 7.5);
+    $pdf->Cell(8, 10, 'No', 1, 0, 'C');
+    $pdf->Cell(14, 10, 'NIK', 1, 0, 'C');
+    $pdf->Cell(55, 10, 'Nama Pegawai', 1, 0, 'C');
+    foreach ($date as $k => $v) {
+      $pdf->Cell(7.5, 5, date("D", strtotime($v)), 1, ($k == count($date) - 1) ? 1 : 0, 'C');
+    }
+    $pdf->Cell(77, 5, '', 0, 0, 'C');
+    foreach ($date as $k => $v) {
+      $pdf->Cell(7.5, 5, date("d", strtotime($v)), 1, ($k == count($date) - 1) ? 1 : 0, 'C');
+    }
+
+    //TABLE ROW
+    $pdf->SetFont('Arial', '', 7.5);
+    $width = [8, 14, 55];
+    $align = ['C', 'C', 'L'];
+    foreach ($date as $k => $v) {
+      array_push($width, 7.5);
+      array_push($align, 'C');
+    }
+    $pdf->SetWidths($width);
+    $pdf->SetAligns($align);
+    $i = 1;
+    foreach ($main as $k => $v) {
+      $row = [
+        $i++,
+        $v['employee_id'],
+        $v['employee_name'],
+      ];
+      foreach ($v['attendance'] as $k2 => $v2) {
+        array_push($row, $v2);
+      }
+      $pdf->Row($row);
+    }
+
+    $pdf->Output('I', 'Hourmachine_' . $start_date . '_' . $end_date . '-' . date('Ymdhis') . '.pdf');
+  }
 }
