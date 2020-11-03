@@ -88,4 +88,18 @@ class M_bpjs_tk extends CI_Model
 
     return $data;
   }
+
+  public function detail_all($id)
+  {
+    $data = $this->db->query(
+      "SELECT 
+        a.*, b.id_number, b.employee_name, b.sex, b.tax_number, b.entry_date, b.dob 
+      FROM payroll_detail a
+      JOIN employee b ON a.employee_id = b.employee_id
+      WHERE payroll_id = '$id'
+      "
+    )->result_array();
+
+    return $data;
+  }
 }
