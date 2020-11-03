@@ -54,9 +54,9 @@ class M_bpjs_tk extends CI_Model
   public function detail($id, $limit, $offset, $search = "")
   {
     $search = $this->db->escape_like_str($search);
-    $where = "";
+    $where = "WHERE payroll_id = '$id' ";
     if ($search != '') {
-      $where = "WHERE b.employee_name LIKE '%$search%'";
+      $where = "AND b.employee_name LIKE '%$search%'";
     }
     $data = $this->db->query(
       "SELECT 
@@ -74,9 +74,9 @@ class M_bpjs_tk extends CI_Model
   public function detail_total($id, $search = "")
   {
     $search = $this->db->escape_like_str($search);
-    $where = "";
+    $where = "WHERE payroll_id = '$id' ";
     if ($search != '') {
-      $where = "WHERE b.employee_name LIKE '%$search%'";
+      $where = "AND b.employee_name LIKE '%$search%'";
     }
     $data = $this->db->query(
       "SELECT 

@@ -54,9 +54,9 @@ class M_bpjs_ks extends CI_Model
   public function detail($id, $limit, $offset, $search = "")
   {
     $search = $this->db->escape_like_str($search);
-    $where = "";
+    $where = "WHERE payroll_id = '$id' ";
     if ($search != '') {
-      $where = "WHERE b.employee_name LIKE '%$search%'";
+      $where = "AND b.employee_name LIKE '%$search%'";
     }
     $data = $this->db->query(
       "SELECT 
@@ -74,9 +74,9 @@ class M_bpjs_ks extends CI_Model
   public function detail_total($id, $search = "")
   {
     $search = $this->db->escape_like_str($search);
-    $where = "";
+    $where = "WHERE payroll_id = '$id' ";
     if ($search != '') {
-      $where = "WHERE b.employee_name LIKE '%$search%'";
+      $where = "AND b.employee_name LIKE '%$search%'";
     }
     $data = $this->db->query(
       "SELECT 
@@ -85,6 +85,20 @@ class M_bpjs_ks extends CI_Model
       JOIN employee b ON a.employee_id = b.employee_id
       $where"
     )->row_array();
+
+    return $data;
+  }
+
+  public function detail_all($id)
+  {
+    $data = $this->db->query(
+      "SELECT 
+        a.*, b.employee_name, b.tax_number, b.entry_date, b.dob 
+      FROM payroll_detail a
+      JOIN employee b ON a.employee_id = b.employee_id
+      WHERE payroll_id = '$id'
+      "
+    )->result_array();
 
     return $data;
   }
