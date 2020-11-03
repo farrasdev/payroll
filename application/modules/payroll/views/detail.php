@@ -27,7 +27,15 @@
               <h3 class="card-title">Detail <?= $menu['menu_name'] ?></h3>
             </div>
             <div class="card-body">
-              <div class="row">
+              <!-- <div class="btn-group" role="group">
+                <button id="btnGroupDrop1" type="button" class="btn btn-sm btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                  <i class="fas fa-download"></i> Unduh
+                </button>
+                <div class="dropdown-menu" aria-labelledby="btnGroupDrop1">
+                  <a class="dropdown-item" target="_blank" href="<?= site_url() . '/' . $menu['controller'] . '/pdf/' . $id ?>"><i class="far fa-file-pdf"></i> Berkas PDF</a>
+                </div>
+              </div> -->
+              <div class="row mt-3">
                 <div class="col-md-6">
                   <div class="table-responsive">
                     <table class="table table-striped table-sm">
@@ -59,7 +67,7 @@
                 </div>
               </div><!-- /.row -->
               <div class="table-responsive mt-3">
-                <table id="table-detail" class="table table-head-fixed text-nowrap table-striped table-bordered table-sm">
+                <table id="table-detail" class="table table-head-fixed text-nowrap table-striped table-bordered table-sm" style="font-size:11px">
                   <thead>
                     <tr>
                       <th class="text-center text-middle" width="30" rowspan="2">No</th>
