@@ -116,7 +116,7 @@ class Rp_overtime extends MY_Controller
     $pdf->Cell(10, 10, 'No.', 1, 0, 'C');
     $pdf->Cell(50, 10, 'Divisi', 1, 0, 'C');
     $pdf->Cell(22, 10, 'Total Pegawai', 1, 0, 'C');
-    $pdf->Cell(108, 5, 'Divisi', 1, 1, 'C');
+    $pdf->Cell(108, 5, 'Overtime', 1, 1, 'C');
 
     $pdf->Cell(82, 5, '', 0, 0, 'C');
     $pdf->Cell(22, 5, 'Regular', 1, 0, 'C');

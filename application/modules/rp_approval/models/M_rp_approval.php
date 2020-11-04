@@ -113,7 +113,7 @@ class M_rp_approval extends CI_Model
       "SELECT z.* FROM (SELECT 
         a.division_name,
         b.employee_total,
-        c.overtime_regular_total, c.overtime_off_total, c.overtime_holiday_total, c.overtime_over_total, c.overtime_total_total, c.overtime_all_total
+        c.*
       FROM division a
       LEFT JOIN (
         SELECT division_id, COUNT(employee_id) as employee_total FROM employee GROUP BY division_id
@@ -121,15 +121,21 @@ class M_rp_approval extends CI_Model
       LEFT JOIN (
         SELECT 
           division_id,
-          SUM(overtime_regular) as overtime_regular_total,
-          SUM(overtime_off) as overtime_off_total,
-          SUM(overtime_holiday) as overtime_holiday_total,
-          SUM(overtime_over) as overtime_over_total,
-          SUM(overtime_total) as overtime_total_total,
-          SUM(overtime_all) as overtime_all_total
+          SUM(salary_receive_sub) as salary_receive_sub_total,
+          SUM(position_all) as position_all_total,
+          SUM(meal_all) as meal_all_total,
+          SUM(hourmachine_all) as hourmachine_all_total,
+          SUM(overtime_all) as overtime_all_total,
+          SUM(coeficient_all) as coeficient_all_total,
+          SUM(expense_all) as expense_all_total,
+          SUM(bpjs_tk_jht_employee) as bpjs_tk_jht_employee_total,
+          SUM(bpjs_tk_jp_employee) as bpjs_tk_jp_employee_total,
+          SUM(bpjs_ks_employee) as bpjs_ks_employee_total,
+          SUM(punishment) as punishment_total,
+          SUM(tax) as tax_total
         FROM payroll_detail WHERE payroll_id = '$id' GROUP BY division_id
       ) as c ON c.division_id = a.division_id
-      ORDER BY a.division_name ASC) as z
+      ORDER BY a.division_name ASC) as z 
       "
     )->result_array();
 
