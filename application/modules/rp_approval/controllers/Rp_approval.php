@@ -101,7 +101,7 @@ class Rp_approval extends MY_Controller
     $pdf->Cell(15, 6, '', 0, 0, 'L');
     $pdf->Cell(0, 6, $profile['address'], 0, 1, 'L');
     $pdf->Cell(2, 6, '', 0, 0, 'L');
-    $pdf->Line(10, 23.5, 200, 23.5);
+    $pdf->Line(10, 23.5, 413, 23.5);
 
     //TITLE
     $pdf->Cell(0, 8, '', 0, 1, 'L');
